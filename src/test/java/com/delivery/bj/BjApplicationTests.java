@@ -1,10 +1,10 @@
-package com.bjdelivery.bjdelivery;
+package com.delivery.bj;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BjdeliveryApplicationTests {
+class BjApplicationTests {
 
 	@Test
 	void contextLoads() {

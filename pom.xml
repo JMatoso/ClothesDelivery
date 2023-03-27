@@ -8,10 +8,10 @@
 		<version>2.7.10</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bjdelivery</groupId>
-	<artifactId>bjdelivery</artifactId>
+	<groupId>com.delivery</groupId>
+	<artifactId>bj</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bjdelivery</name>
+	<name>bj</name>
 	<description>Delivery Website for school project.</description>
 	<properties>
 		<java.version>20</java.version>
