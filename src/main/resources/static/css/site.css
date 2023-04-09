@@ -30,6 +30,10 @@
     font-weight: thin;
 }
 
+body {
+    scroll-behavior: smooth;
+}
+
 a {
     text-decoration: none;
     color: #876b36 !important;
@@ -58,4 +62,28 @@ strong, a {
     margin-right: 28px;
     display: inline-block;
     cursor: pointer;
+}
+
+.bottom-links a {
+    margin-right: 28px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.product-item {
+  display: none;
+}
+
+.product-item.show {
+  display: block;
+}
+
+.product-filters {
+    margin-top: 5em;
+}
+
+.product-filters .nav-link {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }

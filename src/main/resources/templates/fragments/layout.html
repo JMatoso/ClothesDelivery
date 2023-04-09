@@ -19,6 +19,8 @@
 
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <!--link rel="stylesheet" th:href="@{/css/fontawesome.all.min.css}" /-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/site.css}" />
 </head>
 
@@ -30,9 +32,9 @@
                     <span class="text-white">Free shipping, 30-day return or refund guarantee.</span>
                 </div>
                 <div class="col-6 text-end top-links">
-                    <a class="">Sign In</a>
-                    <a class="">About Us</a>
-                    <a class="">Contact</a>
+                    <a th:href="@{/login}">Sign In</a>
+                    <a th:href="@{/about}">About Us</a>
+                    <a th:href="@{/contact}">Contact</a>
                 </div>
             </div>
         </div>
@@ -52,9 +54,20 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">All</a></li>
+                            <li><a class="dropdown-item" href="#">Accessories</a></li>
+                            <li><a class="dropdown-item" href="#">Tops</a></li>
+                            <li><a class="dropdown-item" href="#">Bottoms</a></li>
+                            <li><a class="dropdown-item" href="#">Shoes</a></li>
+                        </ul>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Types
@@ -67,19 +80,44 @@
                         </ul>
                     </li>
                 </ul>
-                <div>
-                    <a href="#">Test</a>
+                <div class="top-links">
+                    <a href="#">
+                        <span class="fs-5">
+                            <i class="fas fa-shopping-bag"></i>
+                        </span>
+                    </a>
+                    <a href="#">
+                        <span class="fs-5">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </a>
+                    <a href="#">
+                        <span class="fs-5">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </a>
                 </div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
 </header>
 
 <body layout:fragment="body"></body>
+
+<footer class="bg-dark py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <small class="text-white d-block">All rights reserved to Clothes. &copy;2023</small>
+            </div>
+            <div class="col-sm-6 text-end bottom-links">
+                <a>Terms & Privacy</a>
+                <a>About Us</a>
+                <a>Contact</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script src="/libs/jquery/dist/jquery.min.js"></script>
 <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
