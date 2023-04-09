@@ -11,7 +11,7 @@
 	<groupId>com.clothesdelivery</groupId>
 	<artifactId>web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BJClothes</name>
+	<name>Clothes</name>
 	<description>Delivery website for a school project.</description>
 	<properties>
 		<java.version>20</java.version>

@@ -46,13 +46,16 @@ strong, a {
     font-family: 'Roboto Regular';
 }
 
-.w-25 {
-    width: 25%;
-}
+.w-25 { width: 25%; }
+.w-35 { width: 35%; }
 
-.w-35 {
-    width: 35%;
-}
-.centered {
-    margin: 0 auto;
+.centered { margin: 0 auto; }
+
+.top-links a {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 28px;
+    display: inline-block;
+    cursor: pointer;
 }

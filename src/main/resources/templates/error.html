@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/authLayout}">
+
 <head>
-    <meta charset="UTF-8">
     <title>Error</title>
-
-    <meta name="description" content="BJClothes, website.">
-    <meta name="author" content="José Matoso & Bernarda Gonçalves">
-
-    <meta name="theme-color" content="#876b36" />
-    <meta name="msapplication-navbutton-color" content="#876b36" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#876b36" />
-
-    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
 </head>
-<body>
-  <h1>500 - Something Went Wrong</h1>
+
+<body class="bg-gradient bg-light" layout:fragment="body">
+  <div class="text-center p-5">
+      <a th:href="@{/}">
+          <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100"  alt="Clothes Logo" />
+      </a>
+
+      <h1>Something went wrong!</h1>
+      <h2>Breathe, because at this point I don't know either what's happening.</h2>
+
+      <small class="mt-5 d-block text-uppercase">
+          <a th:href="@{/}">Back to site</a>
+      </small>
+  </div>
 </body>
+
 </html>
