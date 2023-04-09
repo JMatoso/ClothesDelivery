@@ -3,6 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/fragments/layout}">
 
+<head>
+    <title>Home</title>
+</head>
+
 <body class="bg-gradient bg-light" layout:fragment="body">
     <section>
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -38,18 +42,18 @@
         <div class="product-filters">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
-                    <a class="nav-link btn-filter" data-filter="best" aria-current="page" href="#">Best Sellers</a>
+                    <a class="nav-link btn-filter" data-filter="best" aria-current="page">Best Sellers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-filter" data-filter="new" href="#">New Arrivals</a>
+                    <a class="nav-link btn-filter" data-filter="new">New Arrivals</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-filter" data-filter="hot" href="#">Hot Sales</a>
+                    <a class="nav-link btn-filter" data-filter="hot">Hot Sales</a>
                 </li>
             </ul>
         </div>
 
-        <div class="row items mt-4">
+        <div class="row items mt-5">
             <div class="col-md-3 product-item show best mb-3">
                 <img th:src="@{/images/clothes/product-1.jpg.webp}" alt="Product 1">
                 <div class="mt-3">
@@ -116,7 +120,9 @@
         </div>
     </section>
 
-
+    <section class="container text-center py-5">
+        <img th:src="@{/images/banners/urban.png}" alt="Pub Banner Bottom">
+    </section>
 </body>
 
 </html>

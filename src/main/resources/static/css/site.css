@@ -36,11 +36,17 @@ body {
 
 a {
     text-decoration: none;
-    color: #876b36 !important;
     transition: ease-in all .1s;
+    cursor: pointer;
 }
 
-a:hover {
+.nav-link, .navbar-brand {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #876b36 !important;
+}
+
+.nav-link:hover {
     color: #ffc107 !important;
 }
 
@@ -50,24 +56,37 @@ strong, a {
     font-family: 'Roboto Regular';
 }
 
+.shadow-xs {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.03)!important;
+}
+
 .w-25 { width: 25%; }
 .w-35 { width: 35%; }
 
+.text-decoration-underline {
+    text-decoration-color: #ffc107 !important;
+}
+
 .centered { margin: 0 auto; }
 
-.top-links a {
+.top-links a,
+.bottom-links a{
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-right: 28px;
     display: inline-block;
     cursor: pointer;
+    color: #ffc107 !important;
 }
 
-.bottom-links a {
-    margin-right: 28px;
-    display: inline-block;
-    cursor: pointer;
+.top-links a:hover,
+.bottom-links a:hover {
+    color: #876b36 !important;
+}
+
+.items, .row {
+  transition: all 0.5s ease-in-out;
 }
 
 .product-item {
@@ -86,4 +105,25 @@ strong, a {
     font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+.btn-filter { cursor: pointer; }
+
+footer .nav-item a {
+    color: #bdbdbd !important;
+}
+
+footer .nav-item a:hover,
+.contact-social span a:hover {
+    color: #ffc107 !important;
+}
+
+.contact-social span {
+    font-size: 18pt;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.contact-social span a {
+    color: #bdbdbd !important;
 }
