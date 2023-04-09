@@ -2,26 +2,27 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">BJClothes</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes</title>
 
-    <meta name="description" content="BJClothes, website.">
+    <meta name="description" content="Clothes, website.">
     <meta name="author" content="José Matoso & Bernarda Gonçalves">
 
     <meta name="theme-color" content="#876b36" />
     <meta name="msapplication-navbutton-color" content="#876b36" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#876b36" />
 
-    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/site.css}" />
 </head>
 
-<body class="bg-gradient" layout:fragment="body"></body>
+<body layout:fragment="body"></body>
 
 <script src="/libs/jquery/dist/jquery.min.js"></script>
 <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

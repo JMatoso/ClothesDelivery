@@ -9,4 +9,9 @@ public class ClothesController {
     public String error() {
         return "error";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
 }
