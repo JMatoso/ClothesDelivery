@@ -19,9 +19,11 @@
 
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
     <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/libs/datatables/dataTables.bootstrap4.min.css}" />
     <!--link rel="stylesheet" th:href="@{/css/fontawesome.all.min.css}" /-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" th:href="@{/css/site.css}" />
+
 </head>
 
 <header>
@@ -59,11 +61,11 @@
                             Categories
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/products?q=all}">All</a></li>
-                            <li><a class="dropdown-item" th:href="@{/products?q=accessories}">Accessories</a></li>
-                            <li><a class="dropdown-item" th:href="@{/products?q=tops}">Tops</a></li>
-                            <li><a class="dropdown-item" th:href="@{/products?q=bottoms}">Bottoms</a></li>
-                            <li><a class="dropdown-item" th:href="@{/products?q=shoes}">Shoes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products}">All</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=accessories}">Accessories</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=tops}">Tops</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=bottoms}">Bottoms</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=shoes}">Shoes</a></li>
                         </ul>
                     </li>
 
@@ -142,16 +144,16 @@
                         <h5 class="text-white">Categories</h5>
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a th:href="@{/products?q=accessories}">Accessories</a>
+                                <a th:href="@{/products?category=accessories}">Accessories</a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/products?q=tops}">Tops</a>
+                                <a th:href="@{/products?category=tops}">Tops</a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/products?q=bottoms}">Bottoms</a>
+                                <a th:href="@{/products?category=bottoms}">Bottoms</a>
                             </li>
                             <li class="nav-item">
-                                <a th:href="@{/products?q=shoes}">Shoes</a>
+                                <a th:href="@{/products?category=shoes}">Shoes</a>
                             </li>
                         </ul>
                     </div>
@@ -207,6 +209,8 @@
 
 <script src="/libs/jquery/dist/jquery.min.js"></script>
 <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="/libs/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/js/site.js"></script>
 <script layout:fragment="script"></script>
 </html>

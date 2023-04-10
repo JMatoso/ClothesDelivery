@@ -24,6 +24,7 @@ public class ShoppingCart {
     private String productName;
     private String productImage;
     private BigDecimal productPrice;
+    private int quantity;
 
     @CreationTimestamp
     private LocalDateTime addedDate;
