@@ -25,7 +25,7 @@ public class Customer {
     private String password;
     private LocalDate birthdate;
     private String phoneNumber;
-    private Address address;
+    private int addressId;
 
     @CreationTimestamp
     private LocalDateTime createdTime;

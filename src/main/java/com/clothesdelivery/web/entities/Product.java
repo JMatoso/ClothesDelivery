@@ -30,11 +30,20 @@ public class Product {
     private Category category;
     private String brand;
     private String imageUrl;
-    private ClothesSize site;
+    private ClothesSize size;
     private ProductFilters filter;
     private String color;
     private float weight;
+    private String friendlyUrl;
 
     @CreationTimestamp
     private LocalDateTime createdTime;
+
+    public void generateFriendlyUrlFromName() {
+        this.friendlyUrl = String.join(name, "-", id.toString()).toLowerCase();
+    }
+
+    public void setFriendlyUrl(String name) {
+        friendlyUrl = String.join(name, "-", id.toString()).toLowerCase();
+    }
 }
