@@ -45,7 +45,7 @@ public class AccountController {
             return "login";
         }
 
-        // Authentication code
+        // todo: Authentication code
 
         return "redirect:/clothes/index";
     }
