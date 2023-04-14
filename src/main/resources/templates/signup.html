@@ -8,7 +8,7 @@
 </head>
 
 <body class="bg-gradient bg-light" layout:fragment="body">
-    <form method="post"  th:action="@{/signup}" th:object="${signup}" class="bg-white rounded shadow w-35 centered p-3">
+    <form method="post" th:action="@{/signup}" th:object="${signup}" class="bg-white rounded shadow w-35 centered p-3">
         <div class="text-center mb-3">
             <a th:href="@{/}">
                 <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100"  alt="Clothes Logo" />
@@ -16,13 +16,23 @@
             <small class="my-2 d-block">Be welcome to Clothes</small>
         </div>
 
+        <div th:if="${result.success == false && result.message != null}" class="alert alert-warning my-2" role="alert">
+            <span th:text="${result.message}"></span>
+        </div>
+
+        <div th:if="${result.success == true && result.message != null}" class="alert alert-success my-2" role="alert">
+            <span th:text="${result.message}"></span>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" required class="form-control" id="name" name="name" th:field="*{name}" placeholder="John Doe">
-                    <label for="name">Name</label>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="text" required class="form-control" id="name" name="name" th:field="*{name}" placeholder="John Doe">
+                        <label for="name">Name</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('name')}" class="text-danger d-block my-1" th:errors="*{name}"></small>
                 </div>
-                <small th:if="${#fields.hasErrors('name')}" class="text-danger d-block my-1" th:errors="*{name}"></small>
             </div>
             <div class="col-md-6">
                 <div class="form-floating mb-3">
@@ -34,34 +44,43 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" placeholder="+244 999 999 999">
-                    <label for="phoneNumber">Phone Number</label>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" placeholder="+244 999 999 999">
+                        <label for="phoneNumber">Phone Number</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger d-block my-1" th:errors="*{phoneNumber}"></small>
                 </div>
-                <small th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger d-block my-1" th:errors="*{phoneNumber}"></small>
             </div>
             <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="email" required class="form-control" id="email" name="email" th:field="*{email}" placeholder="name@example.com">
-                    <label for="email">Email address</label>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="email" required class="form-control" id="email" name="email" th:field="*{email}" placeholder="name@example.com">
+                        <label for="email">Email address</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('email')}" class="text-danger d-block my-1" th:errors="*{email}"></small>
                 </div>
-                <small th:if="${#fields.hasErrors('email')}" class="text-danger d-block my-1" th:errors="*{email}"></small>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" required class="form-control" id="city" name="city" th:field="*{city}" placeholder="Luanda">
-                    <label for="city">City</label>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="text" required class="form-control" id="city" name="city" th:field="*{city}" placeholder="Luanda">
+                        <label for="city">City</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('city')}" class="text-danger d-block my-1" th:errors="*{city}"></small>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-floating mb-3">
-                    <input type="text" required class="form-control" id="address" name="address" th:field="*{address}" placeholder="Maianga, Rua 3, Casa 2">
-                    <label for="address">Address</label>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <input type="text" required class="form-control" id="address" name="address" th:field="*{address}" placeholder="Maianga, Rua 3, Casa 2">
+                        <label for="address">Address</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('address')}" class="text-danger d-block my-1" th:errors="*{address}"></small>
                 </div>
-                <small th:if="${#fields.hasErrors('address')}" class="text-danger d-block my-1" th:errors="*{address}"></small>
             </div>
         </div>
 

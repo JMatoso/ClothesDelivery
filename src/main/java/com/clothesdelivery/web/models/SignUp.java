@@ -50,6 +50,7 @@ public class SignUp {
         customer.setBirthdate(birthdate);
         customer.setPhoneNumber(phoneNumber);
         customer.setPassword(Crypto.apply(password));
+        customer.setCreatedTime(LocalDateTime.now());
 
         return customer;
     }

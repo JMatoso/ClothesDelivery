@@ -72,9 +72,10 @@ public class AccountController {
             return "signup";
         }
 
-        customer.setAddressId(address.getId());
+        var savedAddress = _address.save(address);
 
-        _address.save(address);
+        customer.setAddressId(savedAddress.getId());
+
         _customer.save(customer);
 
         model.addAttribute("result", new Result(true, "Account created successfully."));
