@@ -77,12 +77,16 @@ strong, a {
     margin-right: 28px;
     display: inline-block;
     cursor: pointer;
-    color: #ffc107 !important;
+    color: #bdbdbd !important;
 }
 
 .top-links a:hover,
 .bottom-links a:hover {
-    color: #876b36 !important;
+    color: #ffc107 !important;
+}
+
+.opacity-3 {
+    opacity: .003em !important;
 }
 
 .items, .row {

@@ -4,213 +4,218 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes</title>
 
-  <meta name="description" content="Clothes, website.">
-  <meta name="author" content="José Matoso & Bernarda Gonçalves">
+    <meta name="description" content="Clothes, website.">
+    <meta name="author" content="José Matoso & Bernarda Gonçalves">
 
-  <meta name="theme-color" content="#ffc107" />
-  <meta name="msapplication-navbutton-color" content="#ffc107" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
+    <meta name="theme-color" content="#ffc107" />
+    <meta name="msapplication-navbutton-color" content="#ffc107" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
 
-  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-  <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
-  <link rel="stylesheet" th:href="@{/libs/datatables/dataTables.bootstrap4.min.css}" />
-  <!--link rel="stylesheet" th:href="@{/css/fontawesome.all.min.css}" /-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" th:href="@{/css/site.css}" />
-
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/libs/datatables/dataTables.bootstrap4.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/site.css}" />
 </head>
 
 <header>
-  <div class="bg-dark py-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          <span class="text-white">Free shipping, 30-day return or refund guarantee.</span>
+    <div class="bg-black py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <small class="text-white">Free shipping, 30-day return or refund guarantee.</small>
+                </div>
+                <div class="col-6 text-end top-links">
+                    <a th:href="@{/login}">Sign In</a>
+                    <a th:href="@{/about}">About Us</a>
+                    <a th:href="@{/contact}">Contact</a>
+                </div>
+            </div>
         </div>
-        <div class="col-6 text-end top-links">
-          <a th:href="@{/login}">Sign In</a>
-          <a th:href="@{/about}">About Us</a>
-          <a th:href="@{/contact}">Contact</a>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <nav class="navbar navbar-expand-lg bg-white shadow-xs">
-    <div class="container-fluid container">
-      <a class="navbar-brand" th:href="@{/}">
-        <img th:src="@{/images/logo.png}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categories
+    <nav class="navbar navbar-expand-lg bg-white shadow-xs p-3">
+        <div class="container-fluid container">
+            <a class="navbar-brand" th:href="@{/}">
+              <img th:src="@{/images/logo.png}" alt="Logo" width="34" height="28" class="d-inline-block align-text-top">
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" th:href="@{/products}">All</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?category=accessories}">Accessories</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?category=tops}">Tops</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?category=bottoms}">Bottoms</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?category=shoes}">Shoes</a></li>
-            </ul>
-          </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Types
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" th:href="@{/products?q=man}">Man</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?q=woman}">Woman</a></li>
-              <li><a class="dropdown-item" th:href="@{/products?q=children}">Children</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div class="top-links">
-          <a th:href="@{/bag}">
-              <span class="fs-5">
-                  <i class="fas fa-shopping-bag"></i>
-              </span>
-          </a>
-          <a th:href="@{/account}">
-              <span class="fs-5">
-                  <i class="fas fa-user"></i>
-              </span>
-          </a>
-          <a th:href="@{/products}">
-              <span class="fs-5">
-                  <i class="fas fa-search"></i>
-              </span>
-          </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/products}">All</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=accessories}">Accessories</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=tops}">Tops</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=bottoms}">Bottoms</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?category=shoes}">Shoes</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Types
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/products?q=man}">Man</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?q=woman}">Woman</a></li>
+                            <li><a class="dropdown-item" th:href="@{/products?q=children}">Children</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="top-links">
+                    <a th:href="@{/bag}">
+                        <span class="fs-5">
+                            <i data-feather="shopping-bag"></i>
+                        </span>
+                    </a>
+                    <a th:href="@{/account}">
+                        <span class="fs-5">
+                            <i data-feather="user"></i>
+                        </span>
+                    </a>
+                    <a th:href="@{/products}">
+                        <span class="fs-5">
+                            <i data-feather="search"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </header>
 
 <body layout:fragment="body"></body>
 
-<footer class="bg-dark py-3 pt-5">
-  <div class="container">
-    <div class="row mb-4">
-      <div class="col-md-8">
-        <div class="row row-cols-2">
-          <div class="col-md-3 mb-3 text-center">
-            <img th:src="@{/images/logo.png}" alt="Stu2Go Logo" style="width: 82px !important;" />
-          </div>
-          <div class="col-md-3 mb-3">
-            <h5 class="text-white">Info</h5>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="mailto:geral@clothes.com">Email</a>
-              </li>
-              <li class="nav-item">
-                <a href="tel:+244966555777">(244) 966 555 777</a>
-              </li>
-              <li class="nav-item">
-                <span class="text-white text-opacity-75">Luanda, Angola</span>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-3">
-            <h5 class="text-white">Shopping</h5>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a th:href="@{/bag}">Bag</a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/contact}">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/products}">Products</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-3 mb-3">
-            <h5 class="text-white">Categories</h5>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a th:href="@{/products?category=accessories}">Accessories</a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/products?category=tops}">Tops</a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/products?category=bottoms}">Bottoms</a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/products?category=shoes}">Shoes</a>
-              </li>
-            </ul>
+<footer class="bg-black py-3 pt-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="row row-cols-4">
+                      <div class="col-md-3 mb-3">
+                            <img th:src="@{/images/logo.png}" alt="Stu2Go Logo" style="width: 85px !important;" />
+                      </div>
+                      <div class="col-md-3 mb-3">
+                            <h5 class="text-white">Info</h5>
+                            <ul class="navbar-nav">
+                                  <li class="nav-item">
+                                        <a href="mailto:geral@clothes.com">Email</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a href="tel:+244966555777">(244) 966 555 777</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <small class="text-white-50 text-opacity-75">Luanda, Angola</small>
+                                  </li>
+                            </ul>
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                            <h5 class="text-white">Shopping</h5>
+                            <ul class="navbar-nav">
+                                  <li class="nav-item">
+                                        <a th:href="@{/bag}">Bag</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a th:href="@{/contact}">Contact</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a th:href="@{/products}">Products</a>
+                                  </li>
+                            </ul>
+                      </div>
+                      <div class="col-md-3 mb-3">
+                            <h5 class="text-white">Categories</h5>
+                            <ul class="navbar-nav">
+                                  <li class="nav-item">
+                                        <a th:href="@{/products?category=accessories}">Accessories</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a th:href="@{/products?category=tops}">Tops</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a th:href="@{/products?category=bottoms}">Bottoms</a>
+                                  </li>
+                                  <li class="nav-item">
+                                        <a th:href="@{/products?category=shoes}">Shoes</a>
+                                  </li>
+                            </ul>
+                      </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+            <p class="text-white-50">The customer is at the heart of our unique business model, which includes design.</p>
+            <div class="contact-social py-2">
+                <span>
+                    <a href="https://www.facebook.com/stu2go">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                  </span>
+                <span>
+                  <a href="https://github.com/jmatoso/stu2go">
+                      <i class="fa-brands fa-github"></i>
+                  </a>
+                </span>
+                <span>
+                    <a href="https://wa.me/244966555777">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </span>
+                <span>
+                    <a href="https://www.instagram.com/stu2go">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </span>
+                <span>
+                    <a href="https://www.linkedin.com/in/stu2go">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-4">
-        <p class="text-white-50">The customer is at the heart of our unique business model, which includes design.</p>
-        <div class="contact-social py-2">
-            <span>
-                <a href="https://www.facebook.com/stu2go">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-              </span>
-            <span>
-              <a href="https://github.com/jmatoso/stu2go">
-                  <i class="fa-brands fa-github"></i>
-              </a>
-            </span>
-            <span>
-                <a href="https://wa.me/244966555777">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </span>
-            <span>
-                <a href="https://www.instagram.com/stu2go">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </span>
-            <span>
-                <a href="https://www.linkedin.com/in/stu2go">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-            </span>
+        <hr class="bg-light opacity-3">
+
+        <div class="row">
+              <div class="col-sm-6">
+                    <small class="text-white d-block">All rights reserved to Clothes. &copy;2023</small>
+              </div>
+              <div class="col-sm-6 text-end bottom-links">
+                    <a th:href="@{/terms}">Terms & Privacy</a>
+                    <a th:href="@{/about}">About Us</a>
+                    <a th:href="@{/contact}">Contact</a>
+              </div>
         </div>
-      </div>
     </div>
-
-    <hr class="bg-light opacity-25">
-
-    <div class="row">
-      <div class="col-sm-6">
-        <small class="text-white d-block">All rights reserved to Clothes. &copy;2023</small>
-      </div>
-      <div class="col-sm-6 text-end bottom-links">
-        <a th:href="@{/terms}">Terms & Privacy</a>
-        <a th:href="@{/about}">About Us</a>
-        <a th:href="@{/contact}">Contact</a>
-      </div>
-    </div>
-  </div>
 </footer>
 
 <script src="/libs/jquery/dist/jquery.min.js"></script>
 <script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/libs/datatables/jquery.dataTables.min.js"></script>
 <script src="/libs/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/js/feather.min.js"></script>
 <script src="/js/site.js"></script>
+<script>
+    feather.replace();
+</script>
 <script layout:fragment="script"></script>
 </html>
