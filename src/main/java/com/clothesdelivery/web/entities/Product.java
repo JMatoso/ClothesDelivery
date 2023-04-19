@@ -2,6 +2,7 @@ package com.clothesdelivery.web.entities;
 
 import com.clothesdelivery.web.enums.Category;
 import com.clothesdelivery.web.enums.ClothesSize;
+import com.clothesdelivery.web.enums.GenreStyle;
 import com.clothesdelivery.web.enums.ProductFilters;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,8 @@ public class Product {
     private BigDecimal price;
     private Integer quantityInStock;
     private Category category;
+    private GenreStyle genreStyle;
+    private boolean isForChildren;
     private String brand;
     private String imageUrl;
     private ClothesSize size;

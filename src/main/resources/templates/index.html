@@ -86,8 +86,7 @@
         <div class="tab-content mt-5">
             <div class="tab-pane container active" id="best">
                 <div class="grid">
-
-                    <div class="product-item mb-3">
+                    <div th:each="product : ${best_products}" class="product-item mb-3">
                         <div class="product-content">
                             <img th:src="@{/images/clothes/product-1.jpg.webp}" alt="Product 2">
                             <div class="overlay">
@@ -95,8 +94,8 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
+                            <h6 th:text="${product.name}"></h6>
+                            <h5 th:text="${product.price}"></h5>
                         </div>
                     </div>
 
