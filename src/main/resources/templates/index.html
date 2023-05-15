@@ -88,85 +88,65 @@
                 <div class="grid">
                     <div th:each="product : ${best_products}" class="product-item mb-3">
                         <div class="product-content">
-                            <img th:src="@{/images/clothes/product-1.jpg.webp}" alt="Product 2">
-                            <div class="overlay">
-                                <button>I am a button</button>
-                            </div>
+                            <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
+                                <img class="product-image" th:src="@{/images/clothes/product-1.jpg.webp}" th:alt="${product.name}">
+                            </a>
+                            <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
                         </div>
                         <div class="mt-3">
                             <h6 th:text="${product.name}"></h6>
-                            <h5 th:text="${product.price}"></h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-2.jpg.webp}" alt="Product 2">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-3.jpg.webp}" alt="Product 3">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-4.jpg.webp}" alt="Product 4">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-5.jpg.webp}" alt="Product 5">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-6.jpg.webp}" alt="Product 6">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-7.jpg.webp}" alt="Product 7">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
-                        </div>
-                    </div>
-
-                    <div class="product-item mb-3">
-                        <img th:src="@{/images/clothes/product-8.jpg.webp}" alt="Product 8">
-                        <div class="mt-3">
-                            <h6>Some title</h6>
-                            <h5>$55</h5>
+                            <h5 class="lnw-0">
+                                <small th:text="${product.price}"></small>
+                                <small>AOA</small>
+                            </h5>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="tab-pane container fade" id="new">
-                New Arrivals
+                <div class="grid">
+                    <div th:each="product : ${newest_products}" class="product-item mb-3">
+                        <div class="product-content">
+                            <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
+                                <img class="product-image" th:src="@{/images/clothes/product-1.jpg.webp}" th:alt="${product.name}">
+                            </a>
+                            <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
+                        </div>
+                        <div class="mt-3">
+                            <h6 th:text="${product.name}"></h6>
+                            <h5 class="lnw-0">
+                                <small th:text="${product.price}"></small>
+                                <small>AOA</small>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane container fade" id="hot">
-                Hot Sales
+                <div class="grid">
+                    <div th:each="product : ${hottest_products}" class="product-item mb-3">
+                        <div class="product-content">
+                            <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
+                                <img class="product-image" th:src="@{/images/clothes/product-1.jpg.webp}" th:alt="${product.name}">
+                            </a>
+                            <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
+                        </div>
+                        <div class="mt-3">
+                            <h6 th:text="${product.name}"></h6>
+                            <h5 class="lnw-0">
+                                <small th:text="${product.price}"></small>
+                                <small>AOA</small>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </section>
 
-    <section class="container mt-5" id="tips">
+    <section class="container" id="ads">
         <a th:href="@{/products}">
             <img th:src="@{/images/banners/ads.png}" class="d-block w-100" alt="Matching Clothes">
         </a>
