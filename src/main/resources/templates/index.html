@@ -146,11 +146,7 @@
 
     </section>
 
-    <section class="container" id="ads">
-        <a th:href="@{/products}">
-            <img th:src="@{/images/banners/ads.png}" class="d-block w-100" alt="Matching Clothes">
-        </a>
-    </section>
+    <div th:replace="fragments/ads :: section"></div>
 
     <section class="text-center text-white" id="get-in-touch">
         <h4 class="topic">Ready to start some great look?</h4>

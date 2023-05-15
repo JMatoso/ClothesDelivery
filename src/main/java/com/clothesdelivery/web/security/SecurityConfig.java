@@ -1,5 +1,6 @@
 package com.clothesdelivery.web.security;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,11 +11,18 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private final String[] _allowedUrls = new String[] {
+            "/login", "/signup",
+            "/terms", "/", "/about", "/contact", "/error", "/notfound",
+            "/css/**",  "/fonts/**", "/js/**", "/images/**", "/libs/**",
+            "/products", "/detail/**"
+    };
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(@NotNull HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/signup", "/terms", "/", "/about", "/contact", "/error", "/css/**", "/fonts/**", "/js/**", "/images/**", "/libs/**")
+                .requestMatchers(_allowedUrls)
                 .permitAll()
                 .and()
                 .formLogin(form -> form

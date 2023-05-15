@@ -19,4 +19,9 @@ public class HomeController {
     public String terms() {
         return "terms";
     }
+
+    @GetMapping("/notfound")
+    public String notfound() {
+        return "notfound";
+    }
 }

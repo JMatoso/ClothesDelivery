@@ -104,8 +104,7 @@
 
     $(document).ready(alert.hide());
 
-    function validateForm()
-    {
+    function validateForm() {
         var name = $("#name");
         var phone = $("#phone");
         var email = $("#email");
@@ -113,8 +112,7 @@
 
         var controls = new Array(name, phone, email, message);
 
-        if(!validate(controls))
-        {
+        if(!validate(controls)) {
             alert.show();
             return;
         }
@@ -124,12 +122,9 @@
         alert.hide();
     }
 
-    function validate(controls)
-    {
-        for(index in controls)
-        {
-            if(controls[index].val() <= 0)
-            {
+    function validate(controls) {
+        for(index in controls) {
+            if(controls[index].val() <= 0) {
                 return false;
             }
         }
@@ -142,10 +137,8 @@
         window.open(url, '_blank').focus();
     }
 
-    function clearFields(controls)
-    {
-        for(index in controls)
-        {
+    function clearFields(controls) {
+        for(index in controls) {
             controls[index].val("");
         }
     }
