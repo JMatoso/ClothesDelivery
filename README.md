@@ -1,18 +1,35 @@
-## Getting Started
+# Clothes, e-commerce.
+> This is another school project, don't expect too much.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## About The Project
 
-## Folder Structure
+<p>Clothes is a clothing sales site for people who love to dress well and feel comfortable. We are passionate about fashion and want to help our customers express themselves through their clothing. Our catalog is constantly updated, so you can always find the latest trends and styles that match your personal style. We strive to provide high quality clothing at affordable prices, ensuring everyone can feel confident and stylish, regardless of budget. Our team is always on hand to help you find the perfect outfit for any occasion, and our fast and efficient delivery ensures you can enjoy your shopping in no time. Thank you for choosing Clothes for your fashion shopping!</p>
 
-The workspace contains two folders by default, where:
+## Things Similiar to Features
+<ul>
+    <li>Login</li>
+    <li>Register</li>
+    <li>Stock Management</li>
+    <li>Shopping Cart</li>
+    <li>User Management</li>
+</ul>
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Tools
+<ul>
+    <li>Oracle OpenJDK version 20.0.1</li>
+    <li><a href="https://spring.io/">SpringMVC</a></li>
+    <li>MySQL</li>
+    <li>Maven</li>
+    <li><a href="https://projectlombok.org/">Lombok</a></li>
+</ul>
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+<h3>How to run</h3>
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+<ol>
+    <li>Load all Maven dependencies</li>
+    <li>Change the connection string values in <code>application.properties</code>.</li>
+    <li>I might be forgetting something, but, good luck!</li>
+</ol>
 
-## Dependency Management
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
