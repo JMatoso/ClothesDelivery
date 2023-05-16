@@ -26,8 +26,10 @@
 <h3>How to run</h3>
 
 <ol>
-    <li>Load all Maven dependencies</li>
-    <li>Change the connection string values in <code>application.properties</code>.</li>
+    <li>Load all Maven dependencies;</li>
+    <li>Change the connection string values in <code>application.properties</code>;</li>
+    <li>Create the database;</li>
+    <li>Enable Lombok;</li>
     <li>I might be forgetting something, but, good luck!</li>
 </ol>
 
