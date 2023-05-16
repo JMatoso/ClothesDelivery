@@ -1,8 +1,8 @@
 package com.clothesdelivery.web.models;
 
 import com.clothesdelivery.web.entities.Address;
-import com.clothesdelivery.web.entities.Customer;
-import com.clothesdelivery.web.services.Crypto;
+import com.clothesdelivery.web.entities.User;
+import com.clothesdelivery.web.security.Crypto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -42,17 +42,17 @@ public class SignUp {
     @Size(max = 50, message = "Country must be below 50 chars.")
     private String country = "Angola";
 
-    public Customer toCustomerEntity() {
-        var customer = new Customer();
+    public User toUserEntity() {
+        var user = new User();
 
-        customer.setName(name);
-        customer.setEmail(email);
-        customer.setBirthdate(birthdate);
-        customer.setPhoneNumber(phoneNumber);
-        customer.setPassword(Crypto.apply(password));
-        customer.setCreatedTime(LocalDateTime.now());
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setBirthdate(birthdate);
+        user.setPhoneNumber(phoneNumber);
+        user.setCreatedTime(LocalDateTime.now());
 
-        return customer;
+        return user;
     }
 
     public Address toAddressEntity() {

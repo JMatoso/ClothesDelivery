@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -31,7 +32,7 @@
                     <small class="text-white fw-rb-light">Free shipping, 30-day return or refund guarantee.</small>
                 </div>
                 <div class="col-6 text-end top-links">
-                    <a th:href="@{/login}">Sign In</a>
+                    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Sign In</a>
                     <a th:href="@{/about}">About Us</a>
                     <a th:href="@{/contact}">Contact</a>
                 </div>
@@ -83,12 +84,12 @@
                 </ul>
 
                 <div class="top-links">
-                    <a th:href="@{/bag}">
+                    <a th:href="@{/bag}" sec:authorize="isAuthenticated()">
                         <span class="fs-5">
                             <i data-feather="shopping-bag"></i>
                         </span>
                     </a>
-                    <a th:href="@{/account}">
+                    <a th:href="@{/account}" sec:authorize="isAuthenticated()">
                         <span class="fs-5">
                             <i data-feather="user"></i>
                         </span>
@@ -96,6 +97,11 @@
                     <a th:href="@{/products}">
                         <span class="fs-5">
                             <i data-feather="search"></i>
+                        </span>
+                    </a>
+                    <a th:href="@{/logout}" sec:authorize="isAuthenticated()">
+                        <span class="fs-5">
+                            <i data-feather="log-out"></i>
                         </span>
                     </a>
                 </div>

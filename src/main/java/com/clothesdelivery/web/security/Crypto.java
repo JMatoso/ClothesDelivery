@@ -1,4 +1,4 @@
-package com.clothesdelivery.web.services;
+package com.clothesdelivery.web.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

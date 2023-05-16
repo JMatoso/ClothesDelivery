@@ -1,5 +1,6 @@
 package com.clothesdelivery.web.entities;
 
+import com.clothesdelivery.web.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +16,8 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "customers")
-public class Customer {
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +26,8 @@ public class Customer {
     private String password;
     private LocalDate birthdate;
     private String phoneNumber;
+    private Role role;
+
     private Long addressId;
 
     @CreationTimestamp
