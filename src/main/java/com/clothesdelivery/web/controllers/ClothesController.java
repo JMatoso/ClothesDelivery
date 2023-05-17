@@ -48,7 +48,36 @@ public class ClothesController extends Base {
             @RequestParam(value = "size", required = false) ClothesSize size,
             @RequestParam(value = "search", required = false) String search,
             @NotNull Model model) {
+
         var products = _products.findAll();
+
+        if(search != null) {
+            products = products.stream().filter(e ->
+                    e.getName().toLowerCase().contains(search.toLowerCase()) ||
+                    e.getBrand().toLowerCase().contains(search.toLowerCase()) ||
+                    e.getColor().toLowerCase().contains(search.toLowerCase()) ||
+                    e.getDescription().toLowerCase().contains(search.toLowerCase()) ||
+                    e.getPrice().toString().toLowerCase().contains(search.toLowerCase()) ||
+                    e.getSku().toLowerCase().contains(search.toLowerCase())).toList();
+        }
+
+        if(category != null) {
+            products = products.stream()
+                    .filter(e -> e.getCategory() == category)
+                    .toList();
+        }
+
+        if(style != null) {
+            products = products.stream()
+                    .filter(e -> e.getGenreStyle() == style)
+                    .toList();
+        }
+
+        if(size != null) {
+            products = products.stream()
+                    .filter(e -> e.getSize() == size)
+                    .toList();
+        }
 
         model.addAttribute("products", products);
 
