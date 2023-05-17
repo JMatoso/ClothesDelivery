@@ -5,6 +5,7 @@ import com.clothesdelivery.web.enums.ClothesSize;
 import com.clothesdelivery.web.enums.GenreStyle;
 import com.clothesdelivery.web.enums.ProductFilters;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @Column(length = 8000)
     private String description;
     private BigDecimal price;
     private Integer quantityInStock;
@@ -38,12 +41,20 @@ public class Product {
     private String color;
     private float weight;
     private String friendlyUrl;
+    private String sku;
 
     @CreationTimestamp
     private LocalDateTime createdTime;
 
     public void generateFriendlyUrlFromName() {
         this.friendlyUrl = String.join(name, "-", id.toString()).toLowerCase();
+    }
+
+    public void generateSKU() {
+        var initials = name.substring(0, 2).toLowerCase();
+        var date = createdTime.toEpochSecond(java.time.ZoneOffset.UTC) * 1000;
+
+        this.sku = initials + date + this.id;
     }
 
     public void setFriendlyUrl(String name) {

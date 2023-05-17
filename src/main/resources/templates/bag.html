@@ -8,35 +8,46 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-    <div class="container mt-3">
-        <h3>Items (4)</h3>
+<div class="container my-5">
+    <h3>Items (<span th:text="${products.size()}"></span>)</h3>
 
-        <div class="table-responsive mb-4">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+    <div class="table-responsive p-1 my-4">
+        <table class="table table-bordered w-100" id="dataTable">
+            <thead>
                 <tr>
-                    <th>Image</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Total</th>
                     <th>Action</th>
                 </tr>
-                </thead>
-                <tfoot>
+            </thead>
+            <tfoot>
                 <tr>
-                    <th>Image</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
+                    <th>Total</th>
                     <th>Action</th>
                 </tr>
-                </tfoot>
-                <tbody>
-                        Content
-                </tbody>
-            </table>
-        </div>
+            </tfoot>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td><img class="w-100" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
+                <td th:text="${product.productName}"></td>
+                <td th:text="${product.productPrice}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.quantity * product.productPrice}"></td>
+                <td>
+                    <a class="btn btn-danger text-white w-100">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 </body>
 
 <script layout:fragment="script">

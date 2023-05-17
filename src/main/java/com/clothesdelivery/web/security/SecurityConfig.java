@@ -24,7 +24,7 @@ public class SecurityConfig {
             "/products", "/detail/**"
     };
 
-    private CustomUserDetailsService _userDetailsService;
+    private final CustomUserDetailsService _userDetailsService;
 
     @Autowired
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
@@ -41,25 +41,22 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(@NotNull HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                .invalidSessionUrl("/login")
-                .maximumSessions(1)
-                .expiredUrl("/login")
-                .and()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers(_allowedUrls)
-                .permitAll()
-                .and()
+                    .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                    .invalidSessionUrl("/login")
+                    .maximumSessions(1)
+                    .expiredUrl("/login").and().and()
+                .authorizeHttpRequests(authorize -> authorize
+                    .requestMatchers(_allowedUrls).permitAll()
+                    .anyRequest().authenticated())
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/")
-                        .loginProcessingUrl("/login")
-                        .permitAll())
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/")
+                    .loginProcessingUrl("/login")
+                    .permitAll())
                 .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout")
-                        .invalidateHttpSession(true)
-                        .permitAll());
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true)
+                    .permitAll());
 
         return httpSecurity.build();
     }

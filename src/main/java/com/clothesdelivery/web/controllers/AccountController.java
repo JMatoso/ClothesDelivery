@@ -1,12 +1,10 @@
 package com.clothesdelivery.web.controllers;
 
 import com.clothesdelivery.web.enums.Role;
-import com.clothesdelivery.web.models.SignUp;
-import com.clothesdelivery.web.models.Login;
 import com.clothesdelivery.web.models.Result;
+import com.clothesdelivery.web.models.SignUp;
 import com.clothesdelivery.web.repositories.IAddressRepository;
 import com.clothesdelivery.web.repositories.IUserRepository;
-import com.clothesdelivery.web.security.Crypto;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

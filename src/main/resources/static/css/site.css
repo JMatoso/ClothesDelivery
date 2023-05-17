@@ -46,6 +46,10 @@ a {
     cursor: pointer;
 }
 
+.ff-light {
+    font-family: 'Roboto Light' !important;
+}
+
 .nav-link {
     text-transform: uppercase;
     font-size: 14px !important;
@@ -80,8 +84,31 @@ strong, a {
 .fw-rb-light {
     font-family: 'Roboto Light' !important;
 }
+
 .lnw-0 {
     line-height: 0.5;
+}
+
+.accordion-button:focus,
+input:focus,
+select:focus {
+     border-color: #ffc107 !important;
+     box-shadow: 0 0 0 0.25rem rgba(255,193,7,.25) !important;
+ }
+
+ .accordion-button:not(.collapsed) {
+     color: #ffc107;
+     background-color: transparent !important;
+ }
+
+.list-group-item {
+    border: none;
+}
+
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #ffc107;
+    border-color: #ffc107;
 }
 
 .text-decoration-underline {

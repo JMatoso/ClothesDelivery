@@ -2,7 +2,6 @@ package com.clothesdelivery.web.models;
 
 import com.clothesdelivery.web.entities.Address;
 import com.clothesdelivery.web.entities.User;
-import com.clothesdelivery.web.security.Crypto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

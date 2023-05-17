@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Clothes E-Commerce
-=======
 # Clothes, e-commerce.
 > This is another school project, don't expect too much.
 
@@ -33,4 +30,3 @@
     <li>Enable Lombok;</li>
     <li>I might be forgetting something, but, good luck!</li>
 </ol>
->>>>>>> 4af54aca081a232dd74d2bc19ccf7570b30d2b3f

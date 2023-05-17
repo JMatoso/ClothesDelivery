@@ -11,12 +11,12 @@
     <section class="container mt-5" id="filter-head">
         <div class="form-group">
             <div class="mb-3">
-                <input type="search" class="form-control form-control-lg" aria-label="Search" placeholder="Search for brands, names, colors, weight..." aria-describedby="inputSearch">
+                <input type="search" class="form-control" aria-label="Search" placeholder="Search for brands, names, colors, weight..." aria-describedby="inputSearch">
             </div>
 
             <div class="row">
                 <div class="col-md-3">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select class="form-select mb-3" aria-label=".form-select-lg example">
                         <option selected>Select a category...</option>
                         <option th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}"
                                 th:value="${category}"
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select class="form-select mb-3" aria-label=".form-select-lg example">
                         <option selected>Select a genre style...</option>
                         <option th:each="style : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}"
                                 th:value="${style}"
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select class="form-select mb-3" aria-label=".form-select-lg example">
                         <option selected>Select a size...</option>
                         <option th:each="size : ${T(com.clothesdelivery.web.enums.ClothesSize).values()}"
                                 th:value="${size}"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="col-md-2">
-                    <button class="btn btn-lg btn-warning w-100">Apply</button>
+                    <button class="btn btn-warning w-100">Apply</button>
                 </div>
             </div>
         </div>

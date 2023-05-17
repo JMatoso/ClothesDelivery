@@ -1,9 +1,11 @@
 package com.clothesdelivery.web.controllers;
 
+import com.clothesdelivery.web.entities.ShoppingCart;
 import com.clothesdelivery.web.enums.Category;
 import com.clothesdelivery.web.enums.ClothesSize;
 import com.clothesdelivery.web.enums.GenreStyle;
 import com.clothesdelivery.web.enums.ProductFilters;
+import com.clothesdelivery.web.repositories.ICartRepository;
 import com.clothesdelivery.web.repositories.IProductRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 @Controller
-public class ClothesController {
+public class ClothesController extends Base {
     @Autowired
     private IProductRepository _products;
+
+    @Autowired
+    private ICartRepository _shoppingCarts;
 
     @GetMapping("/")
     public String index(@NotNull Model model) {
@@ -59,10 +67,59 @@ public class ClothesController {
             return "redirect:/notfound";
         }
 
-        model.addAttribute("product", product);
+        var recommendedProducts = _products.findByGenreStyleOrCategory(product.getGenreStyle(), product.getCategory()).stream().limit(8);
 
-        // todo: recommended products
+        model.addAttribute("product", product);
+        model.addAttribute("recommended_product", recommendedProducts);
 
         return "detail";
+    }
+
+    @PostMapping("/detail")
+    public String addToCart(@RequestParam(value = "quantity") int quantity, @RequestParam(value = "friendlyUrl") String friendlyUrl) {
+        var returnUrl = String.format("redirect:/detail/%s", friendlyUrl);
+        var user = getAuthenticatedUser();
+
+        if(user == null) {
+            return returnUrl + "?unauthorized";
+        }
+
+        var product = _products.findByFriendlyUrl(friendlyUrl);
+
+        if(product == null) {
+            return "redirect:/notfound";
+        }
+
+        if(product.getQuantityInStock() <= 0) {
+            return returnUrl + "?out";
+        }
+
+        if (quantity < 1 || quantity > product.getQuantityInStock()) {
+            return returnUrl + "?invalid";
+        }
+
+        var shoppingCart = new ShoppingCart();
+        shoppingCart.setProductId(product.getId());
+        shoppingCart.setAddedDate(LocalDateTime.now());
+        shoppingCart.setProductName(product.getName());
+        shoppingCart.setProductImage(product.getImageUrl());
+        shoppingCart.setProductPrice(product.getPrice());
+        shoppingCart.setQuantity(quantity);
+        shoppingCart.setUserId(user.getId());
+
+        _shoppingCarts.save(shoppingCart);
+
+        return returnUrl + "?success";
+    }
+
+    @GetMapping("/bag")
+    public String bag(@NotNull Model model){
+        var user = getAuthenticatedUser();
+
+        if(user == null) return "redirect:/login";
+
+        model.addAttribute("products", _shoppingCarts.findByUserId(user.getId()));
+
+        return "bag";
     }
 }
