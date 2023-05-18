@@ -24,4 +24,9 @@ public class HomeController {
     public String notfound() {
         return "notfound";
     }
+
+    @GetMapping("/forbidden")
+    public String forbidden() {
+        return "forbidden";
+    }
 }

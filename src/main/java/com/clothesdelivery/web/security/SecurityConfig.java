@@ -1,5 +1,6 @@
 package com.clothesdelivery.web.security;
 
+import com.clothesdelivery.web.enums.Role;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class SecurityConfig {
             "/login", "/signup",
             "/terms", "/", "/about", "/contact", "/error", "/notfound",
             "/css/**",  "/fonts/**", "/js/**", "/images/**", "/libs/**",
-            "/products", "/detail/**"
+            "/products", "/detail/**",
     };
 
     private final CustomUserDetailsService _userDetailsService;
@@ -45,9 +46,21 @@ public class SecurityConfig {
                     .invalidSessionUrl("/login")
                     .maximumSessions(1)
                     .expiredUrl("/login").and().and()
-                .authorizeHttpRequests(authorize -> authorize
-                    .requestMatchers(_allowedUrls).permitAll()
-                    .anyRequest().authenticated())
+                .authorizeHttpRequests(authorize -> {
+                    try {
+                        authorize
+                            .requestMatchers(_allowedUrls).permitAll()
+                                // todo: configure restrictions in /admin/**
+                            //.requestMatchers("/admin/**").hasRole(String.valueOf(Role.Customer))
+                            .anyRequest().authenticated();
+                        authorize
+                            .and()
+                            .exceptionHandling()
+                            .accessDeniedPage("/forbidden");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .formLogin(form -> form
                     .loginPage("/login")
                     .defaultSuccessUrl("/")

@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         var user = _users.findByEmail(username);
 
         if(user != null) {
-            var grantedAuthority = new SimpleGrantedAuthority(user.getRole().toString());
+            var grantedAuthority = new SimpleGrantedAuthority(String.valueOf(user.getRole()));
             return new User(user.getEmail(), user.getPassword(), Collections.singleton(grantedAuthority));
         }
 
