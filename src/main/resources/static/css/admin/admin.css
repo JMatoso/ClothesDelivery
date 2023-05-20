@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'DancingScript Bold';
+    src: url("../../fonts/DancingScript/static/DancingScript-Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url("../../fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+    font-weight: regular;
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url("../../fonts/Roboto/Roboto-Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: url("../../fonts/Roboto/Roboto-Light.ttf") format('truetype');
+    font-weight: light;
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url("../../fonts/Roboto/Roboto-Medium.ttf") format('truetype');
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url("../../fonts/Roboto/Roboto-Thin.ttf") format('truetype');
+    font-weight: thin;
+}
+
+.feather-icon-size {
+    width: 14px !important;
+    margin-bottom: 3px;
+    margin-right: 2px;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    transition: ease-in all .1s;
+    cursor: pointer;
+}
+
+.ff-light {
+    font-family: 'Roboto Light' !important;
+}
+
+.ff-med {
+    font-family: 'Roboto Medium' !important;
+}
+
+.ff-bold {
+    font-family: 'Roboto Bold';
+}
+
+.ff-stylus {
+    font-family: 'DancingScript Bold';
+}
+
+p, span, small, pre,
+h1, h2, h3, h4, h5, h6,
+strong, a, th, td0 {
+    font-family: 'Roboto Regular';
+}
+
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}

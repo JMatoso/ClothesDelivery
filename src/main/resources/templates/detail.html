@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div>
-                    <img class="w-100" th:src="@{/images/clothes/product-1.jpg.webp}" alt="Example">
+                    <img class="w-100" th:src="${product.imageUrl}" th:alt="${product.name}">
                 </div>
             </div>
             <div class="col-md-5">
@@ -150,7 +150,7 @@
             <div th:each="product : ${recommended_product}" class="product-item mb-3">
                 <div class="product-content">
                     <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
-                        <img class="product-image" th:src="@{/images/clothes/product-1.jpg.webp}" th:alt="${product.name}">
+                        <img class="product-image" th:src="${product.imageUrl}" th:alt="${product.name}">
                     </a>
                     <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
                 </div>
