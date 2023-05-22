@@ -9,6 +9,10 @@
 
 <body class="bg-gradient" layout:fragment="body">
 <div class="container my-5">
+    <div th:if="${param.removed}" class="alert alert-success my-2" role="alert">
+        <span>Item removed from shopping bag.</span>
+    </div>
+
     <h3>Items (<span th:text="${products.size()}"></span>)</h3>
 
     <div class="table-responsive p-1 my-4">
@@ -34,16 +38,16 @@
                 </tr>
             </tfoot>
             <tbody>
-            <tr th:each="product : ${products}">
-                <td class="text-center"><img width="80" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
-                <td th:text="${product.productName}"></td>
-                <td th:text="${product.productPrice}"></td>
-                <td th:text="${product.quantity}"></td>
-                <td th:text="${product.quantity * product.productPrice}"></td>
-                <td>
-                    <a class="btn btn-danger text-white w-100">Remove</a>
-                </td>
-            </tr>
+                <tr th:each="product : ${products}">
+                    <td class="text-center"><img width="80" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.productPrice}"></td>
+                    <td th:text="${product.quantity}"></td>
+                    <td th:text="${product.quantity * product.productPrice}"></td>
+                    <td>
+                        <a th:href="@{/removeFromCart/{bid}(bid=${product.id})}" class="btn btn-danger text-white w-100">Remove</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

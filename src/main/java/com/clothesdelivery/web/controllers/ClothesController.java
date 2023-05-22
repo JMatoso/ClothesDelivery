@@ -1,5 +1,6 @@
 package com.clothesdelivery.web.controllers;
 
+import com.clothesdelivery.web.entities.Product;
 import com.clothesdelivery.web.entities.ShoppingCart;
 import com.clothesdelivery.web.enums.Category;
 import com.clothesdelivery.web.enums.ClothesSize;
@@ -7,7 +8,6 @@ import com.clothesdelivery.web.enums.GenreStyle;
 import com.clothesdelivery.web.enums.ProductFilters;
 import com.clothesdelivery.web.repositories.ICartRepository;
 import com.clothesdelivery.web.repositories.IProductRepository;
-import com.clothesdelivery.web.services.FileService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 
 @Controller
-public class ClothesController extends Base {
+public class ClothesController extends BaseController {
     @Autowired
     private IProductRepository _products;
 
@@ -88,17 +88,21 @@ public class ClothesController extends Base {
 
     @GetMapping("/detail/{friendlyUrl}")
     public String detail(@PathVariable @NotNull String friendlyUrl, @NotNull Model model) {
-        if(friendlyUrl.isEmpty()) {
-            return "redirect:/products";
-        }
+        if(friendlyUrl.isEmpty()) return redirect("products");
 
         var product = _products.findByFriendlyUrl(friendlyUrl);
 
-        if(product == null) {
-            return "redirect:/notfound";
-        }
+        if(product == null) return notFound;
 
-        var recommendedProducts = _products.findByGenreStyleOrCategory(product.getGenreStyle(), product.getCategory()).stream().limit(8);
+        var recommendedProducts = new LinkedList<Product>();
+
+        var byGenres = _products.findByGenreStyle(product.getGenreStyle()).stream().limit(2).toList();
+        var byCategory = _products.findByCategory(product.getCategory()).stream().limit(4).toList();
+        var byBrand = _products.findByBrand(product.getBrand()).stream().limit(2).toList();
+
+        recommendedProducts.addAll(byBrand);
+        recommendedProducts.addAll(byGenres);
+        recommendedProducts.addAll(byCategory);
 
         model.addAttribute("product", product);
         model.addAttribute("recommended_product", recommendedProducts);
@@ -109,25 +113,18 @@ public class ClothesController extends Base {
     @PostMapping("/detail")
     public String addToCart(@RequestParam(value = "quantity") int quantity, @RequestParam(value = "friendlyUrl") String friendlyUrl) {
         var returnUrl = String.format("redirect:/detail/%s", friendlyUrl);
+
         var user = getAuthenticatedUser();
 
-        if(user == null) {
-            return returnUrl + "?unauthorized";
-        }
+        if(user == null) return returnUrl + "?unauthorized";
 
         var product = _products.findByFriendlyUrl(friendlyUrl);
 
-        if(product == null) {
-            return "redirect:/notfound";
-        }
+        if(product == null) return notFound;
 
-        if(product.getQuantityInStock() <= 0) {
-            return returnUrl + "?out";
-        }
+        if(product.getQuantityInStock() <= 0) return returnUrl + "?out";
 
-        if (quantity < 1 || quantity > product.getQuantityInStock()) {
-            return returnUrl + "?invalid";
-        }
+        if (quantity < 1 || quantity > product.getQuantityInStock()) return returnUrl + "?invalid";
 
         var shoppingCart = new ShoppingCart();
         shoppingCart.setProductId(product.getId());
@@ -147,10 +144,21 @@ public class ClothesController extends Base {
     public String bag(@NotNull Model model){
         var user = getAuthenticatedUser();
 
-        if(user == null) return "redirect:/login";
+        if(user == null) return login;
 
         model.addAttribute("products", _shoppingCarts.findByUserId(user.getId()));
 
         return "bag";
+    }
+
+    @GetMapping("/removeFromCart/{bid}")
+    public String removeFromBag(@PathVariable @NotNull Long bid) {
+        var cartItem = _shoppingCarts.findById(bid);
+
+        if(cartItem.isEmpty()) return notFound;
+
+        _shoppingCarts.delete(cartItem.get());
+
+        return redirect("bag?removed");
     }
 }

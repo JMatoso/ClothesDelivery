@@ -65,6 +65,6 @@ public class AccountController {
         _user.save(user);
 
         model.addAttribute("result", new Result(true, "Account created successfully."));
-        return "redirect:/login";
+        return "redirect:/login?registered";
     }
 }

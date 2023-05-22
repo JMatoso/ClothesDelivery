@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface IProductRepository extends JpaRepository<Product, Long> {
     Product findByFriendlyUrl(String friendlyUrl);
-    List<Product> findByGenreStyleOrCategory(GenreStyle style, Category category);
+    List<Product> findByCategory(Category category);
+    List<Product> findByGenreStyle(GenreStyle style);
+    List<Product> findByBrand(String brand);
 }

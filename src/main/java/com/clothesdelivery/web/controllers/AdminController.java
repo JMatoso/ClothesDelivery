@@ -3,7 +3,6 @@ package com.clothesdelivery.web.controllers;
 import com.clothesdelivery.web.enums.Role;
 import com.clothesdelivery.web.repositories.IProductRepository;
 import com.clothesdelivery.web.repositories.IUserRepository;
-import jakarta.websocket.server.PathParam;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController extends Base {
+public class AdminController extends BaseController {
     @Autowired
     private IProductRepository _products;
 

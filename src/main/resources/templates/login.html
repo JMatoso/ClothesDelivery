@@ -20,6 +20,10 @@
             <span>Wrong credentials.</span>
         </div>
 
+        <div th:if="${param.registered}" class="alert alert-success my-2" role="alert">
+            <span>You have been registered successfully.</span>
+        </div>
+
         <div th:if="${param.logout}" class="alert alert-warning my-2" role="alert">
             <span>You have been logged out.</span>
         </div>

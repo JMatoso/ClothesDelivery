@@ -20,11 +20,12 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long productId;
     private Long userId;
+    private Long productId;
     private String productName;
     private String productImage;
     private BigDecimal productPrice;
+
     private int quantity;
 
     @CreationTimestamp
