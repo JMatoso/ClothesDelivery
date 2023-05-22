@@ -1,0 +1,109 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
+
+<head>
+    <title>About Us</title>
+</head>
+
+<body class="bg-gradient" layout:fragment="body">
+    <div class="bg-light">
+        <div class="container text-center p-5">
+          <h4>
+              Improving Sales Through
+              <span class="text-decoration-underline">Facility</span>
+          </h4>
+        </div>
+    </div>
+
+    <div class="container p-5 mt-5 text-center">
+        <h3 class="mb-4">About Us</h3>
+        <p class="pb-5">
+            Welcome to Clothes, a clothing sales site for people who love to dress well and feel comfortable.
+            We are passionate about fashion and want to help our customers express themselves through their clothing.
+            Our catalog is constantly updated, so you can always find the latest trends and styles that match your personal style.
+            We strive to provide high quality clothing at affordable prices, ensuring everyone can feel confident and stylish,
+            regardless of budget. Our team is always on hand to help you find the perfect outfit for any occasion, and our fast and
+            efficient delivery ensures you can enjoy your shopping in no time. Thank you for choosing Clothes for your fashion shopping!
+        </p>
+    </div>
+
+    <div class="p-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3>Our Features</h3>
+                <p>On Clothes, you have:</p>
+            </div>
+
+            <div class="row row-cols-2">
+                <div class="col-md-3 mb-3">
+                    <div class="align-content-center justify-content-center text-center">
+                      <span><i data-feather="shopping-bag" width="75"></i></span>
+                      <h6 class="pt-3">A Product Variety</h6>
+                      <small class="text-black-50">
+                          We offer a wide variety of products, including different styles, sizes, and colors to meet our customers' needs.
+                      </small>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="align-content-center justify-content-center text-center">
+                        <span><i data-feather="credit-card"></i></span>
+                        <h6 class="pt-3">Ease of Purchasing</h6>
+                        <small class="text-black-50">
+                            Online shopping is convenient and time-saving.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="align-content-center justify-content-center text-center">
+                        <span><i data-feather="truck"></i></span>
+                        <h6 class="pt-3">Fast and efficient delivery</h6>
+                        <small class="text-black-50">
+                            We offer fast and efficient delivery, allowing our customers to receive their products in a short time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="align-content-center justify-content-center text-center">
+                        <span><i data-feather="gift"></i></span>
+                        <h6 class="pt-3">Promotions and Discounts</h6>
+                        <small class="text-black-50">
+                            We often offer exclusive promotions and discounts for our customers.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-5 mt-5 text-center">
+      <h3 class="mb-4">Why Choose Us?</h3>
+      <p class="pb-5">
+        There are many variations of passages of Lorem Ipsum available, but the majority have
+        suffered alteration in some form, by injected humour, or randomised words which don't
+        look even slightly believable. If you are going to use a passage of Lorem Ipsum, you
+        need to be sure there isn't anything embarrassing hidden in the middle of text.
+      </p>
+      <a th:href="@{/contact}" class="btn btn-lg btn-warning mt-3">Get In Touch</a>
+    </div>
+
+    <div class="bg-light">
+    <div class="container p-5 text-center">
+      <h3 class="mb-4">Our Local Reach</h3>
+      <p>
+        At Clothes, we know that fashion is all about personal style and expression, and that's why we offer a wide
+        range of clothing that caters to the unique tastes of our local customers. Our website is optimized to reach
+        customers searching for fashion in their local area, and we also engage with our community through social media,
+        showcasing our latest collections and offering exclusive promotions to our followers. We attend local fashion events
+        to connect with our customers face-to-face, and we pride ourselves on providing exceptional customer service both
+        online and in-store. When you shop with us, you can be sure that you're not just buying clothes - you're investing
+        in your personal style and supporting a local business that cares about its customers.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

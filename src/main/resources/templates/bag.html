@@ -1,0 +1,58 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
+
+<head>
+    <title>Bag</title>
+</head>
+
+<body class="bg-gradient" layout:fragment="body">
+<div class="container my-5">
+    <h3>Items (<span th:text="${products.size()}"></span>)</h3>
+
+    <div class="table-responsive p-1 my-4">
+        <table class="table table-bordered w-100" id="dataTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td class="text-center"><img width="80" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
+                <td th:text="${product.productName}"></td>
+                <td th:text="${product.productPrice}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.quantity * product.productPrice}"></td>
+                <td>
+                    <a class="btn btn-danger text-white w-100">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+<script layout:fragment="script">
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+</html>

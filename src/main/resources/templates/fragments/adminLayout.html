@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes Admin</title>
+
+  <meta name="description" content="Clothes, website.">
+  <meta name="author" content="José Matoso & Bernarda Gonçalves">
+
+  <meta name="theme-color" content="#ffc107" />
+  <meta name="msapplication-navbutton-color" content="#ffc107" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
+
+  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+  <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/libs/datatables/datatables.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/admin/sb-admin-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}" />
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-text mx-3 ff-stylus">Clothes</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <div class="nav-item">
+                <a class="nav-link" href="/">
+                    <i data-feather="home" class="feather-icon-size"></i>
+                    <span class="ff-bold">Dashboard</span>
+                </a>
+            </div>
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading ff-light">Management</div>
+
+            <div class="nav-item">
+                <a class="nav-link" th:href="@{/admin/products}">
+                    <i data-feather="tag" class="feather-icon-size"></i>
+                    <span class="ff-bold">Products</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-link" th:href="@{/admin/customers}">
+                    <i data-feather="users" class="feather-icon-size"></i>
+                    <span class="ff-bold">Customers</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-link" th:href="@{/admin/orders}">
+                    <i data-feather="clock" class="feather-icon-size"></i>
+                    <span class="ff-bold">Orders</span>
+                </a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-link" th:href="@{/admin/users}">
+                    <i data-feather="user-check" class="feather-icon-size"></i>
+                    <span class="ff-bold">Users</span>
+                </a>
+            </div>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <div class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">
+                    <i data-feather="log-out" class="feather-icon-size"></i>
+                    <span class="ff-bold">Logout</span>
+                </a>
+            </div>
+        </nav>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <main role="main" class="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                      <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2">
+                            <span>Hello, welcome again!</span>
+                        </span>
+                    </div>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2">User</span>
+                                <img class="img-profile rounded-circle" th:src="@{/images/user.png}" alt="Representative user">
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="container-fluid" layout:fragment="body"></div>
+            </main>
+
+            <footer class="sticky-footer shadow-sm bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Clothes 2023</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/datatables/datatables.min.js"></script>
+<script src="/js/admin/sb-admin-2.min.js"></script>
+<script src="/js/feather.min.js"></script>
+<script src="/js/site.js"></script>
+<script>
+    feather.replace();
+</script>
+<script layout:fragment="script"></script>
+</html>

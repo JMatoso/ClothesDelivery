@@ -1,0 +1,170 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title th:text="${product.name}"></title>
+</head>
+
+<body layout:fragment="body">
+    <section class="bg-light p-2">
+        <div class="container">
+            <small class="">
+                <a th:href="@{/}">Home</a> /
+                <a th:href="@{/products(category=${product.category})}" th:text="${product.category}"></a> /
+                <a th:href="@{/products(style=${product.genreStyle})}" th:text="${product.genreStyle}"></a>  /
+                <span th:text="${product.name}"></span>
+            </small>
+        </div>
+    </section>
+    <section class="container mt-3" id="product-detail">
+        <div class="row">
+            <div class="col-md-7">
+                <div>
+                    <img class="w-100" th:src="${product.imageUrl}" th:alt="${product.name}">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h3 class="badge mb-3" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></h3>
+                <h3 th:text="${product.name}" class="lnw-0 py-1"></h3>
+                <small class="ff-light d-block">
+                    SKU:
+                    <span th:text="${product.sku}"></span>
+                </small>
+
+                <h5 class="py-2">
+                    <span th:text="${product.price}"></span>
+                    <span>AOA</span>
+                </h5>
+
+                <small th:if="${(product.quantityInStock <= 10)}" class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-warning bg-warning bg-opacity-10 border border-warning border-opacity-10 rounded-2">
+                    Last Items Available
+                </small>
+
+                <div th:if="${param.out}" class="alert alert-warning my-2" role="alert">
+                    <span>Product is out of stock.</span>
+                </div>
+
+                <div th:if="${param.invalid}" class="alert alert-warning my-2" role="alert">
+                    <span>Select a valid quantity.</span>
+                </div>
+
+                <div th:if="${param.unauthorized}" class="alert alert-warning my-2" role="alert">
+                    <a th:href="@{/login}" class="text-dark">Sign in</a>&nbsp;first to add this product to your cart.
+                </div>
+
+                <div th:if="${param.success}" class="alert alert-success my-2" role="alert">
+                    <span>Product has been added to your hopping cart.</span>
+                </div>
+
+                <div class="my-3">
+                    <form method="post" sec:authorize="isAuthenticated()" th:action="@{/detail}">
+                        <div class="btn-group w-100">
+                            <button type="submit" th:if="${product.quantityInStock > 0}" class="text-uppercase btn btn-lg btn-dark w-100">
+                                <small>Add To Cart</small>
+                            </button>
+                            <button class="btn btn-lg disabled">
+                                <span data-feather="shopping-bag"></span>
+                            </button>
+                            <input min="1" value="1" th:max="${product.quantityInStock}" name="quantity" id="quantity" style="border-bottom-left-radius: 0; border-top-left-radius: 0;" aria-label="Quantity input" type="number" class="w-50 form-control form-control-lg" placeholder="Quantity">
+                        </div>
+                        <input type="hidden" id="friendlyUrl" name="friendlyUrl" th:value="${product.friendlyUrl}">
+                    </form>
+
+                    <div sec:authorize="!isAuthenticated()">
+                        <small class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                            <a th:href="@{/login}" class="text-dark">Sign in</a>&nbsp;to add this product to your cart.
+                        </small>
+                    </div>
+
+                    <button th:if="${product.quantityInStock <= 0}" class="w-100 btn btn-lg btn-warning disabled">
+                        <small class="text-uppercase">Out of Stock</small>
+                    </button>
+                </div>
+
+                <div class="accordion my-2" id="accordionDescription">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <small>Description</small>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionDescription">
+                            <div class="accordion-body">
+                                <span th:text="${product.description}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <small>Specifications</small>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionDescription">
+                            <div class="accordion-body p-0">
+                                <ul class="list-group py-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Category
+                                        <span th:text="${product.category}"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Style
+                                        <span th:text="${product.genreStyle}"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Brand
+                                        <span th:text="${product.brand}"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        For Children
+                                        <span th:if="${product.isForChildren}">Yes</span>
+                                        <span th:if="${!product.isForChildren}">No</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Color
+                                        <span th:text="${product.color}"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Weight
+                                        <span th:text="${product.weight}"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Size
+                                        <span th:text="${product.size}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mt-3" id="product-recommendation">
+        <h6 class="text-uppercase py-3">Products you may like</h6>
+        <div class="grid" id="data-container">
+            <div th:each="product : ${recommended_product}" class="product-item mb-3">
+                <div class="product-content">
+                    <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
+                        <img class="product-image" th:src="${product.imageUrl}" th:alt="${product.name}">
+                    </a>
+                    <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
+                </div>
+                <div class="mt-3">
+                    <h6 th:text="${product.name}"></h6>
+                    <h5 class="lnw-0">
+                        <small th:text="${product.price}"></small>
+                        <small>AOA</small>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{fragments/ads :: section}"></div>
+</body>
+</html>

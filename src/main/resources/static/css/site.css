@@ -1,0 +1,301 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'DancingScript Bold';
+    src: url("../fonts/DancingScript/static/DancingScript-Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url("../fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+    font-weight: regular;
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url("../fonts/Roboto/Roboto-Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: url("../fonts/Roboto/Roboto-Light.ttf") format('truetype');
+    font-weight: light;
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url("../fonts/Roboto/Roboto-Medium.ttf") format('truetype');
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url("../fonts/Roboto/Roboto-Thin.ttf") format('truetype');
+    font-weight: thin;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    transition: ease-in all .1s;
+    cursor: pointer;
+}
+
+.ff-light {
+    font-family: 'Roboto Light' !important;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-size: 14px !important;
+}
+
+.navbar-brand {
+    font-family: 'DancingScript Bold';
+    text-transform: none;
+    margin-bottom: 8px;
+    font-size: 24px;
+    color: #FFC20A !important;
+}
+
+.nav-link, a { color: #6c757d !important; }
+
+.nav-link:hover, a:hover {
+    color: #bdbdbd !important;
+}
+
+p, span, small, pre,
+h1, h2, h3, h4, h5, h6,
+strong, a, th, td {
+    font-family: 'Roboto Regular';
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #858796;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #e3e6f0;
+}
+
+.table td, .table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #e3e6f0;
+}
+
+.shadow-xs {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.03)!important;
+}
+
+.w-25 { width: 25%; }
+.w-35 { width: 35%; }
+.fw-rb-light {
+    font-family: 'Roboto Light' !important;
+}
+
+.lnw-0 {
+    line-height: 0.5;
+}
+
+.accordion-button:focus,
+input:focus,
+select:focus {
+     border-color: #ffc107 !important;
+     box-shadow: 0 0 0 0.25rem rgba(255,193,7,.25) !important;
+ }
+
+ .accordion-button:not(.collapsed) {
+     color: #ffc107;
+     background-color: transparent !important;
+ }
+
+.list-group-item {
+    border: none;
+}
+
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+.page-link {
+    color: #cecece !important;
+}
+
+
+.text-decoration-underline {
+    text-decoration-color: #ffc107 !important;
+}
+
+.centered { margin: 0 auto; }
+
+.top-links a,
+.bottom-links a{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 28px;
+    display: inline-block;
+    cursor: pointer;
+    color: #bdbdbd !important;
+}
+
+.top-links a:hover,
+.bottom-links a:hover {
+    color: #6c757d !important;
+}
+
+.topic {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.opacity-3 {
+    opacity: .003em !important;
+}
+
+.product-filters {
+    margin-top: 5em;
+}
+
+.product-filters .nav-link {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.nav-pills .nav-link.active {
+    background-color: transparent !important;
+    color: #ffc107 !important;
+}
+
+.btn-filter { cursor: pointer; }
+
+footer .nav-item a {
+    color: #bdbdbd !important;
+}
+
+footer .nav-item a:hover,
+.contact-social span a:hover {
+    color: #ffc107 !important;
+}
+
+.contact-social span {
+    font-size: 18pt;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.contact-social span a {
+    color: #bdbdbd !important;
+}
+
+.product-content {
+    width: 100%;
+    position: relative;
+    transition: ease-in-out all .1s;;
+}
+
+.filter-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 15px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.product-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay button {
+  margin-top: 20px;
+}
+
+.product-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+#ads {
+    margin-top: 7em;
+    margin-bottom: 7em;
+}
+
+#get-in-touch {
+    margin-top: 7em;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../images/banners/touch.png) center center;
+    background-size: cover;
+    padding: 75px;
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+#get-in-touch .button {
+    font-family: 'Roboto Regular';
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 48px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin: 10px;
+    border: 2px solid #fff;
+    color: #fff !important;
+    background-color: transparent;
+}
+
+#get-in-touch .button:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.grid {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+@media (min-width: 200px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 320px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Screen larger than 900px? 3 columns */
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
