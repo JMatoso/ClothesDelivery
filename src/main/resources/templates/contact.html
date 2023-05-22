@@ -39,6 +39,8 @@
                           <label for="email">Email address</label>
                         </div>
 
+                        <input type="hidden" th:value="${phone}" id="to" name="to">
+
                         <div class="form-floating mb-3">
                           <textarea class="form-control" name="message" placeholder="Leave a message here..." id="message" style="height: 100px"></textarea>
                           <label for="message">Message</label>
@@ -65,27 +67,27 @@
                         <h3 class="mb-4">Contact</h3>
                         <div class="row mb-3">
                             <div class="col-2">
-                                <span class="fa fa-phone"></span>
+                                <span data-feather="phone"></span>
                             </div>
                             <div class="col-10">
                                 <h6>Phone</h6>
-                                <span>+244 966 555 777</span>
+                                <span th:text="${phone}"></span>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-2">
-                                <span class="fa fa-envelope"></span>
+                                <span data-feather="mail"></span>
                             </div>
                             <div class="col-10">
                                 <h6>Email</h6>
-                                <span>geral@clothes.com</span>
+                                <span th:text="${email}"></span>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-2">
-                                <span class="fa fa-location-dot"></span>
+                                <span data-feather="map-pin"></span>
                             </div>
                             <div class="col-10">
                                 <h6>Location</h6>
@@ -109,6 +111,7 @@
         var phone = $("#phone");
         var email = $("#email");
         var message = $("#message");
+        var to = $("#to");
 
         var controls = new Array(name, phone, email, message);
 
@@ -117,7 +120,7 @@
             return;
         }
 
-        sendMessage(name.val(), phone.val(), email.val(), message.val());
+        sendMessage(name.val(), phone.val(), email.val(), message.val(), to.val());
         clearFields(controls);
         alert.hide();
     }
@@ -132,8 +135,8 @@
         return true;
     }
 
-    function sendMessage(name, phone, email, message) {
-        var url = `https://wa.me/send?phone=244966555777&text=${name}%0a%0a${message}%0a%0a${phone} - ${email}`;
+    function sendMessage(name, phone, email, message, to) {
+        var url = `https://wa.me/send?phone=${to}&text=${name}%0a%0a${message}%0a%0a${phone} - ${email}`;
         window.open(url, '_blank').focus();
     }
 

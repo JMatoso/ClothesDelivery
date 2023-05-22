@@ -34,8 +34,8 @@
                 </small>
 
                 <h5 class="py-2">
-                    <span th:text="${product.price}"></span>
-                    <span>AOA</span>
+                    <span th:text="${@extensionsBean.toFormattedCurrency(product.price)}"></span>
+                    <span>AKZ</span>
                 </h5>
 
                 <small th:if="${(product.quantityInStock <= 10)}" class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-warning bg-warning bg-opacity-10 border border-warning border-opacity-10 rounded-2">
@@ -74,7 +74,7 @@
 
                     <div sec:authorize="!isAuthenticated()">
                         <small class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                            <a th:href="@{/login}" class="text-dark">Sign in</a>&nbsp;to add this product to your cart.
+                            <a th:href="@{/login}" class="text-dark-50">Sign in</a>&nbsp;to add this product to your cart.
                         </small>
                     </div>
 
@@ -92,7 +92,7 @@
                         </h2>
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionDescription">
                             <div class="accordion-body">
-                                <span th:text="${product.description}"></span>
+                                <span th:utext="${product.description.replace('\r\n', '<br/>')}"></span>
                             </div>
                         </div>
                     </div>
@@ -157,8 +157,8 @@
                 <div class="mt-3">
                     <h6 th:text="${product.name}"></h6>
                     <h5 class="lnw-0">
-                        <small th:text="${product.price}"></small>
-                        <small>AOA</small>
+                        <small th:text="${@extensionsBean.toFormattedCurrency(product.price)}"></small>
+                        <small class="price">AKZ</small>
                     </h5>
                 </div>
             </div>

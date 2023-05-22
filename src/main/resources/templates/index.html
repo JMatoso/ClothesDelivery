@@ -96,8 +96,8 @@
                         <div class="mt-3">
                             <h6 th:text="${product.name}"></h6>
                             <h5 class="lnw-0">
-                                <small th:text="${product.price}"></small>
-                                <small>AOA</small>
+                                <small th:text="${@extensionsBean.toFormattedCurrency(product.price)}"></small>
+                                <small class="price">AKZ</small>
                             </h5>
                         </div>
                     </div>
@@ -116,8 +116,8 @@
                         <div class="mt-3">
                             <h6 th:text="${product.name}"></h6>
                             <h5 class="lnw-0">
-                                <small th:text="${product.price}"></small>
-                                <small>AOA</small>
+                                <small th:text="${@extensionsBean.toFormattedCurrency(product.price)}"></small>
+                                <small class="price">AKZ</small>
                             </h5>
                         </div>
                     </div>
@@ -135,8 +135,8 @@
                         <div class="mt-3">
                             <h6 th:text="${product.name}"></h6>
                             <h5 class="lnw-0">
-                                <small th:text="${product.price}"></small>
-                                <small>AOA</small>
+                                <small th:text="${@extensionsBean.toFormattedCurrency(product.price)}"></small>
+                                <small class="price">AKZ</small>
                             </h5>
                         </div>
                     </div>

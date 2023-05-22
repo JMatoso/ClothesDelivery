@@ -1,15 +1,16 @@
 package com.clothesdelivery.web.controllers;
 
-import com.clothesdelivery.web.entities.Product;
 import com.clothesdelivery.web.entities.ShoppingCart;
 import com.clothesdelivery.web.enums.Category;
 import com.clothesdelivery.web.enums.ClothesSize;
 import com.clothesdelivery.web.enums.GenreStyle;
 import com.clothesdelivery.web.enums.ProductFilters;
+import com.clothesdelivery.web.extensions.Extensions;
 import com.clothesdelivery.web.repositories.ICartRepository;
 import com.clothesdelivery.web.repositories.IProductRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 
 @Controller
 public class ClothesController extends BaseController {
@@ -27,6 +28,12 @@ public class ClothesController extends BaseController {
 
     @Autowired
     private ICartRepository _shoppingCarts;
+
+    @Value("${clothes.shipping.value}")
+    private Long shippingValue;
+
+    @Value("${clothes.free.shipping.value}")
+    private BigDecimal shoppingValueForFreeShipping;
 
     @GetMapping("/")
     public String index(@NotNull Model model) {
@@ -94,15 +101,7 @@ public class ClothesController extends BaseController {
 
         if(product == null) return notFound;
 
-        var recommendedProducts = new LinkedList<Product>();
-
-        var byGenres = _products.findByGenreStyle(product.getGenreStyle()).stream().limit(2).toList();
-        var byCategory = _products.findByCategory(product.getCategory()).stream().limit(4).toList();
-        var byBrand = _products.findByBrand(product.getBrand()).stream().limit(2).toList();
-
-        recommendedProducts.addAll(byBrand);
-        recommendedProducts.addAll(byGenres);
-        recommendedProducts.addAll(byCategory);
+        var recommendedProducts = _products.findByCategoryOrGenreStyleOrBrand(product.getCategory(), product.getGenreStyle(), product.getBrand());
 
         model.addAttribute("product", product);
         model.addAttribute("recommended_product", recommendedProducts);
@@ -146,16 +145,39 @@ public class ClothesController extends BaseController {
 
         if(user == null) return login;
 
-        model.addAttribute("products", _shoppingCarts.findByUserId(user.getId()));
+        var cartItems = _shoppingCarts.findByUserId(user.getId());
+
+        var value = BigDecimal.ZERO;
+
+        for (var item : cartItems) {
+            value = value.add(item.getProductPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+        }
+
+        model.addAttribute("totalProducts", Extensions.toFormattedCurrency(value));
+
+        if(value.compareTo(shoppingValueForFreeShipping) < 0) {
+            value = value.add(BigDecimal.valueOf(shippingValue));
+            model.addAttribute("ship", Extensions.toFormattedCurrency(BigDecimal.valueOf(shippingValue)));
+        } else {
+            model.addAttribute("ship", "Free");
+        }
+
+        model.addAttribute("products", cartItems);
+        model.addAttribute("total", Extensions.toFormattedCurrency(value));
+        model.addAttribute("freeShipping", Extensions.toFormattedCurrency(shoppingValueForFreeShipping));
 
         return "bag";
     }
 
     @GetMapping("/removeFromCart/{bid}")
     public String removeFromBag(@PathVariable @NotNull Long bid) {
+        var user = getAuthenticatedUser();
+
+        if(user == null) return login;
+
         var cartItem = _shoppingCarts.findById(bid);
 
-        if(cartItem.isEmpty()) return notFound;
+        if(cartItem.isEmpty() || !cartItem.get().getUserId().equals(user.getId())) return notFound;
 
         _shoppingCarts.delete(cartItem.get());
 

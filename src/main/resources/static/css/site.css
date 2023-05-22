@@ -228,6 +228,19 @@ footer .nav-item a:hover,
     object-position: center center;
 }
 
+.price {
+    font-size: 7pt;
+    position: absolute;
+    padding-left: 2px;
+}
+
+.border-bottom-dashed {
+    border-bottom: dashed;
+    border-bottom-width: 2px;
+    border-bottom-color: #cecece;
+    padding-bottom: 15px;
+}
+
 #ads {
     margin-top: 7em;
     margin-bottom: 7em;

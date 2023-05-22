@@ -9,47 +9,87 @@
 
 <body class="bg-gradient" layout:fragment="body">
 <div class="container my-5">
-    <div th:if="${param.removed}" class="alert alert-success my-2" role="alert">
-        <span>Item removed from shopping bag.</span>
-    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <div th:if="${param.removed}" class="alert alert-success my-2 mb-4" role="alert">
+                <span>Item removed from shopping bag.</span>
+            </div>
 
-    <h3>Items (<span th:text="${products.size()}"></span>)</h3>
+            <h3>Items (<span th:text="${products.size()}"></span>)</h3>
 
-    <div class="table-responsive p-1 my-4">
-        <table class="table table-bordered w-100" id="dataTable">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr th:each="product : ${products}">
-                    <td class="text-center"><img width="80" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
-                    <td th:text="${product.productName}"></td>
-                    <td th:text="${product.productPrice}"></td>
-                    <td th:text="${product.quantity}"></td>
-                    <td th:text="${product.quantity * product.productPrice}"></td>
-                    <td>
-                        <a th:href="@{/removeFromCart/{bid}(bid=${product.id})}" class="btn btn-danger text-white w-100">Remove</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="table-responsive p-1 my-4">
+                <table class="table table-bordered w-100" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price (AKZ)</th>
+                            <th>Quantity</th>
+                            <th>Total (AKZ)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price (AKZ)</th>
+                            <th>Quantity</th>
+                            <th>Total (AKZ)</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr th:each="product : ${products}">
+                            <td class="text-center"><img width="80" th:src="${product.productImage}" th:alt="${product.productName}" /></td>
+                            <td th:text="${product.productName}"></td>
+                            <td th:text="${@extensionsBean.toFormattedCurrency(product.productPrice)}"></td>
+                            <td th:text="${product.quantity}"></td>
+                            <td th:text="${@extensionsBean.toFormattedCurrency(product.quantity * product.productPrice)}"></td>
+                            <td>
+                                <a th:href="@{/removeFromCart/{bid}(bid=${product.id})}" class="btn btn-danger text-white w-100">Remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <h3>Checkout</h3>
+            <ul class="list-group py-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                    <span>Bag (<span th:text="${products.size()}"></span>)</span>
+                    <span>
+                        <span th:text="${totalProducts}"></span>
+                        <small class="price">AKZ</small>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                    Shipping Price
+                    <span>
+                        <span th:text="${ship}"></span>
+                        <small class="price" th:if="${ship != 'Free'}">AKZ</small>
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                    Total
+                    <span>
+                        <span th:text="${total}"></span>
+                        <small class="price">AKZ</small>
+                    </span>
+                </li>
+            </ul>
+
+            <button class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Continue</button>
+
+            <div class="card text-bg-light mb-3 mt-3">
+                <div class="card-body">
+                    <p class="card-text">
+                        Make purchases equivalent to <span th:text="${freeShipping}" class="text-success fw-bold"></span>&nbsp;AKZ and receive it at your location for free.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
