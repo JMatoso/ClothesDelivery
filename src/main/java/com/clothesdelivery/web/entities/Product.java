@@ -47,7 +47,8 @@ public class Product {
     private LocalDateTime createdTime;
 
     public void generateFriendlyUrlFromName() {
-        this.friendlyUrl = String.join(name, "-", id.toString()).toLowerCase();
+        var nameJoined = String.join("-", name.split(" ")).toLowerCase();
+        this.friendlyUrl = nameJoined + "-" + this.id;
     }
 
     public void generateSKU() {

@@ -22,7 +22,7 @@ public class SecurityConfig {
             "/login", "/signup",
             "/terms", "/", "/about", "/contact", "/error", "/notfound",
             "/css/**",  "/fonts/**", "/js/**", "/images/**", "/libs/**",
-            "/products", "/detail/**", "/admin/**"
+            "/products", "/detail/**", "/admin/**", "/upload"
     };
 
     private final CustomUserDetailsService _userDetailsService;
