@@ -101,7 +101,7 @@ public class ClothesController extends BaseController {
 
         if(product == null) return notFound;
 
-        var recommendedProducts = _products.findByCategoryOrGenreStyleOrBrand(product.getCategory(), product.getGenreStyle(), product.getBrand());
+        var recommendedProducts = _products.findByCategoryOrGenreStyleOrBrand(product.getCategory(), product.getGenreStyle(), product.getBrand()).stream().limit(8);
 
         model.addAttribute("product", product);
         model.addAttribute("recommended_product", recommendedProducts);
