@@ -301,7 +301,17 @@ footer .nav-item a:hover,
 }
 
 @media (max-width: 600px) {
-     .mobile-gone { display: none; }
+    .mobile-gone { display: none; }
+
+    .w-25,
+    .w-35{
+         width: 100% !important;
+    }
+
+    .product-image {
+        width: 11em;
+        height: 11em;
+    }
 
     .grid {
         grid-template-columns: repeat(2, 1fr);
