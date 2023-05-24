@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class AccountController {
+public class AccountController extends BaseController {
     @Autowired
     private IUserRepository _user;
 
@@ -29,11 +29,14 @@ public class AccountController {
 
     @GetMapping("/login")
     public String login() {
+        if(isAuthenticated()) return redirect("");
         return "login";
     }
 
     @GetMapping("/signup")
     public String signup(@NotNull Model model) {
+        if(isAuthenticated()) return redirect("");
+
         model.addAttribute("result", new Result());
         model.addAttribute("signup", new SignUp());
         return "signup";
@@ -64,7 +67,6 @@ public class AccountController {
 
         _user.save(user);
 
-        model.addAttribute("result", new Result(true, "Account created successfully."));
-        return "redirect:/login?registered";
+        return redirect("login?registered");
     }
 }

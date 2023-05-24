@@ -294,7 +294,9 @@ footer .nav-item a:hover,
     }
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
+     .mobile-gone { display: none; }
+
     .grid {
         grid-template-columns: repeat(2, 1fr);
     }

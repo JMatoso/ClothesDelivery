@@ -4,6 +4,7 @@ import com.clothesdelivery.web.entities.User;
 import com.clothesdelivery.web.repositories.IUserRepository;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class BaseController {
@@ -22,10 +23,18 @@ public class BaseController {
         if (authentication != null && authentication.getPrincipal() != null) {
             if(!authentication.getName().isEmpty())
             {
-                return _userManager.findByEmail(authentication.getName());
+                var user = _userManager.findByEmail(authentication.getName());
+                user.setPassword("");
+
+                return user;
             }
         }
 
         return null;
+    }
+
+    public boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null && authentication.isAuthenticated();
     }
 }
