@@ -5,6 +5,15 @@
 
 <head>
     <title>Get In Touch</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Get In Touch - Clothes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Get in touch with us." />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">

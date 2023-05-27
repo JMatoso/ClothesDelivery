@@ -23,7 +23,7 @@ public class ProfileController extends BaseController {
 
         var address = _addresses.findById(user.getAddressId());
 
-        model.addAttribute("user", user);
+        model.addAttribute("authenticatedUser", user);
         model.addAttribute("address", address.orElse(null));
         return "profile";
     }

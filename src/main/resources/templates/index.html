@@ -5,6 +5,15 @@
 
 <head>
     <title>Home</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Home - Clothes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Welcome to Clothes, discover a unique selection of clothes, accessories, and shoes to create your own style. Stand out from the crowd with our exclusive items." />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">

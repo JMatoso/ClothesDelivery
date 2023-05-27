@@ -5,6 +5,15 @@
 
 <head>
     <title>Profile</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Profile - Clothes" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:description" content="See all user information and orders here." />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
@@ -32,7 +41,7 @@
                 <div class="mb-3 text-center">
                     <small class="text-muted">
                         Account created at
-                        <span th:text="${#temporals.format(user.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
+                        <span th:text="${#temporals.format(authenticatedUser.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
                     </small>
                 </div>
 
@@ -60,14 +69,14 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <div class="form-floating">
-                                            <input type="text" required class="form-control" id="name" name="name" th:value="${user.name}" placeholder="John Doe">
+                                            <input type="text" required class="form-control" id="name" name="name" th:value="${authenticatedUser.name}" placeholder="John Doe">
                                             <label for="name">Name</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
-                                        <input type="date" required class="form-control" id="birthdate" name="birthdate" th:value="${user.birthdate}">
+                                        <input type="date" required class="form-control" id="birthdate" name="birthdate" th:value="${authenticatedUser.birthdate}">
                                         <label for="birthdate">Birthday</label>
                                     </div>
                                 </div>
@@ -77,7 +86,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <div class="form-floating">
-                                            <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:value="${user.phoneNumber}" placeholder="+244 999 999 999">
+                                            <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:value="${authenticatedUser.phoneNumber}" placeholder="+244 999 999 999">
                                             <label for="phoneNumber">Phone Number</label>
                                         </div>
                                     </div>
@@ -85,7 +94,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <div class="form-floating">
-                                            <input type="email" required class="form-control" id="email" name="email" th:value="${user.email}" placeholder="name@example.com">
+                                            <input type="email" required class="form-control" id="email" name="email" th:value="${authenticatedUser.email}" placeholder="name@example.com">
                                             <label for="email">Email address</label>
                                         </div>
                                     </div>

@@ -5,6 +5,15 @@
 
 <head>
     <title>Terms & Privacy</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Terms & Privacy - Clothes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Get to know everything our terms and privacy policies." />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient bg-light" layout:fragment="body">

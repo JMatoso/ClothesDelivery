@@ -5,6 +5,15 @@
 
 <head>
   <title>Access Denied</title>
+
+  <section layout:fragment="metas" th:remove="tag">
+    <meta property="og:title" content="Access Denied - Clothes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="We don't know you to access this page." />
+
+    <meta property="og:url" th:content="${hostPath}" />
+    <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+  </section>
 </head>
 
 <body class="bg-gradient bg-light" layout:fragment="body">

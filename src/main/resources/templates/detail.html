@@ -5,6 +5,15 @@
 
 <head>
     <title th:text="${product.name}"></title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" th:content="|${product.name} - Clothes|" />
+        <meta property="og:type" content="product" />
+        <meta property="og:description" th:content="${product.description}" />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}${product.imageUrl}|}" />
+    </section>
 </head>
 
 <body layout:fragment="body">

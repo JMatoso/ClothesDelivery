@@ -6,25 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.math.BigDecimal;
-
 @Controller
-public class HomeController {
-    @Value("${clothes.whatsapp.number}")
-    private String shoppingWhatsappNumber;
-
-    @Value("${clothes.email.address}")
-    private String shoppingEmailAddress;
-
+public class HomeController extends BaseController{
     @GetMapping("/about")
     public String about() {
         return "about";
     }
 
     @GetMapping("/contact")
-    public String contact(@NotNull Model model) {
-        model.addAttribute("email", shoppingEmailAddress);
-        model.addAttribute("phone", shoppingWhatsappNumber);
+    public String contact() {
         return "contact";
     }
 

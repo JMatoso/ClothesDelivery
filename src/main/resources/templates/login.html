@@ -5,6 +5,12 @@
 
 <head>
     <title>Login</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Login - Clothes" />
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body layout:fragment="body">

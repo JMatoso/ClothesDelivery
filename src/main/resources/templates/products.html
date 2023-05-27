@@ -5,6 +5,16 @@
 
 <head>
     <title>Products</title>
+
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Products - Clothes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products." />
+
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
+
 </head>
 
 <body layout:fragment="body">
