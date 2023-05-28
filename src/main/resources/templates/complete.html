@@ -1,0 +1,33 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
+
+<head>
+  <title>Checked Out</title>
+
+  <section layout:fragment="metas" th:remove="tag">
+    <meta property="og:title" content="Checked Out - Clothes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Checkout Completed." />
+
+    <meta property="og:url" th:content="${hostPath}" />
+    <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+  </section>
+</head>
+
+<body class="bg-gradient" layout:fragment="body">
+    <div class="text-center p-5" th:if="${param.success}">
+        <a th:href="@{/}">
+          <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100"  alt="Clothes Logo" />
+        </a>
+
+        <h1>Checked Out</h1>
+        <h2>Your purchased is complete, now. We're getting your order prepared!</h2>
+
+        <small class="mt-5 d-block text-uppercase">
+          <a th:href="@{/products}">Go Shopping</a>
+        </small>
+    </div>
+</body>
+</html>

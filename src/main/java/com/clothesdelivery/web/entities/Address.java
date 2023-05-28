@@ -25,4 +25,9 @@ public class Address {
 
     @CreationTimestamp
     private LocalDateTime createdTime;
+
+    @Override
+    public String toString() {
+        return String.join(", ", new String[]{ country, city, address });
+    }
 }

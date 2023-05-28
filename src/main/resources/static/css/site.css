@@ -97,6 +97,7 @@ strong, a, th, td {
 
 .w-25 { width: 25%; }
 .w-35 { width: 35%; }
+.w-60 { width: 60%; }
 .fw-rb-light {
     font-family: 'Roboto Light' !important;
 }
@@ -107,7 +108,8 @@ strong, a, th, td {
 
 .accordion-button:focus,
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
      border-color: #ffc107 !important;
      box-shadow: 0 0 0 0.25rem rgba(255,193,7,.25) !important;
  }
@@ -126,10 +128,10 @@ select:focus {
     background-color: #ffc107;
     border-color: #ffc107;
 }
+
 .page-link {
     color: #cecece !important;
 }
-
 
 .text-decoration-underline {
     text-decoration-color: #ffc107 !important;
@@ -304,7 +306,8 @@ footer .nav-item a:hover,
     .mobile-gone { display: none; }
 
     .w-25,
-    .w-35{
+    .w-35,
+    .w-60 {
          width: 100% !important;
     }
 

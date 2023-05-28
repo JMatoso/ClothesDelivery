@@ -1,6 +1,7 @@
 package com.clothesdelivery.web.controllers;
 
 import com.clothesdelivery.web.repositories.IAddressRepository;
+import com.clothesdelivery.web.repositories.IOrderRepository;
 import com.clothesdelivery.web.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class ProfileController extends BaseController {
     @Autowired
     private IAddressRepository _addresses;
 
+    @Autowired
+    private IOrderRepository _orders;
+
     @GetMapping("/profile")
     public String profile(Model model) {
         var user = getAuthenticatedUser();
@@ -22,7 +26,9 @@ public class ProfileController extends BaseController {
         if(user == null) return notFound;
 
         var address = _addresses.findById(user.getAddressId());
+        var orders = _orders.findAllByUserId(user.getId());
 
+        model.addAttribute("orders", orders);
         model.addAttribute("authenticatedUser", user);
         model.addAttribute("address", address.orElse(null));
         return "profile";

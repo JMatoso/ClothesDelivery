@@ -89,7 +89,7 @@
                 </li>
             </ul>
 
-            <button class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Continue</button>
+            <a th:href="@{/checkout}" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Continue</a>
 
             <div class="card text-bg-light mb-3 mt-3">
                 <div class="card-body">
