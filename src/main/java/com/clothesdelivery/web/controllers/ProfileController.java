@@ -2,7 +2,6 @@ package com.clothesdelivery.web.controllers;
 
 import com.clothesdelivery.web.entities.Address;
 import com.clothesdelivery.web.repositories.IAddressRepository;
-import com.clothesdelivery.web.repositories.IOrderRepository;
 import com.clothesdelivery.web.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,7 +31,7 @@ public class ProfileController extends BaseController {
         var address = _addresses.findById(user.getAddressId());
         model.addAttribute("authenticatedUser", user);
         model.addAttribute("address", address.orElse(null));
-        return "profile";
+        return "profile/profile";
     }
 
     @PostMapping("/profile")
@@ -77,6 +76,6 @@ public class ProfileController extends BaseController {
 
         _user.save(user);
 
-        return redirect("profile?success");
+        return redirect("profile");
     }
 }

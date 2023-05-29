@@ -49,7 +49,7 @@ public class ClothesController extends BaseController {
         model.addAttribute("newest_products", newestProducts);
         model.addAttribute("hottest_products", hottestProducts);
 
-        return "index";
+        return "clothes/index";
     }
 
     @GetMapping("/products")
@@ -92,7 +92,7 @@ public class ClothesController extends BaseController {
 
         model.addAttribute("products", products);
 
-        return "products";
+        return "clothes/products";
     }
 
     @GetMapping("/detail/{friendlyUrl}")
@@ -108,7 +108,7 @@ public class ClothesController extends BaseController {
         model.addAttribute("product", product);
         model.addAttribute("recommended_product", recommendedProducts);
 
-        return "detail";
+        return "clothes/detail";
     }
 
     @PostMapping("/detail")
@@ -168,7 +168,7 @@ public class ClothesController extends BaseController {
         model.addAttribute("total", Extensions.toFormattedCurrency(value));
         model.addAttribute("freeShipping", Extensions.toFormattedCurrency(shoppingValueForFreeShipping));
 
-        return "bag";
+        return "clothes/bag";
     }
 
     @GetMapping("/removeFromCart/{bid}")

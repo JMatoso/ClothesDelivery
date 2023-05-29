@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController extends BaseController{
     @GetMapping("/about")
     public String about() {
-        return "about";
+        return "home/about";
     }
 
     @GetMapping("/contact")
@@ -33,21 +33,21 @@ public class HomeController extends BaseController{
         model.addAttribute("userEmail", userEmail);
         model.addAttribute("userPhoneNumber", userPhoneNumber);
 
-        return "contact";
+        return "home/contact";
     }
 
     @GetMapping("/terms")
     public String terms() {
-        return "terms";
+        return "home/terms";
     }
 
     @GetMapping("/notfound")
     public String notfound() {
-        return "notfound";
+        return "home/notfound";
     }
 
     @GetMapping("/forbidden")
     public String forbidden() {
-        return "forbidden";
+        return "home/forbidden";
     }
 }

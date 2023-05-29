@@ -30,7 +30,7 @@ public class AccountController extends BaseController {
     @GetMapping("/login")
     public String login() {
         if(isAuthenticated()) return redirect("");
-        return "login";
+        return "account/login";
     }
 
     @GetMapping("/signup")
@@ -39,14 +39,14 @@ public class AccountController extends BaseController {
 
         model.addAttribute("result", new Result());
         model.addAttribute("signup", new SignUp());
-        return "signup";
+        return "account/signup";
     }
 
     @PostMapping("/signup")
     public String signup(@Valid @ModelAttribute("signup") SignUp signup, @NotNull BindingResult result, Model model) {
         if(result.hasErrors()) {
             model.addAttribute("result", new Result());
-            return "signup";
+            return "account/signup";
         }
 
         var address = signup.toAddressEntity();
@@ -57,7 +57,7 @@ public class AccountController extends BaseController {
 
         if(_user.existsByEmailOrPhoneNumber(user.getEmail(), user.getPhoneNumber())) {
             model.addAttribute("result", new Result(false, "Phone number or email already in use."));
-            return "signup";
+            return "account/signup";
         }
 
         var savedAddress = _address.save(address);

@@ -53,7 +53,7 @@ public class OrdersController extends BaseController {
 
         model.addAttribute("orders", orders);
 
-        return "history";
+        return "orders/history";
     }
 
     @GetMapping("/order/{orderReference}")
@@ -73,7 +73,7 @@ public class OrdersController extends BaseController {
         model.addAttribute("address", address.orElse(null));
         model.addAttribute("shipping", order.getShipping().compareTo(BigDecimal.ZERO) > 0 ? order.getShipping() : "Free");
 
-        return "order";
+        return "orders/order";
     }
 
     @GetMapping("/checkout")
@@ -109,7 +109,7 @@ public class OrdersController extends BaseController {
         model.addAttribute("total", Extensions.toFormattedCurrency(value));
         model.addAttribute("freeShipping", Extensions.toFormattedCurrency(shoppingValueForFreeShipping));
 
-        return "checkout";
+        return "orders/checkout";
     }
 
     @PostMapping("/checkout")
@@ -189,6 +189,6 @@ public class OrdersController extends BaseController {
 
     @GetMapping("/complete")
     public String complete() {
-        return "complete";
+        return "orders/complete";
     }
 }
