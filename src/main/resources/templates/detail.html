@@ -47,7 +47,7 @@
                     <span>AKZ</span>
                 </h5>
 
-                <small th:if="${(product.quantityInStock <= 10)}" class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-warning bg-warning bg-opacity-10 border border-warning border-opacity-10 rounded-2">
+                <small th:if="${(product.quantityInStock <= 10 &&  product.quantityInStock > 0)}" class="d-inline-flex mb-1 px-2 py-1 fw-semibold text-warning bg-warning bg-opacity-10 border border-warning border-opacity-10 rounded-2">
                     Last Items Available
                 </small>
 
@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="my-3">
-                    <form method="post" sec:authorize="isAuthenticated()" th:action="@{/detail}">
+                    <form method="post" sec:authorize="isAuthenticated()" th:if="${product.quantityInStock > 0}" th:action="@{/detail}">
                         <div class="btn-group w-100">
                             <button type="submit" th:if="${product.quantityInStock > 0}" class="text-uppercase btn btn-lg btn-dark w-100">
                                 <small>Add To Cart</small>

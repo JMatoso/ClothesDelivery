@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Maio-2023 às 03:31
+-- Tempo de geração: 29-Maio-2023 às 05:39
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -29,7 +29,8 @@ INSERT INTO `addresses` (`id`, `address`, `city`, `country`, `created_time`) VAL
 (1, 'Luanda, Neves Bendinha', 'Luanda', 'Angola', '2023-05-16 16:33:25.871152'),
 (2, 'Luanda', 'Luanda', 'Angola', '2023-05-22 12:26:31.241082'),
 (3, 'Santa Clara', 'Coimbra', 'Angola', '2023-05-24 22:15:52.718740'),
-(4, 'Luanda, Angola', 'Luanda', 'Angola', '2023-05-24 22:25:25.021052');
+(4, 'Luanda, Angola', 'Luanda', 'Angola', '2023-05-24 22:25:25.021052'),
+(5, 'Luanda, Rangel', 'Luanda', 'Angola', '2023-05-29 04:09:46.336102');
 
 --
 -- Extraindo dados da tabela `orders`
@@ -43,7 +44,11 @@ INSERT INTO `orders` (`id`, `created_time`, `is_paid`, `note`, `order_reference`
 (5, '2023-05-28 02:09:34.321197', b'1', '', 'TA9HN6WXJS', 'eduardovatuva@gmail.com', 'Nossa Casa', 500.00, 5, 4318.00, 2, 3, 1),
 (6, '2023-05-28 02:10:09.560361', b'1', '', 'O0WAZXO6AN', 'eduardovatuva@gmail.com', 'IMETRO COLLEGE', 500.00, 0, 38022.00, 2, 3, 2),
 (7, '2023-05-28 23:23:46.511995', b'1', '', 'UG4G8BWYCS', 'eduardovatuva@gmail.com', 'IMETRO COLLEGE', 500.00, 0, 19261.00, 2, 3, 1),
-(8, '2023-05-29 00:47:00.268303', b'1', 'Please pack the items carefully to avoid any damage during transit. If possible, I would like to receive all items in a single package to minimize waste of packaging material.', '211OUL4X7U', 'josematoso@clothes.com', 'Instituto Superior Politécnico Metropolitano de Angola, Arreiou', 500.00, 0, 23010.00, 1, 2, 8);
+(8, '2023-05-29 00:47:00.268303', b'1', 'Please pack the items carefully to avoid any damage during transit. If possible, I would like to receive all items in a single package to minimize waste of packaging material.', '211OUL4X7U', 'josematoso@clothes.com', 'Instituto Superior Politécnico Metropolitano de Angola, Arreiou', 500.00, 0, 23010.00, 1, 2, 8),
+(9, '2023-05-29 04:20:22.801053', b'1', '', 'M3E08UZZZL', 'b@clothes.ao', 'IMETRO COLLEGE', 500.00, 0, 12916.00, 5, 6, 1),
+(10, '2023-05-29 04:22:22.754639', b'1', 'Por favor, embale os itens cuidadosamente para evitar qualquer dano durante o transporte. Se possível, gostaria de receber todos os itens em uma única embalagem para minimizar o desperdício de material de embalagem.', '7YDTB6FJON', 'b@clothes.ao', 'São Paulo, Banga Shopping', 0.00, 0, 1446105.00, 5, 6, 155),
+(11, '2023-05-29 04:27:21.707222', b'1', '', '9D2CTRQ42N', 'eduardovatuva@gmail.com', 'IMETRO COLLEGE', 0.00, 0, 1446105.00, 2, 3, 155),
+(14, '2023-05-29 04:37:05.322781', b'1', '', 'CB57UKJ4B7', 'eduardovatuva@gmail.com', 'Nossa Casa', 0.00, 0, 136576.00, 2, 3, 11);
 
 --
 -- Extraindo dados da tabela `order_items`
@@ -70,17 +75,23 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_image`, `pro
 (18, 8, 20, '/images/clothes/shoes/under-armour-soccer-cleats-20-un168060960000020.jpeg', 'Under Armour Soccer Cleats', 1694.00, 1),
 (19, 8, 18, '/images/clothes/shoes/reebok-tennis-shoes-18-re168156000000018.webp', 'Reebok Tennis Shoes', 2376.00, 1),
 (20, 8, 22, '/images/clothes/shoes/adidas-basketball-shoes-22-ad168147360000022.webp', 'Adidas Basketball Shoes', 1804.00, 1),
-(21, 8, 25, '/images/clothes/shoes/nike-soccer-cleats-25-ni168078240000025.png', 'Nike Soccer Cleats', 3749.00, 1);
+(21, 8, 25, '/images/clothes/shoes/nike-soccer-cleats-25-ni168078240000025.png', 'Nike Soccer Cleats', 3749.00, 1),
+(22, 9, 4, '/images/clothes/tops/adidas-hoodie-4-ad16815600000004.webp', 'Adidas Hoodie', 12416.00, 1),
+(23, 10, 1, '/images/clothes/tops/stylish-t-shirt-1-st16806320680001.webp', 'Stylish T-Shirt', 8296.00, 90),
+(24, 10, 3, '/images/clothes/tops/nike-t-shirt-3-ni16805232000003.jpg', 'Nike T-Shirt', 10761.00, 65),
+(25, 11, 1, '/images/clothes/tops/stylish-t-shirt-1-st16806320680001.webp', 'Stylish T-Shirt', 8296.00, 90),
+(26, 11, 3, '/images/clothes/tops/nike-t-shirt-3-ni16805232000003.jpg', 'Nike T-Shirt', 10761.00, 65),
+(27, 14, 4, '/images/clothes/tops/adidas-hoodie-4-ad16815600000004.webp', 'Adidas Hoodie', 12416.00, 11);
 
 --
 -- Extraindo dados da tabela `products`
 --
 
 INSERT INTO `products` (`id`, `brand`, `category`, `color`, `created_time`, `description`, `filter`, `friendly_url`, `genre_style`, `image_url`, `is_for_children`, `name`, `price`, `quantity_in_stock`, `size`, `weight`, `sku`) VALUES
-(1, 'ABC Clothing', 0, 'Blue', '2023-04-04 18:14:28.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'stylish-t-shirt-1', 2, '/images/clothes/tops/stylish-t-shirt-1-st16806320680001.webp', b'1', 'Stylish T-Shirt', 8296.00, 95, 4, 0.5, 'st16806320680001'),
+(1, 'ABC Clothing', 0, 'Blue', '2023-04-04 18:14:28.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'stylish-t-shirt-1', 2, '/images/clothes/tops/stylish-t-shirt-1-st16806320680001.webp', b'1', 'Stylish T-Shirt', 8296.00, 5, 4, 0.5, 'st16806320680001'),
 (2, 'Adidas', 2, 'Black', '2023-04-16 14:45:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 0, 'adidas-running-shoes-2', 1, '/images/clothes/shoes/adidas-running-shoes-2-ad16816563000002.webp', b'0', 'Adidas Running Shoes', 21130.00, 49, 6, 0.5, 'ad16816563000002'),
-(3, 'Nike', 0, 'Blue', '2023-04-03 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'nike-t-shirt-3', 1, '/images/clothes/tops/nike-t-shirt-3-ni16805232000003.jpg', b'1', 'Nike T-Shirt', 10761.00, 65, 2, 0.393307, 'ni16805232000003'),
-(4, 'Adidas', 0, 'Black', '2023-04-15 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'adidas-hoodie-4', 1, '/images/clothes/tops/adidas-hoodie-4-ad16815600000004.webp', b'0', 'Adidas Hoodie', 12416.00, 22, 1, 0.970586, 'ad16815600000004'),
+(3, 'Nike', 0, 'Blue', '2023-04-03 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'nike-t-shirt-3', 1, '/images/clothes/tops/nike-t-shirt-3-ni16805232000003.jpg', b'1', 'Nike T-Shirt', 10761.00, 0, 2, 0.393307, 'ni16805232000003'),
+(4, 'Adidas', 0, 'Black', '2023-04-15 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'adidas-hoodie-4', 1, '/images/clothes/tops/adidas-hoodie-4-ad16815600000004.webp', b'0', 'Adidas Hoodie', 12416.00, 10, 1, 0.970586, 'ad16815600000004'),
 (5, 'Puma', 1, 'Red', '2023-04-07 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 2, 'puma-joggers-5', 1, '/images/clothes/bottoms/puma-joggers-5-pu16808688000005.avif', b'0', 'Puma Joggers', 5798.00, 33, 1, 0.497277, 'pu16808688000005'),
 (6, 'Under Armour', 0, 'Gray', '2023-04-11 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 0, 'under-armour-jacket-6', 0, '/images/clothes/tops/under-armour-jacket-6-un16812144000006.webp', b'0', 'Under Armour Jacket', 13742.00, 52, 6, 1.79026, 'un16812144000006'),
 (7, 'Converse', 2, 'White', '2023-04-11 12:00:00.000000', 'Introducing our new line of clothing, perfect for people looking for style, comfort and quality. Our clothes are made with the best materials, combining modern design with carefully thought out details. With a touch of elegance and a dose of personality, our pieces are ideal for all occasions. \r\n\r\n We emphasize the durability and high quality of the fabrics used in our clothing. Each piece is meticulously crafted to ensure comfort and strength, making them perfect for everyday wear. In addition, our designers work tirelessly to create body-flattering cuts and shapes that provide an impeccable fit.', 0, 'converse-sneakers-7', 1, '/images/clothes/shoes/converse-sneakers-7-co16812144000007.jpeg', b'0', 'Converse Sneakers', 4315.00, 64, 3, 1.91715, 'co16812144000007'),
@@ -131,10 +142,11 @@ INSERT INTO `shopping_carts` (`id`, `added_date`, `product_id`, `product_image`,
 --
 
 INSERT INTO `users` (`id`, `address_id`, `birthdate`, `created_time`, `email`, `name`, `password`, `phone_number`, `role`) VALUES
-(2, 1, '2000-12-13', '2023-05-16 16:33:25.893102', 'josematoso@clothes.ao', 'José Matoso', '$2a$10$lENnxXd4JIkBsio1ZqPtPuzPpdyrPe/HtaB9yHQGCJYkCmhKl5vWe', '941566710', 0),
+(2, 1, '2000-12-13', '2023-05-16 16:33:25.893102', 'josematoso@clothes.ao', 'José Matoso', '$2a$10$lENnxXd4JIkBsio1ZqPtPuzPpdyrPe/HtaB9yHQGCJYkCmhKl5vWe', '941566710', 1),
 (3, 2, '2001-07-05', '2023-05-22 12:26:31.262648', 'eduardovatuva@gmail.com', 'Eduardo Vatuva', '$2a$10$lENnxXd4JIkBsio1ZqPtPuzPpdyrPe/HtaB9yHQGCJYkCmhKl5vWe', '9556666444', 0),
 (4, 3, '2023-05-24', '2023-05-24 22:15:52.746171', 'santaclara@gmail.com', 'Santa Clara', '$2a$10$lENnxXd4JIkBsio1ZqPtPuzPpdyrPe/HtaB9yHQGCJYkCmhKl5vWe', '99556358', 0),
-(5, 4, '2023-05-24', '2023-05-24 22:25:25.050948', 'santa@gmail.com', 'Santa Clara', '$2a$10$36U6P1es98Gybyj3PSlc0eN0J1Isy49sZNXWItixSsQBwzK3gtVgW', '94568745', 0);
+(5, 4, '2023-05-24', '2023-05-24 22:25:25.050948', 'santa@gmail.com', 'Santa Clara', '$2a$10$36U6P1es98Gybyj3PSlc0eN0J1Isy49sZNXWItixSsQBwzK3gtVgW', '94568745', 0),
+(6, 5, '2000-01-10', '2023-05-29 04:09:46.381936', 'b@clothes.ao', 'Bernarda Gonçalves', '$2a$10$eByphPzvLubMtWHubF2oMui0NEl3Jqwrwooi4hb2dOB2EoIm1HBsa', '965485412', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

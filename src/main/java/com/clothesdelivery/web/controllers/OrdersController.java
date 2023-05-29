@@ -157,16 +157,6 @@ public class OrdersController extends BaseController {
         var savedOrder = _orders.save(order);
 
         for (var item: cartItems) {
-            var orderItem = new OrderItem();
-
-            orderItem.setOrderId(savedOrder.getId());
-            orderItem.setProductPrice(item.getProductPrice());
-            orderItem.setProductImage(item.getProductImage());
-            orderItem.setProductQuantity(item.getQuantity());
-            orderItem.setProductName(item.getProductName());
-            orderItem.setProductId(item.getProductId());
-            orderItems.add(orderItem);
-
             var product = _products.findById(item.getProductId());
 
             if(product.isPresent()) {
@@ -174,13 +164,27 @@ public class OrdersController extends BaseController {
                     product.get().setQuantityInStock(product.get().getQuantityInStock() - item.getQuantity());
                     _products.save(product.get());
                     _shoppingCarts.delete(item);
+
+                    var orderItem = new OrderItem();
+
+                    orderItem.setOrderId(savedOrder.getId());
+                    orderItem.setProductPrice(item.getProductPrice());
+                    orderItem.setProductImage(item.getProductImage());
+                    orderItem.setProductQuantity(item.getQuantity());
+                    orderItem.setProductName(item.getProductName());
+                    orderItem.setProductId(item.getProductId());
+                    orderItems.add(orderItem);
                 }
             }
         }
 
-        _ordersItems.saveAll(orderItems);
+        if(orderItems.size() > 0) {
+            _ordersItems.saveAll(orderItems);
+            return redirect("complete?success");
+        }
 
-        return redirect("complete?success");
+        _orders.delete(savedOrder);
+        return redirect("complete?unavailable");
     }
 
     @GetMapping("/complete")

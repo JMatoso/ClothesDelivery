@@ -25,7 +25,7 @@
                 <span>Check out</span>
             </small>
         </div>
-       <form method="post" th:action="@{/checkout}" role="form" class="row">
+       <form method="post" id="paymentForm" th:action="@{/checkout}" role="form" class="row">
            <div class="col-md-7">
                <h3 class="mb-3">Checking out</h3>
 
@@ -102,11 +102,60 @@
                    <label for="note">Note</label>
                </div>
 
-               <button type="submit" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Complete</button>
+               <button type="submit" id="paypalModalButton" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Complete</button>
 
                <small class="text-muted d-block py-3">Clicking in the button above you are agreeing with our <a class="text-warning" th:href="@{/terms}">terms and policies</a>.</small>
            </div>
        </form>
     </div>
+
+    <div class="modal fade" id="paypalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="PayPal Payment Modal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded">
+                <video id="player" muted class="w-100 h-100 rounded">
+                    <source th:src="@{/videos/paypal.mp4}" type="video/mp4">
+                    Update your browser.
+                </video>
+            </div>
+        </div>
+    </div>
 </body>
+<script layout:fragment="script">
+    var player = $('#player');
+    const payPalModal = document.getElementById('paypalModal');
+    let paid = false;
+
+    $("#paymentForm").submit(function(event) {
+        if (!this.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+            this.reportValidity();
+            return;
+        }
+
+        if(!paid) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            var modal = new bootstrap.Modal(payPalModal);
+            modal.show();
+            return;
+        }
+    });
+
+    payPalModal.addEventListener('shown.bs.modal', event => {
+        setTimeout(() => {
+            player.get(0).play();
+        }, 1500);
+    })
+
+    player.on('ended', completeCheckout);
+
+    function completeCheckout() {
+        setTimeout(() => {
+            paid = true;
+            $("#paypalModalButton").click();
+        }, 100);
+    }
+</script>
 </html>

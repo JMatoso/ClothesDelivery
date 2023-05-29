@@ -18,12 +18,20 @@
 
 <body class="bg-gradient" layout:fragment="body">
     <div class="text-center p-5" th:if="${param.success}">
-
         <img th:src="@{/images/order-complete.svg}" class="mb-3" width="300" height="300"  alt="Clothes Order Completed" />
         <h2 class="py-3">Your <span class="text-success">purchased is complete</span>, now. We're getting your order prepared!</h2>
 
         <small class="mt-5 d-block text-uppercase">
           <a th:href="@{/products}">Go Shopping</a>
+        </small>
+    </div>
+
+    <div class="text-center p-5" th:if="${param.unavailable}">
+        <img th:src="@{/images/empty.svg}" class="mb-3" width="300" height="300"  alt="Clothes Order Completed" />
+        <h2 class="py-3">Sorry, right now we have insufficient items to process you order, try again later!</h2>
+
+        <small class="mt-5 d-block text-uppercase">
+            <a th:href="@{/products}">Go Shopping</a>
         </small>
     </div>
 </body>
