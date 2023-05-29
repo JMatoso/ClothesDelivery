@@ -70,12 +70,27 @@ a {
 
 p, span, small, pre,
 h1, h2, h3, h4, h5, h6,
-strong, a, th, td0 {
-    font-family: 'Roboto Regular';
+strong, a, th, td, div, button, a {
+    font-family: 'Roboto Regular' !important;
+}
+
+.sidebar-dark hr.sidebar-divider {
+    border-top: 0px solid rgba(255, 255, 255, .15) !important;
 }
 
 .page-item.active .page-link {
     color: #fff !important;
     background-color: #ffc107;
     border-color: #ffc107;
+}
+
+.bg-night {
+    background-color: #0a0a0a !important;
+}
+
+.sidebar-nav-item {
+    font-family: 'Roboto Medium' !important;
+    font-size: 9pt !important;
+    text-transform: uppercase;
+    padding-left: 0.5rem;
 }

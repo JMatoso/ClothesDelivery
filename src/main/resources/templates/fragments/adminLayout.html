@@ -26,57 +26,52 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-text mx-3">Clothes</div>
+        <nav class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="d-flex align-items-center justify-content-center" th:href="@{/admin/dashboard}">
+                <div class="py-3 text-center">
+                    <small class="text-uppercase text-white">Clothes Dashboard</small>
+                </div>
             </a>
-
-            <hr class="sidebar-divider my-0">
 
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/admin/dashboard}">
-                    <i data-feather="home" class="feather-icon-size"></i>
-                    <span class="ff-bold">Dashboard</span>
+                    <span class="d-icon"><i data-feather="home" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Dashboard</span>
                 </a>
             </div>
 
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading ff-light">Management</div>
-
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/admin/products}">
-                    <i data-feather="tag" class="feather-icon-size"></i>
-                    <span class="ff-bold">Products</span>
+                    <span class="d-icon"><i data-feather="tag" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Products</span>
                 </a>
             </div>
 
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/admin/customers}">
-                    <i data-feather="users" class="feather-icon-size"></i>
-                    <span class="ff-bold">Customers</span>
+                    <span class="d-icon"><i data-feather="users" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Customers</span>
                 </a>
             </div>
 
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/admin/orders}">
-                    <i data-feather="clock" class="feather-icon-size"></i>
-                    <span class="ff-bold">Orders</span>
+                    <span class="d-icon"><i data-feather="clock" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Orders</span>
                 </a>
             </div>
 
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/admin/users}">
-                    <i data-feather="user-check" class="feather-icon-size"></i>
-                    <span class="ff-bold">Users</span>
+                    <span class="d-icon"><i data-feather="user-check" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Users</span>
                 </a>
             </div>
 
-            <hr class="sidebar-divider d-none d-md-block">
-
             <div class="nav-item">
                 <a class="nav-link" th:href="@{/logout}">
-                    <i data-feather="log-out" class="feather-icon-size"></i>
-                    <span class="ff-bold">Logout</span>
+                    <span class="d-icon"><i data-feather="log-out" class="feather-icon-size"></i></span>
+                    <span class="sidebar-nav-item">Logout</span>
                 </a>
             </div>
         </nav>
@@ -89,8 +84,8 @@
                     </button>
 
                     <div>
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2">
-                            <span>Hello, welcome again!</span>
+                        <span class="mr-2 d-none d-lg-inline text-warning-600 small px-2">
+                            <strong>Hello, welcome again!</strong>
                         </span>
                     </div>
 
