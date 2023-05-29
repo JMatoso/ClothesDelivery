@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public final class FileService {
+    private final String resource = "C:/Users/jos3m/OneDrive/Documentos/Projects/Java/ClothesDelivery/src/main/resources/static/";
     public static @NotNull String saveFile(@NotNull MultipartFile file, String uploadDir, String fileName) throws IOException {
         var newFileName = fileName + Objects.requireNonNull(file.getOriginalFilename())
                 .substring(file.getOriginalFilename().lastIndexOf(".") + 1);

@@ -39,6 +39,7 @@ public class Product {
     private ClothesSize size;
     private ProductFilters filter;
     private String color;
+    private boolean isVisible;
     private float weight;
     private String friendlyUrl;
     private String sku;

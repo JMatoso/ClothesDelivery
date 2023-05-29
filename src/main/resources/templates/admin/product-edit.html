@@ -4,10 +4,152 @@
       layout:decorate="~{/fragments/adminLayout}">
 
 <head>
-  <title>Edit Product</title>
+    <title>Product Edit</title>
 </head>
 
 <body layout:fragment="body">
+    <div class="container-fluid">
+        <form method="post" class="mb-5" th:action="@{/admin/products/edit}">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">New Product</h1>
+                <button type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm">
+                    <i class="text-white-50" data-feather="save"></i> Save Product
+                </button>
+            </div>
 
+            <div th:if="${param.updated}" class="alert alert-success my-2" role="alert">
+                <span>Product has been updated.</span>
+            </div>
+
+            <div th:if="${param.added}" class="alert alert-success my-2" role="alert">
+                <span>Product has been added.</span>
+            </div>
+
+            <input type="hidden" name="id" id="id" th:value="${product.id}">
+
+            <div class="row g-2 mb-2">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="name" name="name" th:value="${product.name}">
+                        <label for="name">Name</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <select name="category" id="category" class="form-select" aria-label=".form-select-lg example">
+                            <option selected value="">Select a category...</option>
+                            <option th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}"
+                                    th:value="${category}"
+                                    th:text="${category}">
+                            </option>
+                        </select>
+                        <label for="category">Category</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <select name="size" id="size" class="form-select" aria-label=".form-select-lg example">
+                            <option selected value="">Select a size...</option>
+                            <option th:each="size : ${T(com.clothesdelivery.web.enums.ClothesSize).values()}"
+                                    th:value="${size}"
+                                    th:text="${size}">
+                            </option>
+                        </select>
+                        <label for="size">Size</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <select name="style" id="style" class="form-select" aria-label=".form-select-lg example">
+                            <option selected value="">Select a genre style...</option>
+                            <option th:each="style : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}"
+                                    th:value="${style}"
+                                    th:text="${style}">
+                            </option>
+                        </select>
+                        <label for="style">Style</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <select name="filter" id="filter" class="form-select" aria-label=".form-select-lg example">
+                            <option selected value="">Select a filter...</option>
+                            <option th:each="filter : ${T(com.clothesdelivery.web.enums.ProductFilters).values()}"
+                                    th:value="${filter}"
+                                    th:text="${filter}">
+                            </option>
+                        </select>
+                        <label for="filter">Filter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-2">
+                <div class="form-floating">
+                    <textarea class="form-control w-100" placeholder="Leave a description here" name="description" id="description" style="height: 300px"></textarea>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+
+            <div class="row g-2 mb-2">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="number" min="1" th:value="${product.quantityInStock}" class="form-control" id="quantity" name="quantity" placeholder="Quantity in stock" value="">
+                        <label for="quantity">Quantity</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Price" th:value="${product.price}">
+                        <label for="price">Price</label>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="isForChildren" name="isForChildren">
+                            <option selected>Select...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">Nope</option>
+                        </select>
+                        <label for="isForChildren">Is For Children</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="color" name="color" placeholder="White" th:value="${product.brand}">
+                        <label for="color">Color</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-2 mb-2">
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="number" th:value="${product.weight}" class="form-control" id="weight" name="weight" placeholder="Product Weight" value="">
+                        <label for="weight">Weight</label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Adidas" th:value="${product.brand}">
+                        <label for="brand">Brand</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 d-none">
+                    <div class="mt-2">
+                        <input aria-label="Image Cover" class="form-control form-control-lg" name="cover" id="cover" type="file">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

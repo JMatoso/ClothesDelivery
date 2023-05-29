@@ -1,5 +1,6 @@
 package com.clothesdelivery.web.controllers;
 
+import com.clothesdelivery.web.entities.Product;
 import com.clothesdelivery.web.entities.ShoppingCart;
 import com.clothesdelivery.web.enums.Category;
 import com.clothesdelivery.web.enums.ClothesSize;
@@ -40,9 +41,9 @@ public class ClothesController extends BaseController {
     public String index(@NotNull Model model) {
         var products = _products.findAll();
 
-        var bestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.Best).limit(12);
-        var newestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.New).limit(12);
-        var hottestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.Hot).limit(12);
+        var bestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.Best).limit(12).toList().stream().filter(Product::isVisible).toList();
+        var newestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.New).limit(12).toList().stream().filter(Product::isVisible).toList();
+        var hottestProducts = products.stream().filter(e -> e.getFilter() == ProductFilters.Hot).limit(12).toList().stream().filter(Product::isVisible).toList();
 
         model.addAttribute("best_products", bestProducts);
         model.addAttribute("newest_products", newestProducts);
@@ -59,7 +60,7 @@ public class ClothesController extends BaseController {
             @RequestParam(value = "search", required = false) String search,
             @NotNull Model model) {
 
-        var products = _products.findAll();
+        var products = _products.findAll().stream().filter(Product::isVisible).toList();
 
         if(search != null) {
             products = products.stream().filter(e ->
@@ -102,7 +103,7 @@ public class ClothesController extends BaseController {
 
         if(product == null) return notFound;
 
-        var recommendedProducts = _products.findByCategoryOrGenreStyleOrBrand(product.getCategory(), product.getGenreStyle(), product.getBrand()).stream().limit(8);
+        var recommendedProducts = _products.findByCategoryOrGenreStyleOrBrand(product.getCategory(), product.getGenreStyle(), product.getBrand()).stream().limit(8).toList().stream().filter(Product::isVisible).toList();
 
         model.addAttribute("product", product);
         model.addAttribute("recommended_product", recommendedProducts);
