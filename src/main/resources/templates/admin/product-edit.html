@@ -9,12 +9,16 @@
 
 <body layout:fragment="body">
     <div class="container-fluid">
-        <form method="post" class="mb-5" th:action="@{/admin/products/edit}">
+        <form method="post" class="mb-5" th:action="@{/admin/products/edit}" th:object="${productRequest}">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">New Product</h1>
-                <button type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm">
+                <button type="submit" class="d-none d-sm-inline-block btn btn-warning shadow-sm">
                     <i class="text-white-50" data-feather="save"></i> Save Product
                 </button>
+            </div>
+
+            <div th:if="${validation != null}" class="alert alert-warning my-2" role="alert">
+                <span th:text="${validation}"></span>
             </div>
 
             <div th:if="${param.updated}" class="alert alert-success my-2" role="alert">
@@ -25,18 +29,19 @@
                 <span>Product has been added.</span>
             </div>
 
-            <input type="hidden" name="id" id="id" th:value="${product.id}">
+            <input type="hidden" name="id" id="id" th:field="*{id}">
 
             <div class="row g-2 mb-2">
                 <div class="col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="name" name="name" th:value="${product.name}">
+                        <input type="text" class="form-control" th:field="*{name}" id="name" name="name">
                         <label for="name">Name</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('name')}" class="text-danger d-block my-1" th:errors="*{name}"></small>
                 </div>
                 <div class="col-md-2">
                     <div class="form-floating">
-                        <select name="category" id="category" class="form-select" aria-label=".form-select-lg example">
+                        <select th:field="*{category}" name="category" id="category" class="form-select" aria-label=".form-select-lg example">
                             <option selected value="">Select a category...</option>
                             <option th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}"
                                     th:value="${category}"
@@ -45,11 +50,12 @@
                         </select>
                         <label for="category">Category</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('category')}" class="text-danger d-block my-1" th:errors="*{category}"></small>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-floating">
-                        <select name="size" id="size" class="form-select" aria-label=".form-select-lg example">
+                        <select th:field="*{size}" name="size" id="size" class="form-select" aria-label=".form-select-lg example">
                             <option selected value="">Select a size...</option>
                             <option th:each="size : ${T(com.clothesdelivery.web.enums.ClothesSize).values()}"
                                     th:value="${size}"
@@ -58,24 +64,26 @@
                         </select>
                         <label for="size">Size</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('size')}" class="text-danger d-block my-1" th:errors="*{size}"></small>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-floating">
-                        <select name="style" id="style" class="form-select" aria-label=".form-select-lg example">
+                        <select th:field="*{genreStyle}" name="genreStyle" id="genreStyle" class="form-select" aria-label=".form-select-lg example">
                             <option selected value="">Select a genre style...</option>
                             <option th:each="style : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}"
                                     th:value="${style}"
                                     th:text="${style}">
                             </option>
                         </select>
-                        <label for="style">Style</label>
+                        <label for="genreStyle">Style</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('genreStyle')}" class="text-danger d-block my-1" th:errors="*{genreStyle}"></small>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-floating">
-                        <select name="filter" id="filter" class="form-select" aria-label=".form-select-lg example">
+                        <select th:field="*{filter}" name="filter" id="filter" class="form-select" aria-label=".form-select-lg example">
                             <option selected value="">Select a filter...</option>
                             <option th:each="filter : ${T(com.clothesdelivery.web.enums.ProductFilters).values()}"
                                     th:value="${filter}"
@@ -84,68 +92,67 @@
                         </select>
                         <label for="filter">Filter</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('filter')}" class="text-danger d-block my-1" th:errors="*{filter}"></small>
                 </div>
             </div>
 
             <div class="mb-2">
                 <div class="form-floating">
-                    <textarea class="form-control w-100" placeholder="Leave a description here" name="description" id="description" style="height: 300px"></textarea>
+                    <textarea class="form-control w-100" placeholder="Leave a description here" th:field="*{description}" name="description" id="description" style="height: 300px"></textarea>
                     <label for="description">Description</label>
                 </div>
+                <small th:if="${#fields.hasErrors('description')}" class="text-danger d-block my-1" th:errors="*{description}"></small>
             </div>
 
             <div class="row g-2 mb-2">
                 <div class="col-md-3">
                     <div class="form-floating">
-                        <input type="number" min="1" th:value="${product.quantityInStock}" class="form-control" id="quantity" name="quantity" placeholder="Quantity in stock" value="">
+                        <input type="number" min="1" th:field="*{quantityInStock}" class="form-control" id="quantity" name="quantity" placeholder="Quantity in stock" value="">
                         <label for="quantity">Quantity</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('quantityInStock')}" class="text-danger d-block my-1" th:errors="*{quantityInStock}"></small>
                 </div>
 
                 <div class="col-md-3">
                     <div class="form-floating">
-                        <input type="number" class="form-control" id="price" name="price" placeholder="Price" th:value="${product.price}">
+                        <input type="number" class="form-control" th:field="*{price}" id="price" name="price" placeholder="Price">
                         <label for="price">Price</label>
                     </div>
-                </div>
-
-                <div class="col-md">
-                    <div class="form-floating">
-                        <select class="form-select" id="isForChildren" name="isForChildren">
-                            <option selected>Select...</option>
-                            <option value="true">Yes</option>
-                            <option value="false">Nope</option>
-                        </select>
-                        <label for="isForChildren">Is For Children</label>
-                    </div>
+                    <small th:if="${#fields.hasErrors('price')}" class="text-danger d-block my-1" th:errors="*{price}"></small>
                 </div>
 
                 <div class="col-md-3">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="color" name="color" placeholder="White" th:value="${product.brand}">
+                        <input type="text" class="form-control" th:field="*{brand}" id="brand" name="brand" placeholder="Adidas">
+                        <label for="brand">Brand</label>
+                    </div>
+                    <small th:if="${#fields.hasErrors('brand')}" class="text-danger d-block my-1" th:errors="*{brand}"></small>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" th:field="*{color}" id="color" name="color" placeholder="White">
                         <label for="color">Color</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('color')}" class="text-danger d-block my-1" th:errors="*{color}"></small>
                 </div>
             </div>
 
             <div class="row g-2 mb-2">
                 <div class="col-md-3">
                     <div class="form-floating">
-                        <input type="number" th:value="${product.weight}" class="form-control" id="weight" name="weight" placeholder="Product Weight" value="">
+                        <input type="number" th:field="*{weight}" class="form-control" id="weight" name="weight" placeholder="Product Weight">
                         <label for="weight">Weight</label>
                     </div>
+                    <small th:if="${#fields.hasErrors('weight')}" class="text-danger d-block my-1" th:errors="*{weight}"></small>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Adidas" th:value="${product.brand}">
-                        <label for="brand">Brand</label>
-                    </div>
-                </div>
-
-                <div class="col-md-6 d-none">
-                    <div class="mt-2">
-                        <input aria-label="Image Cover" class="form-control form-control-lg" name="cover" id="cover" type="file">
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" th:field="*{forChildren}" id="forChildren" name="forChildren">
+                        <label class="form-check-label" for="forChildren">
+                            Is For Children?
+                        </label>
                     </div>
                 </div>
             </div>

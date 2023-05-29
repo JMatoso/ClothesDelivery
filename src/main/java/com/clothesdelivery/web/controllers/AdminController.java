@@ -2,15 +2,20 @@ package com.clothesdelivery.web.controllers;
 
 import com.clothesdelivery.web.entities.Product;
 import com.clothesdelivery.web.enums.*;
+import com.clothesdelivery.web.models.ProductRequest;
+import com.clothesdelivery.web.models.Result;
+import com.clothesdelivery.web.models.SignUp;
 import com.clothesdelivery.web.repositories.IOrderItemRepository;
 import com.clothesdelivery.web.repositories.IOrderRepository;
 import com.clothesdelivery.web.repositories.IProductRepository;
 import com.clothesdelivery.web.repositories.IUserRepository;
 import com.clothesdelivery.web.services.FileService;
+import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,87 +61,44 @@ public class AdminController extends BaseController {
 
     @GetMapping("/products/edit/{id}")
     public String productEdit(@PathVariable(value = "id", required = false) Long id, @NotNull Model model) {
-        var product = new Product();
-
-        product.setId(0L);
+        var product = new ProductRequest(0L);
 
         if(id != 0) {
             var result = _products.findById(id);
 
             if(result.isPresent()) {
-                product = result.get();
+                product = result.get().toProductRequest();
             }
         }
 
-        model.addAttribute("product", product);
-
+        model.addAttribute("productRequest", product);
         return "admin/product-edit";
     }
 
     @PostMapping("/products/edit")
-    public String productEdit(@RequestParam(value = "id") Long id,
-                              @RequestParam(value = "name") String name,
-                              @RequestParam(value = "category") Category category,
-                              @RequestParam(value = "size") ClothesSize size,
-                              @RequestParam(value = "style") GenreStyle style,
-                              @RequestParam(value = "filter") ProductFilters filter,
-                              @RequestParam(value = "description") String description,
-                              @RequestParam(value = "quantity") int quantity,
-                              @RequestParam(value = "price") BigDecimal price,
-                              @RequestParam(value = "isForChildren") boolean isForChildren,
-                              @RequestParam(value = "color") String color,
-                              @RequestParam(value = "weight") float weight,
-                              @RequestParam(value = "brand") String brand,
-                              @NotNull Model model) {
+    public String productEdit(@Valid @ModelAttribute("productRequest") @NotNull ProductRequest productRequest, @NotNull BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            model.addAttribute("validation", "Fill all required fields");
+            return "products/edit";
+        }
 
-        if(id == 0) {
-            var product = new Product();
-            product.setName(name);
-            product.setCategory(category);
-            product.setSize(size);
-            product.setGenreStyle(style);
-            product.setFilter(filter);
-            product.setDescription(description);
-            product.setQuantityInStock(quantity);
-            product.setPrice(price);
-            product.setColor(color);
-            product.setWeight(weight);
-            product.setBrand(brand);
-            product.setForChildren(isForChildren);
-            product.setCreatedTime(LocalDateTime.now());
-            product.setVisible(false);
-
+        if(productRequest.getId() == 0) {
+            var product = productRequest.toProductEntity();
             var savedProduct = _products.save(product);
 
             savedProduct.generateFriendlyUrlFromName();
             savedProduct.generateSKU();
-
             _products.save(savedProduct);
 
             model.addAttribute("product", savedProduct);
             return redirect(String.format("admin/products/edit/%d?added", product.getId()));
         }
 
-        var oldProduct = _products.findById(id);
+        var oldProduct = _products.findById(productRequest.getId());
 
         if(oldProduct.isEmpty()) return redirect("notfound");
 
-        oldProduct.get().setName(name);
-        oldProduct.get().setCategory(category);
-        oldProduct.get().setSize(size);
-        oldProduct.get().setGenreStyle(style);
-        oldProduct.get().setFilter(filter);
-        oldProduct.get().setDescription(description);
-        oldProduct.get().setQuantityInStock(quantity);
-        oldProduct.get().setPrice(price);
-        oldProduct.get().setColor(color);
-        oldProduct.get().setWeight(weight);
-        oldProduct.get().setBrand(brand);
-        oldProduct.get().setForChildren(isForChildren);
-        oldProduct.get().generateSKU();
-        oldProduct.get().generateFriendlyUrlFromName();
-
-        _products.save(oldProduct.get());
+        _products.save(oldProduct.get().update(productRequest));
         return redirect(String.format("admin/products/edit/%d?updated", oldProduct.get().getId()));
     }
 
@@ -174,5 +136,16 @@ public class AdminController extends BaseController {
     public String customers(@NotNull Model model) {
         model.addAttribute("customers", _users.findAll().stream().filter(e -> e.getRole().equals(Role.ROLE_CUSTOMER)).toList());
         return "admin/customers";
+    }
+
+    @GetMapping("/products/remove/{bid}")
+    public String removeFromBag(@PathVariable @NotNull Long bid) {
+        var product = _products.findById(bid);
+
+        if(product.isEmpty()) return notFound;
+
+        _products.delete(product.get());
+
+        return redirect("admin/products?removed");
     }
 }
