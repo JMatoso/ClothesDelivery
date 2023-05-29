@@ -1,8 +1,8 @@
 package com.clothesdelivery.web.enums;
 
 public enum Role {
-    Customer(1),
-    Admin(2);
+    ROLE_CUSTOMER(1),
+    ROLE_ADMIN(2);
 
     private final int value;
 

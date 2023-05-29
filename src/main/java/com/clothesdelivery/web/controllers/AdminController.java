@@ -43,13 +43,13 @@ public class AdminController extends BaseController {
 
     @GetMapping("/users")
     public String users(@NotNull Model model) {
-        model.addAttribute("users", _users.findAll().stream().filter(e -> e.getRole().equals(Role.Admin)).toList());
+        model.addAttribute("users", _users.findAll().stream().filter(e -> e.getRole().equals(Role.ROLE_ADMIN)).toList());
         return "admin/users";
     }
 
     @GetMapping("/customers")
     public String customers(@NotNull Model model) {
-        model.addAttribute("customers", _users.findAll().stream().filter(e -> e.getRole().equals(Role.Customer)).toList());
+        model.addAttribute("customers", _users.findAll().stream().filter(e -> e.getRole().equals(Role.ROLE_CUSTOMER)).toList());
         return "admin/customers";
     }
 }

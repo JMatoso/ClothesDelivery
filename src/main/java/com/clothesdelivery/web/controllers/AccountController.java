@@ -62,7 +62,7 @@ public class AccountController extends BaseController {
 
         var savedAddress = _address.save(address);
 
-        user.setRole(Role.Customer);
+        user.setRole(Role.ROLE_CUSTOMER);
         user.setAddressId(savedAddress.getId());
 
         _user.save(user);

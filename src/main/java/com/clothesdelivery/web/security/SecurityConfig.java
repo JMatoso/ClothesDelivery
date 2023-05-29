@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,8 +23,10 @@ public class SecurityConfig {
             "/login", "/signup",
             "/terms", "/", "/about", "/contact", "/error", "/notfound",
             "/css/**",  "/fonts/**", "/js/**", "/images/**", "/libs/**",
-            "/products", "/detail/**", "/admin/**", "/upload"
+            "/products", "/detail/**"
     };
+
+    RequestMatcher adminUrls = new AntPathRequestMatcher("/admin/**");
 
     private final CustomUserDetailsService _userDetailsService;
 
@@ -38,6 +41,9 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Bean
     public SecurityFilterChain filterChain(@NotNull HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
@@ -50,8 +56,7 @@ public class SecurityConfig {
                     try {
                         authorize
                             .requestMatchers(_allowedUrls).permitAll()
-                                // todo: configure restrictions in /admin/**
-                            //.requestMatchers("/admin/**").hasRole(String.valueOf(Role.Customer))
+                                .requestMatchers(adminUrls).hasAuthority(String.valueOf(Role.ROLE_ADMIN))
                             .anyRequest().authenticated();
                         authorize
                             .and()
@@ -63,7 +68,7 @@ public class SecurityConfig {
                 })
                 .formLogin(form -> form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/")
+                        .successHandler(customAuthenticationSuccessHandler)
                     .loginProcessingUrl("/login")
                     .permitAll())
                 .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
