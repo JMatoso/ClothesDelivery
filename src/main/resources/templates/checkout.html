@@ -103,6 +103,8 @@
                </div>
 
                <button type="submit" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Complete</button>
+
+               <small class="text-muted d-block py-3">Clicking in the button above you are agreeing with our <a class="text-warning" th:href="@{/terms}">terms and policies</a>.</small>
            </div>
        </form>
     </div>

@@ -14,7 +14,25 @@ public class HomeController extends BaseController{
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(@NotNull Model model) {
+        var userName = "";
+        var userEmail = "";
+        var userPhoneNumber = "";
+
+        if(isAuthenticated()) {
+            var user = getAuthenticatedUser();
+
+            if(user != null) {
+                userName = user.getName();
+                userEmail = user.getEmail();
+                userPhoneNumber = user.getPhoneNumber();
+            }
+        }
+
+        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", userEmail);
+        model.addAttribute("userPhoneNumber", userPhoneNumber);
+
         return "contact";
     }
 

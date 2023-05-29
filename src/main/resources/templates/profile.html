@@ -17,126 +17,121 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-    <section class="p-2">
-        <div class="container">
-            <small class="">
-                <a th:href="@{/}">Home</a> /
-                <span>Profile</span>
-            </small>
-        </div>
-    </section>
-
-    <div class="container pb-5">
+    <div class="container py-5">
         <div class="row">
             <div class="col-md-3">
-                <ul class="nav nav-pills flex-column border p-3 mb-3" role="tablist" id="items-tab">
-                    <li class="nav-item border-bottom py-2">
-                        <a class="nav-link active" data-toggle="pill" aria-current="page" href="#info">Profile</a>
+                <ul class="nav flex-column border rounded p-3 mb-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#info">Profile</a>
                     </li>
-                    <li class="nav-item pt-3">
-                        <a class="nav-link" data-toggle="pill" href="#orders">Orders</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/orders}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
                     </li>
                 </ul>
 
-                <div class="mb-3 text-center">
-                    <small class="text-muted">
-                        Account created at
-                        <span th:text="${#temporals.format(authenticatedUser.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
-                    </small>
-                </div>
-
                 <div class="mobile-gone">
                     <a th:href="@{/products}">
-                        <img th:src="@{/images/banners/vBanner1.png}" alt="Banner Vertical 1" class="mb-2 d-block w-100">
-                        <img th:src="@{/images/banners/vBanner2.png}" alt="Banner Vertical 2" class="mb-2 d-block w-100">
+                        <img th:src="@{/images/banners/vBanner2.png}" alt="Banner Vertical 2" class="mb-2 d-block rounded w-100">
                     </a>
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="info">
-                        <h5 class="ff-light border-bottom pb-3">Personal Information</h5>
-                        <form method="post" th:action="@{/profile}" role="form" class="py-2">
-                            <div th:if="${param.unavailable}" class="alert alert-warning my-2" role="alert">
-                                <span>Phone number or email already in use.</span>
-                            </div>
+                <small class="pb-2 d-block">
+                    <a th:href="@{/}">Home</a> /
+                    <span>Profile</span>
+                </small>
+                <div id="info">
+                    <h5 class="ff-light border-bottom pb-3">Personal Information</h5>
+                    <form method="post" th:action="@{/profile}" role="form" class="py-2">
+                        <div th:if="${param.unavailable}" class="alert alert-warning my-2" role="alert">
+                            <span>Phone number or email already in use.</span>
+                        </div>
 
-                            <div th:if="${param.validation}" class="alert alert-warning my-2" role="alert">
-                                <span>Fill all required fields.</span>
-                            </div>
+                        <div th:if="${param.validation}" class="alert alert-warning my-2" role="alert">
+                            <span>Fill all required fields.</span>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" required class="form-control" id="name" name="name" th:value="${authenticatedUser.name}" placeholder="John Doe">
-                                            <label for="name">Name</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" required class="form-control" id="birthdate" name="birthdate" th:value="${authenticatedUser.birthdate}">
-                                        <label for="birthdate">Birthday</label>
-                                    </div>
-                                </div>
-                            </div>
+                        <div th:if="${param.success}" class="alert alert-success my-2" role="alert">
+                            <span>Personal information updated.</span>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:value="${authenticatedUser.phoneNumber}" placeholder="+244 999 999 999">
-                                            <label for="phoneNumber">Phone Number</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="email" required class="form-control" id="email" name="email" th:value="${authenticatedUser.email}" placeholder="name@example.com">
-                                            <label for="email">Email address</label>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" required class="form-control" id="name" name="name" th:value="${authenticatedUser.name}" placeholder="John Doe">
+                                        <label for="name">Name</label>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" required class="form-control" id="birthdate" name="birthdate" th:value="${authenticatedUser.birthdate}">
+                                    <label for="birthdate">Birthday</label>
+                                </div>
+                            </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" required class="form-control" id="city" name="city" th:value="${address.city}" placeholder="Luanda">
-                                            <label for="city">City</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" required class="form-control" id="country" name="country" th:value="Angola" placeholder="Angola">
-                                            <label for="country">Country</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <div class="form-floating">
-                                            <input type="text" required class="form-control" id="address" name="address" th:value="${address.address}" placeholder="Maianga, Rua 3, Casa 2">
-                                            <label for="address">Address</label>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:value="${authenticatedUser.phoneNumber}" placeholder="+244 999 999 999">
+                                        <label for="phoneNumber">Phone Number</label>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="mt-3 text-end">
-                                <button type="submit" class="btn btn-lg btn-warning">Update</button>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="email" required class="form-control" id="email" name="email" th:value="${authenticatedUser.email}" placeholder="name@example.com">
+                                        <label for="email">Email address</label>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                    <div class="tab-pane fade" id="orders">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" required class="form-control" id="city" name="city" th:value="${address.city}" placeholder="Luanda">
+                                        <label for="city">City</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" readonly aria-disabled="true" class="form-control disabled" id="country" th:value="Angola" placeholder="Angola">
+                                        <label for="country">Country</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <div class="form-floating">
+                                        <input type="text" required class="form-control" id="address" name="address" th:value="${address.address}" placeholder="Maianga, Rua 3, Casa 2">
+                                        <label for="address">Address</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="my-3">
+                            <small class="text-muted">
+                                Account created at
+                                <span th:text="${#temporals.format(authenticatedUser.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
+                            </small>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-lg btn-warning">Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
