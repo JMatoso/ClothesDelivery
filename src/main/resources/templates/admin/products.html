@@ -8,15 +8,13 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-<div class="px-4 my-3">
-   <div class="row">
-       <div class="col">
-           <h3 class="text-warning">Products (<span th:text="${products.size()}"></span>)</h3>
-       </div>
-       <div class="col text-right">
-            <a class="btn btn-outline-warning" th:href="@{/admin/products/edit}">Add New Product</a>
-       </div>
-   </div>
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Products (<span th:text="${products.size()}"></span>)</h1>
+        <a th:href="@{/admin/products/edit}" class="d-none d-sm-inline-block btn btn-primary shadow-sm">
+            <i class="text-white-50" data-feather="plus"></i> Add New Product
+        </a>
+    </div>
 
     <div class="table-responsive p-1 my-4">
         <table class="table table-bordered w-100" id="dataTable">

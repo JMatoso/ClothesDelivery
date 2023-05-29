@@ -26,15 +26,15 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
+        <nav class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                <div class="sidebar-brand-text mx-3 ff-stylus">Clothes</div>
+                <div class="sidebar-brand-text mx-3">Clothes</div>
             </a>
 
             <hr class="sidebar-divider my-0">
 
             <div class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" th:href="@{/admin/dashboard}">
                     <i data-feather="home" class="feather-icon-size"></i>
                     <span class="ff-bold">Dashboard</span>
                 </a>
@@ -98,7 +98,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2">User</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2" th:text="${#authentication.name}"></span>
                                 <img class="img-profile rounded-circle" th:src="@{/images/user.png}" alt="Representative user">
                             </a>
                         </li>
