@@ -15,7 +15,10 @@ import java.util.Set;
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
-    public void onAuthenticationSuccess(@NotNull HttpServletRequest request, HttpServletResponse response, @NotNull Authentication authentication) throws IOException {
+    public void onAuthenticationSuccess(
+            @NotNull HttpServletRequest request,
+            HttpServletResponse response,
+            @NotNull Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
         String continueUrl = request.getParameter("continue");
