@@ -17,8 +17,15 @@
 </head>
 
 <body layout:fragment="body">
-    <section class="container w-60 centered">
-       <form method="post" th:action="@{/checkout}" role="form" class="row mt-5">
+    <div class="container w-60 centered">
+        <div class="py-2">
+            <small class="">
+                <a th:href="@{/}">Home</a> /
+                <a th:href="@{/bag}">Bag</a> /
+                <span>Check out</span>
+            </small>
+        </div>
+       <form method="post" th:action="@{/checkout}" role="form" class="row">
            <div class="col-md-7">
                <h3 class="mb-3">Checking out</h3>
 
@@ -98,6 +105,6 @@
                <button type="submit" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Complete</button>
            </div>
        </form>
-    </section>
+    </div>
 </body>
 </html>

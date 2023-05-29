@@ -1,0 +1,72 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/fragments/layout}">
+
+<head>
+  <title>Orders</title>
+
+  <section layout:fragment="metas" th:remove="tag">
+    <meta property="og:title" content="Orders - Clothes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="See all the order's history." />
+
+    <meta property="og:url" th:content="${hostPath}" />
+    <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+  </section>
+</head>
+
+<body class="bg-gradient" layout:fragment="body">
+    <div class="p-2">
+        <div class="container">
+            <small class="">
+                <a th:href="@{/}">Home</a> /
+                <span>Orders</span>
+            </small>
+        </div>
+    </div>
+
+    <div class="container">
+        <h5 class="ff-light">Order History</h5>
+
+        <div class="table-responsive p-1 my-4">
+            <table class="table table-bordered w-100" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Billing Email</th>
+                        <th>Status</th>
+                        <th>Items</th>
+                        <th>Total (AKZ)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Billing Email</th>
+                        <th>Status</th>
+                        <th>Items</th>
+                        <th>Total (AKZ)</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.orderReference}"></td>
+                        <td th:text="${order.payPalEmail}"></td>
+                        <td class="text-center">
+                            <span class="badge" th:classappend="${order.status.getStyle()}" th:text="${order.status}"></span>
+                        </td>
+                        <td th:text="${order.items}"></td>
+                        <td th:text="${@extensionsBean.toFormattedCurrency(order.total)}"></td>
+                        <td>
+                            <a th:href="@{/order/{orderReference}(orderReference=${order.orderReference})}" class="btn btn-warning text-white w-100">Details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

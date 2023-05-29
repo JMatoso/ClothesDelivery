@@ -17,7 +17,7 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-    <section class="bg-light p-2">
+    <section class="p-2">
         <div class="container">
             <small class="">
                 <a th:href="@{/}">Home</a> /
@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <div class="container mt-5 pb-5">
+    <div class="container pb-5">
         <div class="row">
             <div class="col-md-3">
                 <ul class="nav nav-pills flex-column border p-3 mb-3" role="tablist" id="items-tab">
@@ -135,46 +135,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="orders">
-                        <h5 class="ff-light border-bottom pb-3">Order History</h5>
 
-                        <div class="table-responsive p-1 my-4">
-                            <table class="table table-bordered w-100" id="dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>Reference</th>
-                                        <th>Billing Email</th>
-                                        <th>Status</th>
-                                        <th>Items</th>
-                                        <th>Total (AKZ)</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Reference</th>
-                                        <th>Billing Email</th>
-                                        <th>Status</th>
-                                        <th>Items</th>
-                                        <th>Total (AKZ)</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr th:each="order : ${orders}">
-                                        <td th:text="${order.orderReference}"></td>
-                                        <td th:text="${order.payPalEmail}"></td>
-                                        <td class="text-center">
-                                            <span class="badge" th:classappend="${order.status.getStyle()}" th:text="${order.status}"></span>
-                                        </td>
-                                        <td th:text="${order.items}"></td>
-                                        <td th:text="${@extensionsBean.toFormattedCurrency(order.total)}"></td>
-                                        <td>
-                                            <a th:href="@{/order/{orderReference}(orderReference=${order.orderReference})}" class="btn btn-warning text-white w-100">Details</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>

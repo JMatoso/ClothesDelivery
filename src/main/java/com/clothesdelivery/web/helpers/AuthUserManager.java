@@ -15,10 +15,7 @@ public class AuthUserManager {
         if (authentication != null && authentication.getPrincipal() != null) {
             if(!authentication.getName().isEmpty())
             {
-                var user = _userManager.findByEmail(authentication.getName());
-                user.setPassword("");
-
-                return user;
+                return _userManager.findByEmail(authentication.getName());
             }
         }
 

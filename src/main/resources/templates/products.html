@@ -18,7 +18,7 @@
 </head>
 
 <body layout:fragment="body">
-    <section class="bg-light p-2">
+    <section class="p-2">
         <div class="container">
             <small class="">
                 <a th:href="@{/}">Home</a> /
@@ -27,7 +27,7 @@
         </div>
     </section>
 
-    <section class="container mt-5" id="filter-head">
+    <section class="container mt-1" id="filter-head">
         <form method="get" th:action="@{/products}">
             <div class="form-group">
                 <div class="mb-3">
@@ -95,8 +95,9 @@
 
         <div id="pagination-container"></div>
 
-        <div th:if="${products.size() == 0}">
-            <h1 class="text-center p-5">Any product found.</h1>
+        <div th:if="${products.size() == 0}" class="text-center p-5">
+            <img th:src="@{/images/empty.svg}" class="mb-3" width="300" height="300"  alt="Clothes Order Completed" />
+            <h1 class="py-3">Any product found.</h1>
         </div>
     </section>
 

@@ -17,7 +17,15 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-<div class="container my-5">
+<div class="p-2">
+    <div class="container">
+        <small class="">
+            <a th:href="@{/}">Home</a> /
+            <span>Bag</span>
+        </small>
+    </div>
+</div>
+<div class="container mb-5">
     <div class="row">
         <div class="col-md-9">
             <div th:if="${param.removed}" class="alert alert-success my-2 mb-4" role="alert">

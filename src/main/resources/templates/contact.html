@@ -17,11 +17,19 @@
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-    <div class="container mt-3">
+    <div class="p-2">
+        <div class="container">
+            <small class="">
+                <a th:href="@{/}">Home</a> /
+                <span>Get In Touch</span>
+            </small>
+        </div>
+    </div>
+    <div class="container mb-3">
         <div class="row">
             <div class="col-lg-9 mb-5">
                 <div class="overflow-top">
-                    <h3 class="py-4">Get in Touch</h3>
+                    <h3 class="pb-4">Get in Touch</h3>
 
                     <div class="alert alert-warning mb-3" id="alertWarning" role="alert">
                       All fields are required, fill it all.

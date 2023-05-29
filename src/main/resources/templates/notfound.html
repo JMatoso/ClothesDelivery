@@ -1,7 +1,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/authLayout}">
+      layout:decorate="~{/fragments/layout}">
 
 <head>
     <title>Not Found</title>
@@ -18,12 +18,9 @@
 
 <body class="bg-gradient bg-light" layout:fragment="body">
     <div class="text-center p-5">
-        <a th:href="@{/}">
-            <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100"  alt="Clothes Logo" />
-        </a>
 
-        <h1>404</h1>
-        <h2>Breathe, because whatever you're looking for is not here.</h2>
+        <img th:src="@{/images/notfound.svg}" class="mb-3" width="300" height="300"  alt="Clothes Order Completed" />
+        <h2 class="py-3">Dude, whatever you're looking for is not here.</h2>
 
         <small class="mt-5 d-block text-uppercase">
             <a th:href="@{/}">Back to site</a>

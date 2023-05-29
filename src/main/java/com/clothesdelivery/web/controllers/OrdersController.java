@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Controller
 public class OrdersController extends BaseController {
@@ -42,8 +43,36 @@ public class OrdersController extends BaseController {
     @Value("${clothes.free.shipping.value}")
     private BigDecimal shoppingValueForFreeShipping;
 
+    @GetMapping("/orders")
+    public String orders(@NotNull Model model) {
+        var user = getAuthenticatedUser();
+
+        if(user == null) return notFound;
+
+        var orders = _orders.findAllByUserId(user.getId());
+
+        model.addAttribute("orders", orders);
+
+        return "history";
+    }
+
     @GetMapping("/order/{orderReference}")
-    public String detail(@PathVariable @NotNull String orderReference, @NotNull Model model) {
+    public String order(@PathVariable @NotNull String orderReference, @NotNull Model model) {
+        var user = getAuthenticatedUser();
+        if(user == null) return login;
+
+        var order = _orders.findByOrderReference(orderReference);
+
+        if(order == null || !Objects.equals(order.getUserId(), user.getId())) return redirect("notfound");
+
+        var address = _addresses.findById(order.getUserAddressId());
+        var orderItems = _ordersItems.findAllByOrderId(order.getId());
+
+        model.addAttribute("order", order);
+        model.addAttribute("order_items", orderItems);
+        model.addAttribute("address", address.orElse(null));
+        model.addAttribute("shipping", order.getShipping().compareTo(BigDecimal.ZERO) > 0 ? order.getShipping() : "Free");
+
         return "order";
     }
 
@@ -74,8 +103,8 @@ public class OrdersController extends BaseController {
 
         var address = _addresses.findById(user.getAddressId());
 
-        model.addAttribute("authenticatedUser", user);
         model.addAttribute("products", cartItems);
+        model.addAttribute("authenticatedUser", user);
         model.addAttribute("address", address.orElse(null));
         model.addAttribute("total", Extensions.toFormattedCurrency(value));
         model.addAttribute("freeShipping", Extensions.toFormattedCurrency(shoppingValueForFreeShipping));
@@ -105,7 +134,6 @@ public class OrdersController extends BaseController {
         }
 
         boolean hasShipping = false;
-
 
         if(value.compareTo(shoppingValueForFreeShipping) < 0) {
             hasShipping = true;
