@@ -11,6 +11,10 @@
 <div class="px-4 my-3">
     <h3 class="text-warning">Customers (<span th:text="${customers.size()}"></span>)</h3>
 
+    <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
+        <span>Customer has been removed.</span>
+    </div>
+
     <div class="table-responsive p-1 my-4">
         <table class="table table-bordered w-100" id="dataTable">
             <thead>
@@ -38,8 +42,9 @@
                 <td th:text="${customer.phoneNumber}"></td>
                 <td th:text="${customer.birthdate}"></td>
                 <td>
-                    <a class="btn btn-danger text-white w-100 d-block mb-1">Remove</a>
-                    <a th:href="@{/admin/user/edit/{id}(id=${customer.id})}" class="btn btn-primary text-white w-100 d-block">Edit</a>
+                    <a th:href="@{/admin/users/remove/{uid}(uid=${customer.id})}" class="btn btn-danger text-white w-100">
+                        Remove
+                    </a>
                 </td>
             </tr>
             </tbody>

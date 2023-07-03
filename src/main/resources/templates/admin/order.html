@@ -1,32 +1,20 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+      layout:decorate="~{/fragments/adminLayout}">
 
 <head>
-    <title>Order Details</title>
-
-    <section layout:fragment="metas" th:remove="tag">
-        <meta property="og:title" content="Order Details - Clothes" />
-        <meta property="og:type" content="website" />
-        <meta property="og:description" content="See all the order's details here." />
-
-        <meta property="og:url" th:content="${hostPath}" />
-        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
-    </section>
+  <title>Orders</title>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-    <div class="p-2">
-        <div class="container">
-            <small class="">
-                <a th:href="@{/}">Home</a> /
-                <a th:href="@{/orders}">Orders</a> /
-                <span th:text="|Order #${order.orderReference}|"></span>
-            </small>
+    <div class="px-4 my-3">
+        <div th:if="${param.changed}" class="alert alert-success my-2" role="alert">
+            <span>Order status has been changed.</span>
         </div>
-    </div>
-    <div class="container">
+        <div th:if="${param.unchanged}" class="alert alert-secondary my-2" role="alert">
+            <span>Order status remains unchanged.</span>
+        </div>
         <div class="row mb-5">
             <div class="col-md-6">
                 <small class="text-muted">
@@ -79,8 +67,24 @@
                     <p th:text="${order.note}"></p>
                 </div>
             </div>
+
             <div class="col-md-6">
-                <h5 class="ff-light">Order Items (<span th:text="${order.items}"></span>)</h5>
+                <h5 class="ff-light mb-3">Order Items (<span th:text="${order.items}"></span>)</h5>
+
+                <form method="post" th:action="@{/admin/order}">
+                    <small class="text-muted d-block pb-2">Order Status</small>
+                    <div class="input-group mb-3">
+                        <select name="status" id="status" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                            <option value="">(Select)</option>
+                            <option th:each="status : ${T(com.clothesdelivery.web.enums.OrderStatus).values()}"
+                                    th:value="${status}" th:text="${status}"></option>
+                        </select>
+
+                        <button class="btn btn-sm btn-warning" type="submit">Change</button>
+                    </div>
+                    <input type="hidden" name="ref" id="ref" th:value="${order.orderReference}">
+                </form>
+
                 <ul class="list-group">
                     <li th:each="item : ${order_items}" class="list-group-item d-flex justify-content-between align-items-center pt-3">
                        <span class="d-flex align-items-center">

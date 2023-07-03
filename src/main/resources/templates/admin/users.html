@@ -10,6 +10,10 @@
 <div class="px-4 my-3">
     <h3 class="text-warning">Users (<span th:text="${users.size()}"></span>)</h3>
 
+    <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
+        <span>User has been removed.</span>
+    </div>
+
     <div class="table-responsive p-1 my-4">
         <table class="table table-bordered w-100" id="dataTable">
             <thead>
@@ -33,12 +37,9 @@
                 <td th:text="${user.name}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.phoneNumber}"></td>
-                <td class="btn-group">
-                    <a class="btn btn-danger text-white w-100 mb-1">
-                        <span data-feather="trash"></span>
-                    </a>
-                    <a th:href="@{/admin/users-edit/{id}(id=${user.id})}" class="btn btn-primary text-white w-100">
-                        <span data-feather="edit"></span>
+                <td>
+                    <a th:href="@{/admin/users/remove/{uid}(uid=${user.id})}" class="btn btn-danger text-white w-100">
+                        Remove
                     </a>
                 </td>
             </tr>

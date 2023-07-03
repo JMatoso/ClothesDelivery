@@ -2,13 +2,11 @@ package com.clothesdelivery.web.controllers;
 
 import com.clothesdelivery.web.entities.Product;
 import com.clothesdelivery.web.enums.*;
+import com.clothesdelivery.web.extensions.Functions;
 import com.clothesdelivery.web.models.ProductRequest;
 import com.clothesdelivery.web.models.Result;
 import com.clothesdelivery.web.models.SignUp;
-import com.clothesdelivery.web.repositories.IOrderItemRepository;
-import com.clothesdelivery.web.repositories.IOrderRepository;
-import com.clothesdelivery.web.repositories.IProductRepository;
-import com.clothesdelivery.web.repositories.IUserRepository;
+import com.clothesdelivery.web.repositories.*;
 import com.clothesdelivery.web.services.FileService;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +21,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/admin")
@@ -36,19 +35,36 @@ public class AdminController extends BaseController {
     @Autowired
     private IOrderRepository _orders;
 
+    @Autowired
+    private IAddressRepository _addresses;
+
+    @Autowired
+    private IOrderItemRepository _ordersItems;
+
     @GetMapping("/dashboard")
     public String dashboard(@NotNull Model model) {
         var customers = _users.findAllByRole(Role.ROLE_CUSTOMER).size();
         var products = _products.count();
 
         var orders = _orders.findAll();
-        var monthlyOrders = orders.stream().filter(e -> e.getCreatedTime().getMonth() == LocalDate.now().getMonth()).count();
+        var doneOrders = orders.stream().filter(e -> e.getStatus() == OrderStatus.Done).count();
+        var sentOrders = orders.stream().filter(e -> e.getStatus() == OrderStatus.Sent).count();
         var pendingOrders = orders.stream().filter(e -> e.getStatus() == OrderStatus.Pendent).count();
+        var processedOrders = orders.stream().filter(e -> e.getStatus() == OrderStatus.Processed).count();
+        var preparingOrders = orders.stream().filter(e -> e.getStatus() == OrderStatus.Processing).count();
+        var monthlyOrders = orders.stream().filter(e -> e.getCreatedTime().getMonth() == LocalDate.now().getMonth()).count();
 
-        model.addAttribute("customers", customers);
+        long ordersSize = orders.size();
+
         model.addAttribute("products", products);
+        model.addAttribute("customers", customers);
         model.addAttribute("monthly_orders", monthlyOrders);
         model.addAttribute("pending_orders", pendingOrders);
+        model.addAttribute("sent_orders", Functions.calculatePercentage(sentOrders, ordersSize, true));
+        model.addAttribute("done_orders", Functions.calculatePercentage(doneOrders, ordersSize, true));
+        model.addAttribute("preparing_orders", Functions.calculatePercentage(pendingOrders, ordersSize, true));
+        model.addAttribute("processed_orders", Functions.calculatePercentage(processedOrders, ordersSize, true));
+        model.addAttribute("processing_orders", Functions.calculatePercentage(preparingOrders, ordersSize, true));
 
         return "admin/dashboard";
     }
@@ -102,25 +118,6 @@ public class AdminController extends BaseController {
         return redirect(String.format("admin/products/edit/%d?updated", oldProduct.get().getId()));
     }
 
-    private String updateCover(MultipartFile file, @NotNull Category category, String fileName) {
-        var path = switch (category) {
-            case Tops -> "/images/clothes/tops/";
-            case Bottoms -> "/images/clothes/bottoms/";
-            case Shoes -> "/images/clothes/shoes/";
-            case Accessories -> "/images/clothes/accessories/";
-        };
-
-        var fullPath = "";
-
-        try {
-            fullPath = FileService.saveFile(file, path, fileName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return fullPath;
-    }
-
     @GetMapping("/users/edit/{id}")
     public String usersEdit(@NotNull @PathVariable("id") Long id) {
         return "admin/users-edit";
@@ -138,8 +135,55 @@ public class AdminController extends BaseController {
         return "admin/customers";
     }
 
+    @GetMapping("/orders")
+    public String orders(@NotNull Model model) {
+        model.addAttribute("orders", _orders.findAll());
+        return "admin/orders";
+    }
+
+    @GetMapping("/order/{orderReference}")
+    public String order(@PathVariable @NotNull String orderReference, @NotNull Model model) {
+        var user = getAuthenticatedUser();
+        if(user == null) return login;
+
+        var order = _orders.findByOrderReference(orderReference);
+
+        if(order == null) return redirect("notfound");
+
+        var address = _addresses.findById(order.getUserAddressId());
+        var orderItems = _ordersItems.findAllByOrderId(order.getId());
+
+        model.addAttribute("order", order);
+        model.addAttribute("order_items", orderItems);
+        model.addAttribute("address", address.orElse(null));
+        model.addAttribute("shipping", order.getShipping().compareTo(BigDecimal.ZERO) > 0 ? order.getShipping() : "Free");
+
+        return "admin/order";
+    }
+
+    @PostMapping("/order")
+    public String changeStatus(@RequestParam(value = "status") OrderStatus status, @RequestParam(value = "ref") @NotNull String ref) {
+        if(ref.isEmpty()) {
+            return redirect("admin/orders");
+        }
+
+        var order = _orders.findByOrderReference(ref);
+
+        if(order == null) {
+            return redirect("admin/orders");
+        }
+
+        if(order.getStatus() != status) {
+            order.setStatus(status);
+            _orders.save(order);
+            return redirect(String.format("admin/order/%s?changed", ref));
+        }
+
+        return redirect(String.format("admin/order/%s?unchanged", ref));
+    }
+
     @GetMapping("/products/remove/{bid}")
-    public String removeFromBag(@PathVariable @NotNull Long bid) {
+    public String removeProduct(@PathVariable @NotNull Long bid) {
         var product = _products.findById(bid);
 
         if(product.isEmpty()) return notFound;
@@ -147,5 +191,18 @@ public class AdminController extends BaseController {
         _products.delete(product.get());
 
         return redirect("admin/products?removed");
+    }
+
+    @GetMapping("/users/remove/{uid}")
+    public String removeUser(@PathVariable @NotNull Long uid) {
+        var user = _users.findById(uid);
+
+        if(user.isEmpty()) return notFound;
+
+        _users.delete(user.get());
+
+        return user.get().getRole() == Role.ROLE_CUSTOMER ?
+                redirect("admin/customers?removed") :
+                redirect("admin/users?removed");
     }
 }
