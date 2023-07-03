@@ -11,6 +11,7 @@
     <li>Stock Management</li>
     <li>Shopping Cart</li>
     <li>User Management</li>
+    <li>Orders Management</li>
 </ul>
 
 ## Tools
