@@ -7,7 +7,7 @@
 ## Things Similiar to Features
 <ul>
     <li>Login</li>
-    <li>Register</li>
+    <li>Signup</li>
     <li>Stock Management</li>
     <li>Shopping Cart</li>
     <li>Checkout</li>
