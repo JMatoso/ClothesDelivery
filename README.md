@@ -10,6 +10,8 @@
     <li>Register</li>
     <li>Stock Management</li>
     <li>Shopping Cart</li>
+    <li>Checkout</li>
+    <li>Fake PayPal Payment</li>
     <li>User Management</li>
     <li>Orders Management</li>
 </ul>
