@@ -13,20 +13,20 @@ import javax.sql.DataSource;
 
 @Configuration
 public class Connection {
-    @Value("${spring.datasource.url}")
+    //@Value("${spring.datasource.url}")
     private String url;
 
-    @Value("${spring.datasource.username}")
+    //@Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource.password}")
+    //@Value("${spring.datasource.password}")
     private String password;
 
-    @Value("${spring.datasource.driver-class-name}")
+    //@Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
     public void init() {
-        System.out.println("Database URL: " + url);
+        System.out.println("Database URL: " + env.getProperty("DATABASE_URL"););
         System.out.println("Database Username: " + username);
         System.out.println("Database Driver: " + driverClassName);
     }
