@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class Connection {
-    @Value("${spring.datasource.url}")
+    @Value("${DATABASE_URL}")
     private String url;
 
     @Value("${spring.datasource.username}")
