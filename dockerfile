@@ -1,13 +1,10 @@
 FROM ubuntu:latest AS build
 
-RUN apt-get update
-RUN echo "https://apk.bell-sw.com/main" | sudo tee -a /etc/apk/repositories
-RUN sudo wget -P /etc/apk/keys/ https://apk.bell-sw.com/info@bell-sw.com-5fea454e.rsa.pub
-RUN apk add bellsoft-java21
-RUN wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | gpg --dearmor | tee /etc/apt/keyrings/GPG-KEY-bellsoft.gpg > /dev/null
-RUN echo "deb https://apt.bell-sw.com/ stable main" | sudo tee /etc/apt/sources.list.d/bellsoft.list
-RUN sudo apt-get update
-RUN sudo apt-get install bellsoft-java21
+RUN apt-get update && apt-get install -y wget gnupg
+RUN wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | gpg --dearmor -o /etc/apt/keyrings/GPG-KEY-bellsoft.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/GPG-KEY-bellsoft.gpg] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
+RUN apt-get update && apt-get install -y bellsoft-java21
+
 COPY . .
 
 RUN apt-get install maven -y
