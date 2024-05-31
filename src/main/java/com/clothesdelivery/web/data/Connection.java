@@ -9,7 +9,6 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Configuration
@@ -26,7 +25,6 @@ public class Connection {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @PostConstruct
     public void init() {
         System.out.println("Database URL: " + url);
         System.out.println("Database Username: " + username);
@@ -35,6 +33,7 @@ public class Connection {
 
     @Bean
     public DataSource dataSource() {
+        init();
         var dataSource = new DriverManagerDataSource(url, username, password);
         dataSource.setDriverClassName(driverClassName);
         return dataSource;
