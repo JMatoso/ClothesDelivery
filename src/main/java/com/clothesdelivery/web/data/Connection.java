@@ -20,13 +20,13 @@ public class Connection {
     //@Value("${spring.datasource.url}")
     private String url;
 
-    //@Value("${spring.datasource.username}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    //@Value("${spring.datasource.password}")
+    @Value("${DATABASE_PASSWORD}")
     private String password;
 
-    //@Value("${spring.datasource.driver-class-name}")
+    @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
     @Autowired
