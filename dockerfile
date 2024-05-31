@@ -7,7 +7,7 @@ COPY . .
 RUN apt-get install maven -y
 RUN mvn clean install
 
-FROM openjdk:17-jdk-slim
+FROM bellsoft/liberica-openjdk-alpine:latest
 
 EXPOSE 8080
 
