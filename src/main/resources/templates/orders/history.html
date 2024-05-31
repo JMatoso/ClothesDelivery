@@ -1,19 +1,17 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/layout}">
 
 <head>
-  <title>Orders</title>
+    <title>Orders</title>
 
-  <section layout:fragment="metas" th:remove="tag">
-    <meta property="og:title" content="Orders - Clothes" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="See all the order's history." />
+    <section layout:fragment="metas" th:remove="tag">
+        <meta property="og:title" content="Orders - Clothes" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="See all the order's history." />
 
-    <meta property="og:url" th:content="${hostPath}" />
-    <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
-  </section>
+        <meta property="og:url" th:content="${hostPath}" />
+        <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
@@ -56,12 +54,14 @@
                         <td th:text="${order.orderReference}"></td>
                         <td th:text="${order.payPalEmail}"></td>
                         <td class="text-center">
-                            <span class="badge" th:classappend="${order.status.getStyle()}" th:text="${order.status}"></span>
+                            <span class="badge" th:classappend="${order.status.getStyle()}"
+                                th:text="${order.status}"></span>
                         </td>
                         <td th:text="${order.items}"></td>
                         <td th:text="${@extensionsBean.toFormattedCurrency(order.total)}"></td>
                         <td>
-                            <a th:href="@{/order/{orderReference}(orderReference=${order.orderReference})}" class="btn btn-warning text-white w-100">Details</a>
+                            <a th:href="@{/order/{orderReference}(orderReference=${order.orderReference})}"
+                                class="btn btn-warning text-white w-100">Details</a>
                         </td>
                     </tr>
                 </tbody>
@@ -75,4 +75,5 @@
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>

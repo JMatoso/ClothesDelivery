@@ -1,34 +1,32 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/authLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/authLayout}">
 
 <head>
-  <title>Access Denied</title>
+    <title>Access Denied</title>
 
-  <section layout:fragment="metas" th:remove="tag">
-    <meta property="og:title" content="Access Denied - Clothes" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="We don't know you to access this page." />
+    <section layout:fragment="metas" th:remove="tag">
+      <meta property="og:title" content="Access Denied - Clothes" />
+      <meta property="og:type" content="website" />
+      <meta property="og:description" content="We don't know you to access this page." />
 
-    <meta property="og:url" th:content="${hostPath}" />
-    <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
-  </section>
+      <meta property="og:url" th:content="${hostPath}" />
+      <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
+    </section>
 </head>
 
 <body class="bg-gradient bg-light" layout:fragment="body">
-<div class="text-center p-5">
-  <a th:href="@{/}">
-    <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100"  alt="Clothes Logo" />
-  </a>
+    <div class="text-center p-5">
+        <a th:href="@{/}">
+            <img th:src="@{/images/logo.png}" class="mb-3" width="100" height="100" alt="Clothes Logo" />
+        </a>
 
-  <h1>403</h1>
-  <h2>Dude, you <span class="text-danger">DO NOT HAVE ACCESS</span> to this page.</h2>
+        <h1>403</h1>
+        <h2>Dude, you <span class="text-danger">DO NOT HAVE ACCESS</span> to this page.</h2>
 
-  <small class="mt-5 d-block text-uppercase">
-    <a th:href="@{/}">Back to site</a>
-  </small>
-</div>
+        <small class="mt-5 d-block text-uppercase">
+            <a th:href="@{/}">Back to site</a>
+        </small>
+    </div>
 </body>
 
 </html>

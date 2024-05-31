@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes Admin</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes Admin</title>
 
-  <meta name="description" content="Clothes, website.">
-  <meta name="author" content="José Matoso & Bernarda Gonçalves">
+    <meta name="description" content="Clothes, website.">
+    <meta name="author" content="José Matoso & Bernarda Gonçalves">
 
-  <meta name="theme-color" content="#ffc107" />
-  <meta name="msapplication-navbutton-color" content="#ffc107" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
+    <meta name="theme-color" content="#ffc107" />
+    <meta name="msapplication-navbutton-color" content="#ffc107" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
 
-  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-  <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/libs/datatables/datatables.min.css}" />
-  <link rel="stylesheet" th:href="@{/css/admin/sb-admin-2.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin/sb-admin-2.min.css}" />
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}" />
 </head>
 
@@ -80,7 +79,7 @@
             <main role="main" class="content">
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                      <i class="fa fa-bars"></i>
+                        <i class="fa fa-bars"></i>
                     </button>
 
                     <div>
@@ -92,9 +91,11 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2" th:text="${#authentication.name}"></span>
-                                <img class="img-profile rounded-circle" th:src="@{/images/user.png}" alt="Representative user">
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small px-2"
+                                    th:text="${#authentication.name}"></span>
+                                <img class="img-profile rounded-circle" th:src="@{/images/user.png}"
+                                    alt="Representative user">
                             </a>
                         </li>
                     </ul>
@@ -124,4 +125,5 @@
     feather.replace();
 </script>
 <script layout:fragment="script"></script>
+
 </html>

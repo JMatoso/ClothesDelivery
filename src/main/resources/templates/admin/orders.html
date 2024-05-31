@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/adminLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/adminLayout}">
 
 <head>
     <title>Orders</title>
@@ -35,23 +33,25 @@
                         <th>Action</th>
                     </tr>
                 </tfoot>
-            <tbody>
-                <tr th:each="order : ${orders}">
-                    <td th:text="${order.orderReference}"></td>
-                    <td th:text="${order.payPalEmail}"></td>
-                    <td class="text-center">
-                        <span class="badge" th:classappend="${order.status.getStyle()}" th:text="${order.status}"></span>
-                    </td>
-                    <td th:text="${order.items}"></td>
-                    <td th:text="${@extensionsBean.toFormattedCurrency(order.total)}"></td>
-                    <td th:text="${order.createdTime}"></td>
-                    <td>
-                        <a th:href="@{/admin/order/{orderReference}(orderReference=${order.orderReference})}" class="btn btn-warning text-white w-100">Details</a>
-                    </td>
-                </tr>
-            </tbody>
-          </table>
-      </div>
+                <tbody>
+                    <tr th:each="order : ${orders}">
+                        <td th:text="${order.orderReference}"></td>
+                        <td th:text="${order.payPalEmail}"></td>
+                        <td class="text-center">
+                            <span class="badge" th:classappend="${order.status.getStyle()}"
+                                th:text="${order.status}"></span>
+                        </td>
+                        <td th:text="${order.items}"></td>
+                        <td th:text="${@extensionsBean.toFormattedCurrency(order.total)}"></td>
+                        <td th:text="${order.createdTime}"></td>
+                        <td>
+                            <a th:href="@{/admin/order/{orderReference}(orderReference=${order.orderReference})}"
+                                class="btn btn-warning text-white w-100">Details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
@@ -60,4 +60,5 @@
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>

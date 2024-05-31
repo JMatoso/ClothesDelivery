@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/layout}">
 
 <head>
     <title>Get In Touch</title>
@@ -32,55 +30,59 @@
                     <h3 class="pb-4">Get in Touch</h3>
 
                     <div class="alert alert-warning mb-3" id="alertWarning" role="alert">
-                      All fields are required, fill it all.
+                        All fields are required, fill it all.
                     </div>
 
                     <div>
                         <div class="row mb-1">
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" th:value="${userName}" id="name" name="name" placeholder="Name">
+                                    <input type="text" class="form-control" th:value="${userName}" id="name" name="name"
+                                        placeholder="Name">
                                     <label for="name">Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="tel" class="form-control" th:value="${userPhoneNumber}" id="phone" name="phone"  placeholder="9XX-XXX-XXX">
+                                    <input type="tel" class="form-control" th:value="${userPhoneNumber}" id="phone"
+                                        name="phone" placeholder="9XX-XXX-XXX">
                                     <label for="phone">Phone</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-floating mb-3">
-                          <input type="email" class="form-control" th:value="${userEmail}" id="email" name="email" placeholder="name@example.com">
-                          <label for="email">Email address</label>
+                            <input type="email" class="form-control" th:value="${userEmail}" id="email" name="email"
+                                placeholder="name@example.com">
+                            <label for="email">Email address</label>
                         </div>
 
                         <input type="hidden" th:value="${phone}" id="to" name="to">
 
                         <div class="form-floating mb-3">
-                          <textarea class="form-control" name="message" placeholder="Leave a message here..." id="message" style="height: 100px"></textarea>
-                          <label for="message">Message</label>
+                            <textarea class="form-control" name="message" placeholder="Leave a message here..."
+                                id="message" style="height: 100px"></textarea>
+                            <label for="message">Message</label>
                         </div>
 
                         <div>
-                        <button class="btn btn-warning" onclick="validateForm()">Submit</button>
-                      </div>
+                            <button class="btn btn-warning" onclick="validateForm()">Submit</button>
+                        </div>
                     </div>
 
                     <div class="mt-5">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126152.9522212631!2d13.214063701909478!3d-8.853525839594028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f15cdc8d2c7d%3A0x850c1c5c5ecc5a92!2sLuanda!5e0!3m2!1spt-PT!2sao!4v1676132891234!5m2!1spt-PT!2sao"
-                                style="border-radius:7px; width: 100%; height: 450px;"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126152.9522212631!2d13.214063701909478!3d-8.853525839594028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1a51f15cdc8d2c7d%3A0x850c1c5c5ecc5a92!2sLuanda!5e0!3m2!1spt-PT!2sao!4v1676132891234!5m2!1spt-PT!2sao"
+                            style="border-radius:7px; width: 100%; height: 450px;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-              </div>
+                </div>
             </div>
             <div class="col-lg-3">
                 <div class="overflow-top">
-                    <div style="border-radius: 7px;" class="mb-3 p-3 fw-semibold text-black bg-light bg-opacity-100 border border-light border-opacity-100">
+                    <div style="border-radius: 7px;"
+                        class="mb-3 p-3 fw-semibold text-black bg-light bg-opacity-100 border border-light border-opacity-100">
                         <h3 class="mb-4">Contact</h3>
                         <div class="row mb-3">
                             <div class="col-2">
@@ -132,7 +134,7 @@
 
         var controls = new Array(name, phone, email, message);
 
-        if(!validate(controls)) {
+        if (!validate(controls)) {
             alert.show();
             return;
         }
@@ -143,8 +145,8 @@
     }
 
     function validate(controls) {
-        for(index in controls) {
-            if(controls[index].val() <= 0) {
+        for (index in controls) {
+            if (controls[index].val() <= 0) {
                 return false;
             }
         }
@@ -158,9 +160,10 @@
     }
 
     function clearFields(controls) {
-        for(index in controls) {
+        for (index in controls) {
             controls[index].val("");
         }
     }
 </script>
+
 </html>

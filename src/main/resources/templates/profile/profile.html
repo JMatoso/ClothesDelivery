@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/layout}">
 
 <head>
     <title>Profile</title>
@@ -34,7 +32,8 @@
 
                 <div class="mobile-gone">
                     <a th:href="@{/products}">
-                        <img th:src="@{/images/banners/vBanner2.png}" alt="Banner Vertical 2" class="mb-2 d-block rounded w-100">
+                        <img th:src="@{/images/banners/vBanner2.png}" alt="Banner Vertical 2"
+                            class="mb-2 d-block rounded w-100">
                     </a>
                 </div>
             </div>
@@ -62,14 +61,16 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" required class="form-control" id="name" name="name" th:value="${authenticatedUser.name}" placeholder="John Doe">
+                                        <input type="text" required class="form-control" id="name" name="name"
+                                            th:value="${authenticatedUser.name}" placeholder="John Doe">
                                         <label for="name">Name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-3">
-                                    <input type="date" required class="form-control" id="birthdate" name="birthdate" th:value="${authenticatedUser.birthdate}">
+                                    <input type="date" required class="form-control" id="birthdate" name="birthdate"
+                                        th:value="${authenticatedUser.birthdate}">
                                     <label for="birthdate">Birthday</label>
                                 </div>
                             </div>
@@ -79,7 +80,9 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="tel" required class="form-control" id="phoneNumber" name="phoneNumber" th:value="${authenticatedUser.phoneNumber}" placeholder="+244 999 999 999">
+                                        <input type="tel" required class="form-control" id="phoneNumber"
+                                            name="phoneNumber" th:value="${authenticatedUser.phoneNumber}"
+                                            placeholder="+244 999 999 999">
                                         <label for="phoneNumber">Phone Number</label>
                                     </div>
                                 </div>
@@ -87,7 +90,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="email" required class="form-control" id="email" name="email" th:value="${authenticatedUser.email}" placeholder="name@example.com">
+                                        <input type="email" required class="form-control" id="email" name="email"
+                                            th:value="${authenticatedUser.email}" placeholder="name@example.com">
                                         <label for="email">Email address</label>
                                     </div>
                                 </div>
@@ -98,7 +102,8 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" required class="form-control" id="city" name="city" th:value="${address.city}" placeholder="Luanda">
+                                        <input type="text" required class="form-control" id="city" name="city"
+                                            th:value="${address.city}" placeholder="Luanda">
                                         <label for="city">City</label>
                                     </div>
                                 </div>
@@ -106,7 +111,8 @@
                             <div class="col-md-3">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" readonly aria-disabled="true" class="form-control disabled" id="country" th:value="Angola" placeholder="Angola">
+                                        <input type="text" readonly aria-disabled="true" class="form-control disabled"
+                                            id="country" th:value="Angola" placeholder="Angola">
                                         <label for="country">Country</label>
                                     </div>
                                 </div>
@@ -114,7 +120,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <div class="form-floating">
-                                        <input type="text" required class="form-control" id="address" name="address" th:value="${address.address}" placeholder="Maianga, Rua 3, Casa 2">
+                                        <input type="text" required class="form-control" id="address" name="address"
+                                            th:value="${address.address}" placeholder="Maianga, Rua 3, Casa 2">
                                         <label for="address">Address</label>
                                     </div>
                                 </div>
@@ -124,7 +131,8 @@
                         <div class="my-3">
                             <small class="text-muted">
                                 Account created at
-                                <span th:text="${#temporals.format(authenticatedUser.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
+                                <span
+                                    th:text="${#temporals.format(authenticatedUser.createdTime, 'dd/MM/yyyy HH:mm:ss')}"></span>
                             </small>
                         </div>
 
@@ -140,12 +148,13 @@
 
 <script layout:fragment="script">
     $('#items-tab a').on('click', function (e) {
-          e.preventDefault();
-          $(this).tab('show');
+        e.preventDefault();
+        $(this).tab('show');
     });
 
     $(document).ready(function () {
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>

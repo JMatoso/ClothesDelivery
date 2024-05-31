@@ -1,43 +1,48 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes</title>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">
+      Clothes
+    </title>
 
-  <meta name="description" content="Welcome to Clothes, discover a unique selection of clothes, accessories, and shoes to create your own style. Stand out from the crowd with our exclusive items.">
-  <meta name="author" content="José Matoso & Bernarda Gonçalves">
+    <meta name="description"
+      content="Welcome to Clothes, discover a unique selection of clothes, accessories, and shoes to create your own style. Stand out from the crowd with our exclusive items." />
+    <meta name="author" content="José Matoso & Bernarda Gonçalves" />
 
-  <meta name="topic" content="Online Clothing Store">
-  <meta name="keywords" content="Women's Clothes, Men's Clothes, Children's Clothes, Dresses, Skirts, Trousers, Shirts, Blouses, Handbags, Belts, Heels, Boots, Sneakers">
-  <meta name="category" content="Women's Clothing, Men's Clothing, Children's Clothing, Accessories, Shoes">
-  <meta name="abstract" content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products.">
-  <meta name="coverage" content="Worldwide">
+    <meta name="topic" content="Online Clothing Store" />
+    <meta name="keywords"
+      content="Women's Clothes, Men's Clothes, Children's Clothes, Dresses, Skirts, Trousers, Shirts, Blouses, Handbags, Belts, Heels, Boots, Sneakers" />
+    <meta name="category" content="Women's Clothing, Men's Clothing, Children's Clothing, Accessories, Shoes" />
+    <meta name="abstract"
+      content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products." />
+    <meta name="coverage" content="Worldwide" />
 
-  <meta property="og:locale" content="en-US" />
-  <meta property="og:site_name" content="Clothes" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Access your account on our clothing site. Enter your credentials and explore the latest fashion trends." />
-  <meta property="og:updated_time" content="2023-05-27T19:45:00Z" />
+    <meta property="og:locale" content="en-US" />
+    <meta property="og:site_name" content="Clothes" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description"
+      content="Access your account on our clothing site. Enter your credentials and explore the latest fashion trends." />
+    <meta property="og:updated_time" content="2023-05-27T19:45:00Z" />
 
-  <section layout:fragment="metas" th:remove="tag"></section>
+    <section layout:fragment="metas" th:remove="tag"></section>
 
-  <meta property="og:image:width" content="90" />
-  <meta property="og:image:height" content="90" />
-  <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="90" />
+    <meta property="og:image:height" content="90" />
+    <meta property="og:image:type" content="image/png" />
 
-  <meta name="theme-color" content="#ffc107" />
-  <meta name="msapplication-navbutton-color" content="#ffc107" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
+    <meta name="theme-color" content="#ffc107" />
+    <meta name="msapplication-navbutton-color" content="#ffc107" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffc107" />
 
-  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-  <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
-  <link rel="stylesheet" th:href="@{/css/site.css}" />
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/libs/bootstrap/dist/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/site.css}" />
 </head>
 
 <body layout:fragment="body"></body>
@@ -50,4 +55,5 @@
     feather.replace();
 </script>
 <script layout:fragment="script"></script>
+
 </html>

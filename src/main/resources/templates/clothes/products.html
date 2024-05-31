@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/layout}">
 
 <head>
     <title>Products</title>
@@ -9,7 +7,8 @@
     <section layout:fragment="metas" th:remove="tag">
         <meta property="og:title" content="Products - Clothes" />
         <meta property="og:type" content="website" />
-        <meta property="og:description" content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products." />
+        <meta property="og:description"
+            content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products." />
 
         <meta property="og:url" th:content="${hostPath}" />
         <meta property="og:image" th:content="@{|${hostUrl}/images/logo.png|}" />
@@ -30,16 +29,17 @@
         <form method="get" th:action="@{/products}">
             <div class="form-group">
                 <div class="mb-3">
-                    <input name="search" id="search" type="search" class="form-control" aria-label="Search" placeholder="Search for brands, names, colors, weight..." aria-describedby="inputSearch">
+                    <input name="search" id="search" type="search" class="form-control" aria-label="Search"
+                        placeholder="Search for brands, names, colors, weight..." aria-describedby="inputSearch">
                 </div>
 
                 <div class="row">
                     <div class="col-md-3">
-                        <select name="category" id="category" class="form-select mb-3" aria-label=".form-select-lg example">
+                        <select name="category" id="category" class="form-select mb-3"
+                            aria-label=".form-select-lg example">
                             <option selected value="">Select a category...</option>
                             <option th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}"
-                                    th:value="${category}"
-                                    th:text="${category}">
+                                th:value="${category}" th:text="${category}">
                             </option>
                         </select>
                     </div>
@@ -48,8 +48,7 @@
                         <select name="style" id="style" class="form-select mb-3" aria-label=".form-select-lg example">
                             <option selected value="">Select a genre style...</option>
                             <option th:each="style : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}"
-                                    th:value="${style}"
-                                    th:text="${style}">
+                                th:value="${style}" th:text="${style}">
                             </option>
                         </select>
                     </div>
@@ -58,8 +57,7 @@
                         <select name="size" id="size" class="form-select mb-3" aria-label=".form-select-lg example">
                             <option selected value="">Select a size...</option>
                             <option th:each="size : ${T(com.clothesdelivery.web.enums.ClothesSize).values()}"
-                                    th:value="${size}"
-                                    th:text="${size}">
+                                th:value="${size}" th:text="${size}">
                             </option>
                         </select>
                     </div>
@@ -80,7 +78,8 @@
                     <a th:href="@{/detail/{friendlyUrl}(friendlyUrl=${product.friendlyUrl})}">
                         <img class="product-image" th:src="${product.imageUrl}" th:alt="${product.name}">
                     </a>
-                    <span class="filter-badge" th:classappend="${product.filter.getStyle()}" th:text="${product.filter}"></span>
+                    <span class="filter-badge" th:classappend="${product.filter.getStyle()}"
+                        th:text="${product.filter}"></span>
                 </div>
                 <div class="mt-3">
                     <h6 th:text="${product.name}"></h6>
@@ -95,7 +94,7 @@
         <div id="pagination-container"></div>
 
         <div th:if="${products.size() == 0}" class="text-center p-5">
-            <img th:src="@{/images/empty.svg}" class="mb-3" width="300" height="300"  alt="Clothes Order Completed" />
+            <img th:src="@{/images/empty.svg}" class="mb-3" width="300" height="300" alt="Clothes Order Completed" />
             <h1 class="py-3">Any product found.</h1>
         </div>
     </section>
@@ -104,16 +103,17 @@
 </body>
 
 <script layout:fragment="script">
-    $(document).ready(function() {
-          $('#pagination-container').pagination({
-                dataSource: '.product-item',
-                pageSize: 12,
-                autoHidePrevious: true,
-                autoHideNext: true,
-                callback: function(data, pagination) {
-                  $('#data-container').html(data);
-                }
-          });
+    $(document).ready(function () {
+        $('#pagination-container').pagination({
+            dataSource: '.product-item',
+            pageSize: 12,
+            autoHidePrevious: true,
+            autoHideNext: true,
+            callback: function (data, pagination) {
+                $('#data-container').html(data);
+            }
+        });
     });
 </script>
+
 </html>

@@ -1,10 +1,8 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/adminLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/adminLayout}">
 
 <head>
-  <title>Orders</title>
+    <title>Orders</title>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
@@ -20,7 +18,8 @@
                 <small class="text-muted">
                     <span>Order</span>
                     <span class="fw-bold text-danger" th:text="|#${order.orderReference}|"></span>
-                    <span th:text="|was placed on ${#temporals.format(order.createdTime, 'dd/MM/yyyy HH:mm:ss')}|"></span>
+                    <span
+                        th:text="|was placed on ${#temporals.format(order.createdTime, 'dd/MM/yyyy HH:mm:ss')}|"></span>
                 </small>
 
                 <h6 class="ff-light pt-3">
@@ -38,7 +37,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <small class="text-muted d-block pb-3">Payment Details (<span class="text-success" th:if="${order.isPaid}">Paid</span>)</small>
+                    <small class="text-muted d-block pb-3">Payment Details (<span class="text-success"
+                            th:if="${order.isPaid}">Paid</span>)</small>
                     <p class="lnw-0">
                         <small>Billing Address:</small>
                         <small class="text-primary" th:text="${order.payPalEmail}"></small>
@@ -74,10 +74,11 @@
                 <form method="post" th:action="@{/admin/order}">
                     <small class="text-muted d-block pb-2">Order Status</small>
                     <div class="input-group mb-3">
-                        <select name="status" id="status" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                        <select name="status" id="status" class="form-select form-select-lg"
+                            aria-label=".form-select-lg example">
                             <option value="">(Select)</option>
                             <option th:each="status : ${T(com.clothesdelivery.web.enums.OrderStatus).values()}"
-                                    th:value="${status}" th:text="${status}"></option>
+                                th:value="${status}" th:text="${status}"></option>
                         </select>
 
                         <button class="btn btn-sm btn-warning" type="submit">Change</button>
@@ -86,14 +87,16 @@
                 </form>
 
                 <ul class="list-group">
-                    <li th:each="item : ${order_items}" class="list-group-item d-flex justify-content-between align-items-center pt-3">
-                       <span class="d-flex align-items-center">
-                           <img width="35" th:src="${item.productImage}" th:alt="${item.productName}">
-                           <span class="ps-3 pe-2" th:text="${item.productName}"></span>
-                           <span class="fw-bold text-warning" th:text="|x${item.productQuantity}|"></span>
-                       </span>
+                    <li th:each="item : ${order_items}"
+                        class="list-group-item d-flex justify-content-between align-items-center pt-3">
+                        <span class="d-flex align-items-center">
+                            <img width="35" th:src="${item.productImage}" th:alt="${item.productName}">
+                            <span class="ps-3 pe-2" th:text="${item.productName}"></span>
+                            <span class="fw-bold text-warning" th:text="|x${item.productQuantity}|"></span>
+                        </span>
                         <span>
-                            <span th:text="${@extensionsBean.toFormattedCurrency(item.productQuantity * item.productPrice)}"></span>
+                            <span
+                                th:text="${@extensionsBean.toFormattedCurrency(item.productQuantity * item.productPrice)}"></span>
                             <small class="price">AKZ</small>
                         </span>
                     </li>
@@ -102,4 +105,5 @@
         </div>
     </div>
 </body>
+
 </html>

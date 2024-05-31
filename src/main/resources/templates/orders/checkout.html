@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/authLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/authLayout}">
 
 <head>
     <title>Checkout</title>
@@ -25,91 +23,102 @@
                 <span>Check out</span>
             </small>
         </div>
-       <form method="post" id="paymentForm" th:action="@{/checkout}" role="form" class="row">
-           <div class="col-md-7">
-               <h3 class="mb-3">Checking out</h3>
+        <form method="post" id="paymentForm" th:action="@{/checkout}" role="form" class="row">
+            <div class="col-md-7">
+                <h3 class="mb-3">Checking out</h3>
 
-               <div class="mb-5">
+                <div class="mb-5">
                     <h5 class="ff-light">Billing Address</h5>
                     <span class="py-2 d-block mb-2" th:text="${address.toString()}"></span>
                     <div class="form-floating">
-                        <input type="text" required class="form-control" id="location" name="location" placeholder="IMETRO College">
+                        <input type="text" required class="form-control" id="location" name="location"
+                            placeholder="IMETRO College">
                         <label for="location">Reference Location</label>
                     </div>
-               </div>
+                </div>
 
-               <div class="mb-5">
-                   <h5 class="ff-light mb-3 row">
-                       <div class="col-6">
-                           Payment Details (PayPal)
-                       </div>
-                       <div class="col-6 text-end">
-                           <small class="px-3 fs-6">Secure Payment</small>
-                           <span data-feather="lock" class="text-success"></span>
-                       </div>
-                   </h5>
-                   <div class="form-floating">
-                       <input th:value="${authenticatedUser.email}" type="email" required class="form-control" id="paypalEmail" name="paypalEmail" placeholder="user@gmail.com">
-                       <label for="paypalEmail">PayPal Email Address</label>
-                   </div>
-               </div>
+                <div class="mb-5">
+                    <h5 class="ff-light mb-3 row">
+                        <div class="col-6">
+                            Payment Details (PayPal)
+                        </div>
+                        <div class="col-6 text-end">
+                            <small class="px-3 fs-6">Secure Payment</small>
+                            <span data-feather="lock" class="text-success"></span>
+                        </div>
+                    </h5>
+                    <div class="form-floating">
+                        <input th:value="${authenticatedUser.email}" type="email" required class="form-control"
+                            id="paypalEmail" name="paypalEmail" placeholder="user@gmail.com">
+                        <label for="paypalEmail">PayPal Email Address</label>
+                    </div>
+                </div>
 
-               <div class="mb-5">
-                   <h5 class="ff-light">Orders Details</h5>
-                   <ul class="list-group">
-                       <li th:each="product : ${products}" class="list-group-item d-flex justify-content-between align-items-center pt-3">
-                           <span class="d-flex align-items-center">
-                               <img width="35" th:src="${product.productImage}" th:alt="${product.productName}">
-                               <span class="ps-3 pe-2" th:text="${product.productName}"></span>
-                               <span class="fw-bold text-warning" th:text="|x${product.quantity}|"></span>
-                           </span>
-                           <span>
-                                <span th:text="${@extensionsBean.toFormattedCurrency(product.quantity * product.productPrice)}"></span>
+                <div class="mb-5">
+                    <h5 class="ff-light">Orders Details</h5>
+                    <ul class="list-group">
+                        <li th:each="product : ${products}"
+                            class="list-group-item d-flex justify-content-between align-items-center pt-3">
+                            <span class="d-flex align-items-center">
+                                <img width="35" th:src="${product.productImage}" th:alt="${product.productName}">
+                                <span class="ps-3 pe-2" th:text="${product.productName}"></span>
+                                <span class="fw-bold text-warning" th:text="|x${product.quantity}|"></span>
+                            </span>
+                            <span>
+                                <span
+                                    th:text="${@extensionsBean.toFormattedCurrency(product.quantity * product.productPrice)}"></span>
                                 <small class="price">AKZ</small>
                             </span>
-                       </li>
-                   </ul>
-               </div>
-           </div>
-           <div class="col-md-5 mb-5">
-               <h3>Summary</h3>
-               <ul class="list-group py-3 mb-3">
-                   <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
-                       <span>Bag (<span th:text="${products.size()}"></span>)</span>
-                       <span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5 mb-5">
+                <h3>Summary</h3>
+                <ul class="list-group py-3 mb-3">
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                        <span>Bag (<span th:text="${products.size()}"></span>)</span>
+                        <span>
                             <span th:text="${totalProducts}"></span>
                             <small class="price">AKZ</small>
                         </span>
-                   </li>
-                   <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
-                       Shipping Price
-                       <span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                        Shipping Price
+                        <span>
                             <span th:text="${ship}"></span>
                             <small class="price" th:if="${ship != 'Free'}">AKZ</small>
                         </span>
-                   </li>
-                   <li class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
-                       Total
-                       <span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center border-bottom-dashed pt-3">
+                        Total
+                        <span>
                             <span th:text="${total}"></span>
                             <small class="price">AKZ</small>
                         </span>
-                   </li>
-               </ul>
+                    </li>
+                </ul>
 
-               <div class="form-floating mb-3">
-                   <textarea class="form-control" placeholder="Leave a comment here" name="note" id="note" style="height: 100px"></textarea>
-                   <label for="note">Note</label>
-               </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" placeholder="Leave a comment here" name="note" id="note"
+                        style="height: 100px"></textarea>
+                    <label for="note">Note</label>
+                </div>
 
-               <button type="submit" id="paypalModalButton" class="btn btn-lg btn-warning w-100" th:if="${products.size() >= 1}">Complete</button>
+                <button type="submit" id="paypalModalButton" class="btn btn-lg btn-warning w-100"
+                    th:if="${products.size() >= 1}">Complete</button>
 
-               <small class="text-muted d-block py-3">Clicking in the button above you are agreeing with our <a class="text-warning" th:href="@{/terms}">terms and policies</a>.</small>
-           </div>
-       </form>
+                <small class="text-muted d-block py-3">Clicking in the button above you are agreeing with our <a
+                        class="text-warning" th:href="@{/terms}">terms and policies</a>.</small>
+            </div>
+        </form>
     </div>
 
-    <div class="modal fade" id="paypalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="PayPal Payment Modal" aria-hidden="true">
+    <div class="modal fade" id="paypalModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="PayPal Payment Modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded">
                 <video id="player" muted class="w-100 h-100 rounded">
@@ -125,7 +134,7 @@
     const payPalModal = document.getElementById('paypalModal');
     let paid = false;
 
-    $("#paymentForm").submit(function(event) {
+    $("#paymentForm").submit(function (event) {
         if (!this.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
@@ -133,7 +142,7 @@
             return;
         }
 
-        if(!paid) {
+        if (!paid) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -158,4 +167,5 @@
         }, 100);
     }
 </script>
+
 </html>

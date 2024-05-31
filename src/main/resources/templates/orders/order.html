@@ -1,7 +1,5 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/layout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/layout}">
 
 <head>
     <title>Order Details</title>
@@ -32,7 +30,8 @@
                 <small class="text-muted">
                     <span>Order</span>
                     <span class="fw-bold text-danger" th:text="|#${order.orderReference}|"></span>
-                    <span th:text="|was placed on ${#temporals.format(order.createdTime, 'dd/MM/yyyy HH:mm:ss')}|"></span>
+                    <span
+                        th:text="|was placed on ${#temporals.format(order.createdTime, 'dd/MM/yyyy HH:mm:ss')}|"></span>
                 </small>
 
                 <h6 class="ff-light pt-3">
@@ -50,7 +49,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <small class="text-muted d-block pb-3">Payment Details (<span class="text-success" th:if="${order.isPaid}">Paid</span>)</small>
+                    <small class="text-muted d-block pb-3">Payment Details (<span class="text-success"
+                            th:if="${order.isPaid}">Paid</span>)</small>
                     <p class="lnw-0">
                         <small>Billing Address:</small>
                         <small class="text-primary" th:text="${order.payPalEmail}"></small>
@@ -82,14 +82,16 @@
             <div class="col-md-6">
                 <h5 class="ff-light">Order Items (<span th:text="${order.items}"></span>)</h5>
                 <ul class="list-group">
-                    <li th:each="item : ${order_items}" class="list-group-item d-flex justify-content-between align-items-center pt-3">
-                       <span class="d-flex align-items-center">
-                           <img width="35" th:src="${item.productImage}" th:alt="${item.productName}">
-                           <span class="ps-3 pe-2" th:text="${item.productName}"></span>
-                           <span class="fw-bold text-warning" th:text="|x${item.productQuantity}|"></span>
-                       </span>
+                    <li th:each="item : ${order_items}"
+                        class="list-group-item d-flex justify-content-between align-items-center pt-3">
+                        <span class="d-flex align-items-center">
+                            <img width="35" th:src="${item.productImage}" th:alt="${item.productName}">
+                            <span class="ps-3 pe-2" th:text="${item.productName}"></span>
+                            <span class="fw-bold text-warning" th:text="|x${item.productQuantity}|"></span>
+                        </span>
                         <span>
-                            <span th:text="${@extensionsBean.toFormattedCurrency(item.productQuantity * item.productPrice)}"></span>
+                            <span
+                                th:text="${@extensionsBean.toFormattedCurrency(item.productQuantity * item.productPrice)}"></span>
                             <small class="price">AKZ</small>
                         </span>
                     </li>
@@ -98,4 +100,5 @@
         </div>
     </div>
 </body>
+
 </html>

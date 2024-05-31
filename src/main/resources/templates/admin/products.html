@@ -1,73 +1,73 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/adminLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/adminLayout}">
 
 <head>
     <title>Products</title>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-<div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Products (<span th:text="${products.size()}"></span>)</h1>
-        <a th:href="@{/admin/products/edit/0}" class="d-none d-sm-inline-block btn btn-warning shadow-sm">
-            <i class="text-white-50" data-feather="plus"></i> Add New Product
-        </a>
-    </div>
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Products (<span th:text="${products.size()}"></span>)</h1>
+            <a th:href="@{/admin/products/edit/0}" class="d-none d-sm-inline-block btn btn-warning shadow-sm">
+                <i class="text-white-50" data-feather="plus"></i> Add New Product
+            </a>
+        </div>
 
-    <div th:if="${param.removed}" class="alert alert-success my-2" role="alert">
-        <span>Product has been removed.</span>
-    </div>
+        <div th:if="${param.removed}" class="alert alert-success my-2" role="alert">
+            <span>Product has been removed.</span>
+        </div>
 
-    <div class="table-responsive p-1 my-4">
-        <table class="table table-bordered w-100" id="dataTable">
-            <thead>
-                <tr>
-                    <th>SKU</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Brand</th>
-                    <th>Category</th>
-                    <th>Style</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>SKU</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Brand</th>
-                    <th>Category</th>
-                    <th>Style</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.sku}"></td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.price}"></td>
-                    <td th:text="${product.quantityInStock}"></td>
-                    <td th:text="${product.brand}"></td>
-                    <td th:text="${product.category}"></td>
-                    <td th:text="${product.genreStyle}"></td>
-                    <td class="btn-group">
-                        <a th:href="@{/admin/products/remove/{id}(id=${product.id})}" class="btn btn-danger text-white">
-                            <span data-feather="trash-2"></span>
-                        </a>
-                        <a th:href="@{/admin/products/edit/{id}(id=${product.id})}" class="btn btn-primary text-white">
-                            <span data-feather="edit"></span>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive p-1 my-4">
+            <table class="table table-bordered w-100" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Style</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Style</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.sku}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.quantityInStock}"></td>
+                        <td th:text="${product.brand}"></td>
+                        <td th:text="${product.category}"></td>
+                        <td th:text="${product.genreStyle}"></td>
+                        <td class="btn-group">
+                            <a th:href="@{/admin/products/remove/{id}(id=${product.id})}"
+                                class="btn btn-danger text-white">
+                                <span data-feather="trash-2"></span>
+                            </a>
+                            <a th:href="@{/admin/products/edit/{id}(id=${product.id})}"
+                                class="btn btn-primary text-white">
+                                <span data-feather="edit"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 
 <script layout:fragment="script">
@@ -75,4 +75,5 @@
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>

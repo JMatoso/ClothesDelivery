@@ -1,52 +1,52 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/adminLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/adminLayout}">
+
 <head>
     <title>Users</title>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-<div class="px-4 my-3">
-    <h3 class="text-warning">Users (<span th:text="${users.size()}"></span>)</h3>
+    <div class="px-4 my-3">
+        <h3 class="text-warning">Users (<span th:text="${users.size()}"></span>)</h3>
 
-    <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
-        <span>User has been removed.</span>
-    </div>
+        <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
+            <span>User has been removed.</span>
+        </div>
 
-    <div class="table-responsive p-1 my-4">
-        <table class="table table-bordered w-100" id="dataTable">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Action</th>
-            </tr>
-            </tfoot>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.phoneNumber}"></td>
-                <td>
-                    <a th:href="@{/admin/users/remove/{uid}(uid=${user.id})}" class="btn btn-danger text-white w-100">
-                        Remove
-                    </a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive p-1 my-4">
+            <table class="table table-bordered w-100" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.phoneNumber}"></td>
+                        <td>
+                            <a th:href="@{/admin/users/remove/{uid}(uid=${user.id})}"
+                                class="btn btn-danger text-white w-100">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 
 <script layout:fragment="script">
@@ -54,4 +54,5 @@
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>

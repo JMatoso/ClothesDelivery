@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="en"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Clothes</title>
 
-    <meta name="description" content="Welcome to Clothes, discover a unique selection of clothes, accessories, and shoes to create your own style. Stand out from the crowd with our exclusive items.">
+    <meta name="description"
+        content="Welcome to Clothes, discover a unique selection of clothes, accessories, and shoes to create your own style. Stand out from the crowd with our exclusive items.">
     <meta name="author" content="José Matoso & Bernarda Gonçalves">
 
     <meta name="topic" content="Online Clothing Store">
-    <meta name="keywords" content="Women's Clothes, Men's Clothes, Children's Clothes, Dresses, Skirts, Trousers, Shirts, Blouses, Handbags, Belts, Heels, Boots, Sneakers">
+    <meta name="keywords"
+        content="Women's Clothes, Men's Clothes, Children's Clothes, Dresses, Skirts, Trousers, Shirts, Blouses, Handbags, Belts, Heels, Boots, Sneakers">
     <meta name="category" content="Women's Clothing, Men's Clothing, Children's Clothing, Accessories, Shoes">
-    <meta name="abstract" content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products.">
+    <meta name="abstract"
+        content="Find affordable clothes, accessories, and shoes to build your own style. Look great without breaking the bank with our range of products.">
     <meta name="coverage" content="Worldwide">
 
     <meta name="theme-color" content="#198754" />
@@ -64,7 +66,9 @@
         <div class="container-fluid container">
             <a class="navbar-brand fw-bold" th:href="@{/}">Clothes</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <i data-feather="menu"></i>
                 </span>
@@ -81,18 +85,21 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Categories
                         </a>
                         <ul class="dropdown-menu">
                             <li th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}">
-                                <a class="dropdown-item" th:href="@{/products(category=${category})}" th:text="${category}"></a>
+                                <a class="dropdown-item" th:href="@{/products(category=${category})}"
+                                    th:text="${category}"></a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             Style
                         </a>
                         <ul class="dropdown-menu">
@@ -147,7 +154,8 @@
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <small>
-                                    For any additional question, doubts or complaints, please <a th:href="@{/contact}">get in touch</a> and let us know,
+                                    For any additional question, doubts or complaints, please <a
+                                        th:href="@{/contact}">get in touch</a> and let us know,
                                     we are always available to help you, with love!
                                 </small>
                             </li>
@@ -165,7 +173,8 @@
                             <li class="nav-item">
                                 <a th:href="@{/products}">Products</a>
                             </li>
-                            <li class="nav-item" th:each="type : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}">
+                            <li class="nav-item"
+                                th:each="type : ${T(com.clothesdelivery.web.enums.GenreStyle).values()}">
                                 <a th:href="@{/products(style=${type})}" th:text="${type}"></a>
                             </li>
                         </ul>
@@ -173,7 +182,8 @@
                     <div class="col-md-3">
                         <h5 class="text-secondary topic fs-6">Categories</h5>
                         <ul class="navbar-nav">
-                            <li class="nav-item" th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}">
+                            <li class="nav-item"
+                                th:each="category : ${T(com.clothesdelivery.web.enums.Category).values()}">
                                 <a th:href="@{/products(category=${category})}" th:text="${category}"></a>
                             </li>
                         </ul>
@@ -182,7 +192,8 @@
             </div>
 
             <div class="col-md-4">
-                <p class="text-black-50">The customer is at the heart of our unique business model, which includes design.</p>
+                <p class="text-black-50">The customer is at the heart of our unique business model, which includes
+                    design.</p>
                 <div class="contact-social py-2">
                     <span>
                         <a target="_blank" href="https://www.facebook.com/clothes">
@@ -190,9 +201,9 @@
                         </a>
                     </span>
                     <span>
-                            <a target="_blank" href="https://github.com/jmatoso/ClothesDelivery">
-                                <i data-feather="github"></i>
-                            </a>
+                        <a target="_blank" href="https://github.com/jmatoso/ClothesDelivery">
+                            <i data-feather="github"></i>
+                        </a>
                     </span>
                     <span>
                         <a target="_blank" href="mailto:geral@clothes.com">
@@ -240,4 +251,5 @@
     feather.replace();
 </script>
 <script layout:fragment="script"></script>
+
 </html>

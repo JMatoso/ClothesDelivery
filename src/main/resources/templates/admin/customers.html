@@ -1,56 +1,55 @@
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/fragments/adminLayout}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/fragments/adminLayout}">
 
 <head>
     <title>Customers</title>
 </head>
 
 <body class="bg-gradient" layout:fragment="body">
-<div class="px-4 my-3">
-    <h3 class="text-warning">Customers (<span th:text="${customers.size()}"></span>)</h3>
+    <div class="px-4 my-3">
+        <h3 class="text-warning">Customers (<span th:text="${customers.size()}"></span>)</h3>
 
-    <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
-        <span>Customer has been removed.</span>
-    </div>
+        <div th:if="${param.removed}" class="alert alert-success my-3" role="alert">
+            <span>Customer has been removed.</span>
+        </div>
 
-    <div class="table-responsive p-1 my-4">
-        <table class="table table-bordered w-100" id="dataTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Birthdate</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Birthdate</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr th:each="customer : ${customers}">
-                    <td th:text="${customer.name}"></td>
-                    <td th:text="${customer.email}"></td>
-                    <td th:text="${customer.phoneNumber}"></td>
-                    <td th:text="${customer.birthdate}"></td>
-                    <td>
-                        <a th:href="@{/admin/users/remove/{uid}(uid=${customer.id})}" class="btn btn-danger text-white w-100">
-                            Remove
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive p-1 my-4">
+            <table class="table table-bordered w-100" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Birthdate</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Birthdate</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr th:each="customer : ${customers}">
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.email}"></td>
+                        <td th:text="${customer.phoneNumber}"></td>
+                        <td th:text="${customer.birthdate}"></td>
+                        <td>
+                            <a th:href="@{/admin/users/remove/{uid}(uid=${customer.id})}"
+                                class="btn btn-danger text-white w-100">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 
 <script layout:fragment="script">
@@ -58,4 +57,5 @@
         $('#dataTable').DataTable();
     });
 </script>
+
 </html>
