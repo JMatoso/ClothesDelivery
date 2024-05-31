@@ -1,16 +1,13 @@
 FROM ubuntu:latest AS build
 
-RUN apt-get update && apt-get install -y wget gnupg
-RUN wget -q -O - https://download.bell-sw.com/pki/GPG-KEY-bellsoft | gpg --dearmor -o /etc/apt/keyrings/GPG-KEY-bellsoft.gpg
-RUN echo "deb [signed-by=/etc/apt/keyrings/GPG-KEY-bellsoft.gpg] https://apt.bell-sw.com/ stable main" | tee /etc/apt/sources.list.d/bellsoft.list
-RUN apt-get update && apt-get install -y bellsoft-java21
-
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
 RUN apt-get install maven -y
-RUN mvn clean install -X
+RUN mvn clean install
 
-FROM bellsoft/liberica-openjdk-alpine:latest
+FROM openjdk:17-jdk-slim
 
 EXPOSE 8080
 
