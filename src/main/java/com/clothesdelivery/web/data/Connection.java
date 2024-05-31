@@ -27,6 +27,10 @@ public class Connection {
 
     @Bean
     public DataSource dataSource() {
+        System.out.println("URL: " + url);
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
+
         var dataSource = new DriverManagerDataSource(url, username, password);
         dataSource.setDriverClassName(driverClassName);
         return dataSource;
