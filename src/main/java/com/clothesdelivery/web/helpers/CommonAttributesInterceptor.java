@@ -25,7 +25,7 @@ public class CommonAttributesInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler,
-                           ModelAndView modelAndView) {
+                            ModelAndView modelAndView) {
         if (modelAndView != null) {
             modelAndView.addObject("hostUrl", HttpRequests.getHostUrl(request));
             modelAndView.addObject("hostPath", HttpRequests.getRequestUrlWithQuery(request));
