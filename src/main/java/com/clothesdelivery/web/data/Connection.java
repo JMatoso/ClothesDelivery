@@ -9,6 +9,10 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -24,6 +28,9 @@ public class Connection {
 
     //@Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
+
+    @Autowired
+    private Environment env;
 
     public void init() {
         System.out.println("Database URL: " + env.getProperty("DATABASE_URL"););
