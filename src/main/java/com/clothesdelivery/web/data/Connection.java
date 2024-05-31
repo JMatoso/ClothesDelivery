@@ -33,7 +33,7 @@ public class Connection {
     private Environment env;
 
     public void init() {
-        System.out.println("Database URL: " + env.getProperty("DATABASE_URL"););
+        System.out.println("Database URL: " + env.getProperty("DATABASE_URL"));
         System.out.println("Database Username: " + username);
         System.out.println("Database Driver: " + driverClassName);
     }
