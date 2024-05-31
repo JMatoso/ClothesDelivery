@@ -25,12 +25,15 @@ public class Connection {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
+    @PostConstruct
+    public void init() {
+        System.out.println("Database URL: " + url);
+        System.out.println("Database Username: " + username);
+        System.out.println("Database Driver: " + driverClassName);
+    }
+
     @Bean
     public DataSource dataSource() {
-        System.out.println("URL: " + url);
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
-
         var dataSource = new DriverManagerDataSource(url, username, password);
         dataSource.setDriverClassName(driverClassName);
         return dataSource;
