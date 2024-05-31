@@ -9,18 +9,14 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
-
 import javax.sql.DataSource;
 
 @Configuration
 public class Connection {
-    //@Value("${spring.datasource.url}")
+    @Value("${DATABASE_URL}")
     private String url;
 
-    @Value("${spring.datasource.username}")
+    @Value("${DATABASE_USERNAME}")
     private String username;
 
     @Value("${DATABASE_PASSWORD}")
@@ -29,19 +25,8 @@ public class Connection {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Autowired
-    private Environment env;
-
-    public void init() {
-        System.out.println("Database URL: " + env.getProperty("DATABASE_URL"));
-        System.out.println("Database Username: " + username);
-        System.out.println("Database Password: " + password);
-        System.out.println("Database Driver: " + driverClassName);
-    }
-
     @Bean
     public DataSource dataSource() {
-        init();
         var dataSource = new DriverManagerDataSource(url, username, password);
         dataSource.setDriverClassName(driverClassName);
         return dataSource;
