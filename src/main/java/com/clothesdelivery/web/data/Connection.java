@@ -9,6 +9,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 @Configuration
