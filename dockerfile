@@ -13,8 +13,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-EXPOSE 10000
-
 COPY --from=build /app/target/*.jar ./app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
